@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>原型链 - QX97</title>
+  <title>this指向 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -149,7 +149,7 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                原型链
+                this指向
               
             </span>
 
@@ -197,38 +197,125 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="font-size: 2rem;">原型链</h1>
+            <h1 style="font-size: 2rem;">this指向</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020-08-27 19:54:50
+                  本文最后更新于：2020-08-27 21:42:01
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <p>原型链涉及两类对象，(构造)函数对象及(实例)普通对象，构造函数一般以首字母大写区分于普通函数。</p>
-<p>所有对象都有<code>_proto_</code>属性，只有函数对象有<code>prototype</code>属性。因此，普通对象只有<code>_proto_</code>属性，函数对象既有<code>_proto_</code>属性又有<code>prototype</code>属性。</p>
-<p>(实例)普通对象的<code>_proto_</code>属性指向(构造)函数对象的<code>prototype</code>属性，即<code>foo._proto_ = Foo.prptotype</code>。</p>
-<p>(构造)函数对象的<code>_proto_</code>属性指向<code>Function.prototype</code>，即<code>Foo._proto_ = Function.prototype</code>。<code> Function.prototype</code>中定义了所有函数对象的公有方法，所有的构造函数都是<code>Function</code>的实例对象。</p>
-<p>所有对象最终都将指向<code>Object.prototype</code>，继而指向<code>null</code>，完成整个原型链。</p>
-<p>原型链实现属性和方法的继承，当实例对象调用属性或方法时，<code>JavaScript</code>引擎首先查看实例对象本身是否含有这些方法或属性，若无，则根据原型链向上查找，直到查找到<code>Object.prototype</code>指向的<code>null</code>为止。</p>
+              <p><code>this</code>的值取决于运行时上下文，非定义时上下文。    </p>
+<p>由于函数在内存中独占一块空间，当对象的属性为函数时，实际将函数地址赋值给属性的<code>value</code>值。</p>
+<p><code>this</code>的使用场景主要有4种。<code>call(),apply(),bind()</code>函数赋值，构造函数调用，普通函数调用，对象函数调用。</p>
 <center> 
-  <img src="/img/原型链.jpg" srcset="/img/loading.gif"> 
-  <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
-    原型链简易图.jpg
+    <img src="/img/对象函数存储.jpg" srcset="/img/loading.gif" > 
+  <div style="border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 5px;">
+    对象函数内存图.jpg
   </div> 
 </center>
 
+<h4 id="call-apply-bind"><a href="#call-apply-bind" class="headerlink" title="call/apply/bind"></a>call/apply/bind</h4><p><strong>显式绑定</strong></p>
+<p><code>call()</code>方法使用一个指定的<code>this</code>及一个或多个参数来调用函数。<code>function.call(thisArg, arg1, arg2, ...)</code>，当第一个参数为<code>null</code>或<code>undefined</code>，<code>this</code>在浏览器环境下指向<code>window</code>对象</p>
+<p><code>apply()</code>方法使用一个指定的<code>this</code>及一个数组或类数组对象参数。<code>func.apply(thisArg, [argsArray])</code></p>
+<p><code>bind()</code>方法会<strong>创建一个新函数</strong>，当<code>bind()</code>被调用时，第一个参数作为指定的<code>this</code>，其余参数作为新函数参数，在调用时使用。因此，<code>bind()</code>能够使函数具有预设参数。<code>function.bind(thisArg, arg1, arg2, ...)</code></p>
+<p><code>call()</code>与<code>apply()</code>的区别在于<code>call()</code>方法接受的是<strong>参数列表</strong>，<code>apply()</code>方法接受的是<strong>参数数组</strong>。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;
+  sum: <span class="hljs-number">0</span>,
+  arr: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>],
+&#125;;
+<span class="hljs-comment">/** apply **/</span>
+<span class="hljs-keyword">let</span> max = <span class="hljs-built_in">Math</span>.max.apply(obj.arr, [<span class="hljs-number">8</span>, <span class="hljs-number">88</span>]);
+<span class="hljs-built_in">console</span>.log(max); <span class="hljs-comment">// 88</span>
+<span class="hljs-comment">/** call **/</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">a, b</span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(a + b);
+&#125;
+foo.call(obj.sum, <span class="hljs-number">3</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// 12</span>
+<span class="hljs-comment">/** bind **/</span>
+<span class="hljs-keyword">let</span> fn = foo.bind(<span class="hljs-literal">null</span>, <span class="hljs-number">20</span>);
+fn(<span class="hljs-number">45</span>); <span class="hljs-comment">// 65</span></code></pre>
+
+<h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><p><strong>new绑定</strong></p>
+<p>构造函数中<code>this</code>指向构造函数使用<code>new</code>关键字产生的实例对象，无法改变<code>this</code>指向。</p>
+<p><code>new</code>关键字主要步骤：</p>
+<ol>
+<li>创建一个空对象<code>foo = &#123;&#125;</code></li>
+<li>设置对象的<code>_proto_</code>，<code>foo._proto_ = Foo.prototype</code></li>
+<li>将构造函数的<code>this</code>指向该新对象<code>foo</code></li>
+<li>执行构造函数中的逻辑代码</li>
+<li>如果构造函数中没有<code>return</code>语句，返回对象<code>foo</code>的地址；如果构造函数中含有<code>return</code>语句且返回对象类型<code>new_foo</code>，则返回该对象类型<code>new_foo</code>地址，非<code>foo</code>地址；如果构造函数中含有<code>return</code>语句且返回类型为值(基本)类型，则返回<code>foo</code>的地址</li>
+</ol>
+<h4 id="普通函数"><a href="#普通函数" class="headerlink" title="普通函数"></a>普通函数</h4><p><strong>默认绑定</strong></p>
+<p>普通函数调用，<code>this</code>指向全局对象，浏览器环境为<code>window</code>，<code>node</code>环境为<code>global</code>，方式：<code>函数名(...)</code></p>
+<pre><code class="hljs js"><span class="hljs-comment">/** 情境一 **/</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">var</span> a = <span class="hljs-number">2</span>;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.a); <span class="hljs-comment">// 3</span>
+&#125;
+<span class="hljs-keyword">var</span> a = <span class="hljs-number">3</span>;
+foo(); <span class="hljs-comment">// foo() === window.foo()，此时this指向全局变量，全局变量的a = 3，因此打印3</span>
+
+<span class="hljs-comment">/** 情境二 **/</span>
+<span class="hljs-keyword">let</span> obj = &#123;
+  b: <span class="hljs-number">1</span>,
+  foo() &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.b);
+  &#125;
+&#125;
+<span class="hljs-keyword">let</span> temp = obj.foo;
+temp(); <span class="hljs-comment">// undefined,	此时this指向全局对象，全局对象中不含b属性，因此打印undefined</span></code></pre>
+
+<h4 id="对象函数"><a href="#对象函数" class="headerlink" title="对象函数"></a>对象函数</h4><p>即函数作为对象方法被调用，此时<code>this</code>指向该对象，方式：<code>对象名.函数名(...)</code>。</p>
+<p><strong>隐式绑定</strong></p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;
+  name: <span class="hljs-string">&quot;obj&quot;</span>,
+  fn() &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);
+  &#125;,
+&#125;;
+<span class="hljs-keyword">let</span> name = <span class="hljs-string">&quot;window&quot;</span>;
+obj.fn(); <span class="hljs-comment">// &#x27;obj&#x27; obj.fn() === obj.fn.call(obj)</span></code></pre>
+
+<h4 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h4><p>回调函数中的<code>this</code>默认指向全局对象，即函数参数传入<code>callback</code>，并在函数内调用<code>callback()</code>，此时为<code>函数名(...)</code>。</p>
+<pre><code class="hljs js"><span class="hljs-comment">/** 情境一 **/</span>
+<span class="hljs-keyword">let</span> obj = &#123;
+  num: <span class="hljs-number">1</span>,
+  foo() &#123;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>&#123;
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);
+    &#125;
+    fn();
+  &#125;,
+&#125;;
+obj.foo(); <span class="hljs-comment">// this指向window</span>
+
+<span class="hljs-comment">/** 情境2 **/</span>
+<span class="hljs-keyword">let</span> obj = &#123;
+  num: <span class="hljs-number">1</span>,
+  foo(callback) &#123;
+    callback();
+  &#125;,
+&#125;;
+obj.foo(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// this指向window</span>
+&#125;);</code></pre>
+
+<h4 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h4><p>箭头函数并且没有自己的<code>this</code>，<code>arguments</code>，<code>super</code>或<code>new.target</code>，由外围最近一层非箭头函数的<code>this</code>决定。</p>
+<p>箭头函数不能作为构造函数，主要原因在于，第一，箭头函数没有自己的<code>this</code>，无法调用<code>call(),apply()</code>；第二，没有<code>prototype</code>属性，而<code>new </code>命令执行时需要将构造函数的<code>prototype</code>赋值给对象的<code>_proto_</code>。</p>
 <style>
   img:hover {
     border-radius: 0.3125em; 
     box-shadow: 0 0px 15px #2f4154;
   }
+  .desc {
+    border-bottom: 1px solid #d9d9d9; 
+    display: inline-block; 
+    color: #999; 
+    padding: 5px;
+  }
 </style>
-
-
-
-
             </div>
             <hr>
             <div>
@@ -249,15 +336,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/27/this%E6%8C%87%E5%90%91/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">this指向</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2020/08/26/%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+                        <span class="hidden-mobile">原型链</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
