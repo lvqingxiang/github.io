@@ -1459,6 +1459,9 @@ post-content strong {
     transform: translateX(0);
   }
 }
+.new-note {
+  Font-size: 0.8rem;
+}
 .note {
   border-radius: 0.25rem;
   Font-size: 0.8rem;
