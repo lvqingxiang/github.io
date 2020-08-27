@@ -1460,10 +1460,8 @@ post-content strong {
   }
 }
 .note {
-  padding: 0.75rem;
-  border-left: 0.35rem solid;
   border-radius: 0.25rem;
-  margin: 1.5rem 0;
+  Font-size: 0.8rem;
   color: #3c4858;
 }
 .note a {
@@ -1491,10 +1489,6 @@ post-content strong {
 .note-warning {
   background-color: #faf4e0;
   border-color: #c2a442;
-}
-.note-info {
-  background-color: #e4f2f5;
-  border-color: #2492a5;
 }
 .note-light {
   background-color: #fefefe;
