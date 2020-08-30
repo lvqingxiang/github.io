@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>商城项目 - QX97</title>
+  <title>QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -149,7 +149,7 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                商城项目
+                
               
             </span>
 
@@ -199,11 +199,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="font-size: 2rem;">商城项目</h1>
+            <h1 style="font-size: 2rem;"></h1>
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-08-28 23:00:26
+                  本文最后更新于：2020-08-30 19:31:11
                 
               </p>
             
@@ -231,6 +231,160 @@ npm run serve</code></pre>
     box-shadow: 0 0px 15px #2f4154;
   }
 </style>
+
+<p>在项目根目录下创建<code>.eslintrc.js</code>文件，对项目编写规范进行约束，防止<code>Eslint</code>运行报错。</p>
+<pre><code class="hljs js"><span class="hljs-comment">// `.eslintrc.js`</span>
+<span class="hljs-built_in">module</span>.exports = &#123;
+  root: <span class="hljs-literal">true</span>,
+  env: &#123;
+    node: <span class="hljs-literal">true</span>,
+  &#125;,
+  <span class="hljs-keyword">extends</span>: [<span class="hljs-string">&#x27;plugin:vue/vue3-essential&#x27;</span>, <span class="hljs-string">&#x27;eslint:recommended&#x27;</span>, <span class="hljs-string">&#x27;@vue/prettier&#x27;</span>],
+  parserOptions: &#123;
+    parser: <span class="hljs-string">&#x27;babel-eslint&#x27;</span>,
+  &#125;,
+  rules: &#123;
+    <span class="hljs-string">&#x27;no-console&#x27;</span>: process.env.NODE_ENV === <span class="hljs-string">&#x27;production&#x27;</span> ? <span class="hljs-string">&#x27;warn&#x27;</span> : <span class="hljs-string">&#x27;off&#x27;</span>,
+    <span class="hljs-string">&#x27;no-debugger&#x27;</span>: process.env.NODE_ENV === <span class="hljs-string">&#x27;production&#x27;</span> ? <span class="hljs-string">&#x27;warn&#x27;</span> : <span class="hljs-string">&#x27;off&#x27;</span>,
+    quotes: [<span class="hljs-string">&#x27;error&#x27;</span>, <span class="hljs-string">&#x27;single&#x27;</span>],
+    semi: [<span class="hljs-string">&#x27;error&#x27;</span>, <span class="hljs-string">&#x27;never&#x27;</span>],
+  &#125;,
+&#125;
+</code></pre>
+
+<p>设置<code>settings.json</code>文件，解决<code>Eslint</code>与<code>Prettier</code>设置冲突问题</p>
+<pre><code class="hljs js"><span class="hljs-comment">// `settings.json`</span>
+&#123;
+  <span class="hljs-string">&quot;workbench.startupEditor&quot;</span>: <span class="hljs-string">&quot;newUntitledFile&quot;</span>,
+  <span class="hljs-string">&quot;workbench.iconTheme&quot;</span>: <span class="hljs-string">&quot;vscode-icons&quot;</span>,
+  <span class="hljs-string">&quot;editor.tabSize&quot;</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-string">&quot;files.autoSave&quot;</span>: <span class="hljs-string">&quot;onWindowChange&quot;</span>,
+  <span class="hljs-string">&quot;emmet.excludeLanguages&quot;</span>: [<span class="hljs-string">&quot;markdown&quot;</span>],
+  <span class="hljs-string">&quot;javascript.preferences.quoteStyle&quot;</span>: <span class="hljs-string">&quot;single&quot;</span>,
+  <span class="hljs-string">&quot;typescript.preferences.quoteStyle&quot;</span>: <span class="hljs-string">&quot;single&quot;</span>,
+  <span class="hljs-string">&quot;vetur.format.defaultFormatter.html&quot;</span>: <span class="hljs-string">&quot;prettier&quot;</span>,
+  <span class="hljs-string">&quot;editor.defaultFormatter&quot;</span>: <span class="hljs-string">&quot;esbenp.prettier-vscode&quot;</span>,
+  <span class="hljs-string">&quot;editor.formatOnSave&quot;</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-string">&quot;editor.formatOnType&quot;</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-string">&quot;editor.formatOnPaste&quot;</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-string">&quot;editor.codeActionsOnSave&quot;</span>: &#123;
+    <span class="hljs-string">&quot;source.fixAll.eslint&quot;</span>: <span class="hljs-literal">true</span>
+  &#125;,
+  <span class="hljs-string">&quot;prettier.semi&quot;</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-string">&quot;prettier.singleQuote&quot;</span>: <span class="hljs-literal">true</span>
+&#125;</code></pre>
+
+<p>设置<code>vue.config.js</code>文件，对项目进行设置</p>
+<pre><code class="hljs js"><span class="hljs-comment">// `vue.config.js`</span>
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)
+<span class="hljs-keyword">const</span> resolve = <span class="hljs-function"><span class="hljs-params">dir</span> =&gt;</span> path.join(__dirname, dir)
+<span class="hljs-built_in">module</span>.exports = &#123;
+  devServer: &#123;
+    open: <span class="hljs-literal">true</span> <span class="hljs-comment">// 浏览器自启动</span>
+  &#125;,
+  chainWebpack: <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;
+    config.resolve.alias <span class="hljs-comment">// 设置路径别名</span>
+      .set(<span class="hljs-string">&#x27;assets&#x27;</span>, resolve(<span class="hljs-string">&#x27;@/assets&#x27;</span>))
+      .set(<span class="hljs-string">&#x27;views&#x27;</span>, resolve(<span class="hljs-string">&#x27;@/views&#x27;</span>))
+      .set(<span class="hljs-string">&#x27;components&#x27;</span>, resolve(<span class="hljs-string">&#x27;@/components&#x27;</span>))
+    config.plugin(<span class="hljs-string">&#x27;html&#x27;</span>).tap(<span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> &#123;
+      args[<span class="hljs-number">0</span>].title = <span class="hljs-string">&#x27;mall&#x27;</span> <span class="hljs-comment">// 修改应用名称</span>
+      <span class="hljs-keyword">return</span> args
+    &#125;)
+  &#125;
+&#125;</code></pre>
+
+<p>设置<code>package.json</code>，解决冲突</p>
+<pre><code class="hljs js"><span class="hljs-string">&quot;prettier&quot;</span>: &#123;
+    <span class="hljs-string">&quot;semi&quot;</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">&quot;singleQuote&quot;</span>: <span class="hljs-literal">true</span>
+&#125;</code></pre>
+
+<p>设置<code>vue</code>文件模版</p>
+<ul>
+<li>安装plop插件</li>
+</ul>
+<pre><code class="hljs js">npm run --save-dev plop</code></pre>
+
+<ul>
+<li>根目录下创建<code>plopfile.js</code></li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-comment">// plopfile.js</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">plop</span>) </span>&#123;
+  plop.setGenerator(<span class="hljs-string">&#x27;vue基础模板&#x27;</span>, &#123;
+    description: <span class="hljs-string">&#x27;创建vue文件&#x27;</span>,
+    prompts: [
+      &#123;
+        type: <span class="hljs-string">&#x27;input&#x27;</span>, <span class="hljs-comment">// 交互类型</span>
+        name: <span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-comment">// 参数名称</span>
+        message: <span class="hljs-string">&#x27;请输入文件名称&#x27;</span> <span class="hljs-comment">// 交互提示</span>
+      &#125;,
+      &#123;
+        type: <span class="hljs-string">&#x27;input&#x27;</span>,
+        name: <span class="hljs-string">&#x27;path&#x27;</span>,
+        message: <span class="hljs-string">&#x27;请输入文件创建目录&#x27;</span>
+      &#125;
+    ],
+    actions: [
+      &#123;
+        type: <span class="hljs-string">&#x27;add&#x27;</span>, <span class="hljs-comment">// 动作类型</span>
+        path: <span class="hljs-string">&#x27;src/views/&#123;&#123; path &#125;&#125;/&#123;&#123; name &#125;&#125;.vue&#x27;</span>, <span class="hljs-comment">// &#x27;&#123;&#123;  &#125;&#125;&#x27; 双大括号内设置动态参数</span>
+        templateFile: <span class="hljs-string">&#x27;plop-templates/views/index.hbs&#x27;</span> <span class="hljs-comment">// 模板文件地址， 使用hbs文件</span>
+      &#125;
+    ]
+  &#125;)
+&#125;</code></pre>
+
+<ul>
+<li>根目录创建<code>plop-templates/views/index.hbs</code></li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-comment">// `index.hbs` 自定义模版</span>
+&lt;template&gt;
+  &lt;div&gt;
+
+  &lt;/div&gt;
+&lt;/template&gt;
+    
+&lt;script&gt;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  name: <span class="hljs-string">&#x27;&#123;&#123;name&#125;&#125;&#x27;</span>,
+  components: &#123;
+
+  &#125;,
+  data () &#123;
+    <span class="hljs-keyword">return</span> &#123;
+
+    &#125;
+  &#125;,
+  computed: &#123;
+
+  &#125;,
+  created () &#123;
+
+  &#125;,
+  mounted () &#123;
+
+  &#125;,
+  methods: &#123;
+
+  &#125;,
+&#125;
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+&lt;/style&gt;</code></pre>
+
+<p>设置<code>package.json</code></p>
+<pre><code class="hljs js"><span class="hljs-string">&quot;scripts&quot;</span>: &#123;
+  <span class="hljs-string">&quot;serve&quot;</span>: <span class="hljs-string">&quot;vue-cli-service serve --open&quot;</span>, <span class="hljs-comment">// --open同样可以设置浏览器自启动</span>
+  <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;vue-cli-service build&quot;</span>,
+  <span class="hljs-string">&quot;lint&quot;</span>: <span class="hljs-string">&quot;vue-cli-service lint&quot;</span>,
+  <span class="hljs-string">&quot;plop&quot;</span>: <span class="hljs-string">&quot;plop&quot;</span>
+&#125;,</code></pre>
+
+<pre><code class="hljs js">npm run plop <span class="hljs-comment">// 设置相关路径，名称，即可生成vue文件[etc. profile/index.vue]</span></code></pre>
+
+
 
 
             </div>
