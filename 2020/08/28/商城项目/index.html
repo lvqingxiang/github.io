@@ -211,7 +211,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-08-30 19:34:19
+                  本文最后更新于：2020-08-30 23:05:42
                 
               </p>
             
@@ -292,9 +292,9 @@ npm run serve</code></pre>
   &#125;,
   chainWebpack: <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;
     config.resolve.alias <span class="hljs-comment">// 设置路径别名</span>
-      .set(<span class="hljs-string">&#x27;assets&#x27;</span>, resolve(<span class="hljs-string">&#x27;@/assets&#x27;</span>))
-      .set(<span class="hljs-string">&#x27;views&#x27;</span>, resolve(<span class="hljs-string">&#x27;@/views&#x27;</span>))
-      .set(<span class="hljs-string">&#x27;components&#x27;</span>, resolve(<span class="hljs-string">&#x27;@/components&#x27;</span>))
+      .set(<span class="hljs-string">&#x27;assets&#x27;</span>, resolve(<span class="hljs-string">&#x27;src/assets&#x27;</span>))
+      .set(<span class="hljs-string">&#x27;views&#x27;</span>, resolve(<span class="hljs-string">&#x27;src/views&#x27;</span>))
+      .set(<span class="hljs-string">&#x27;components&#x27;</span>, resolve(<span class="hljs-string">&#x27;src/components&#x27;</span>))
     config.plugin(<span class="hljs-string">&#x27;html&#x27;</span>).tap(<span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> &#123;
       args[<span class="hljs-number">0</span>].title = <span class="hljs-string">&#x27;mall&#x27;</span> <span class="hljs-comment">// 修改应用名称</span>
       <span class="hljs-keyword">return</span> args
@@ -354,7 +354,7 @@ npm run serve</code></pre>
     
 &lt;script&gt;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  name: <span class="hljs-string">&#x27;&#123;&#123;name&#125;&#125;&#x27;</span>,
+  name: <span class="hljs-string">&#x27;&#123;&#123;path&#125;&#125;/&#123;&#123;name&#125;&#125;&#x27;</span>,
   components: &#123;
 
   &#125;,
@@ -391,8 +391,7 @@ npm run serve</code></pre>
 
 <pre><code class="hljs js">npm run plop <span class="hljs-comment">// 设置相关路径，名称，即可生成vue文件[etc. profile/index.vue]</span></code></pre>
 
-
-
+<h3 id="创建导航栏"><a href="#创建导航栏" class="headerlink" title="创建导航栏"></a>创建导航栏</h3><p>进行三栏布局，左右两侧放置图标，中间放置搜索框。设计搜索框 + 导航栏。</p>
 
             </div>
             <hr>
