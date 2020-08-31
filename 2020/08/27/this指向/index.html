@@ -209,7 +209,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-08-27 22:13:46
+                  本文最后更新于：2020-08-31 18:46:59
                 
               </p>
             
@@ -231,19 +231,19 @@
 <p><code>call()</code>与<code>apply()</code>的区别在于<code>call()</code>方法接受的是<strong>参数列表</strong>，<code>apply()</code>方法接受的是<strong>参数数组</strong>。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;
   sum: <span class="hljs-number">0</span>,
-  arr: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>],
-&#125;;
+  arr: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>]
+&#125;
 <span class="hljs-comment">/** apply **/</span>
-<span class="hljs-keyword">let</span> max = <span class="hljs-built_in">Math</span>.max.apply(obj.arr, [<span class="hljs-number">8</span>, <span class="hljs-number">88</span>]);
-<span class="hljs-built_in">console</span>.log(max); <span class="hljs-comment">// 88</span>
+<span class="hljs-keyword">let</span> max = <span class="hljs-built_in">Math</span>.max.apply(obj.arr, [<span class="hljs-number">8</span>, <span class="hljs-number">88</span>])
+<span class="hljs-built_in">console</span>.log(max) <span class="hljs-comment">// 88</span>
 <span class="hljs-comment">/** call **/</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">a, b</span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(a + b);
+  <span class="hljs-built_in">console</span>.log(a + b)
 &#125;
-foo.call(obj.sum, <span class="hljs-number">3</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// 12</span>
+foo.call(obj.sum, <span class="hljs-number">3</span>, <span class="hljs-number">9</span>) <span class="hljs-comment">// 12</span>
 <span class="hljs-comment">/** bind **/</span>
-<span class="hljs-keyword">let</span> fn = foo.bind(<span class="hljs-literal">null</span>, <span class="hljs-number">20</span>);
-fn(<span class="hljs-number">45</span>); <span class="hljs-comment">// 65</span></code></pre>
+<span class="hljs-keyword">let</span> fn = foo.bind(<span class="hljs-literal">null</span>, <span class="hljs-number">20</span>)
+fn(<span class="hljs-number">45</span>) <span class="hljs-comment">// 65</span></code></pre>
 
 <h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p><strong>new绑定</strong></p>
 <p>构造函数中<code>this</code>指向构造函数使用<code>new</code>关键字产生的实例对象，无法改变<code>this</code>指向。</p>
@@ -259,32 +259,32 @@ fn(<span class="hljs-number">45</span>); <span class="hljs-comment">// 65</span>
 <p>普通函数调用，<code>this</code>指向全局对象，浏览器环境为<code>window</code>，<code>node</code>环境为<code>global</code>，方式：<code>函数名(...)</code></p>
 <pre><code class="hljs js"><span class="hljs-comment">/** 情境一 **/</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">var</span> a = <span class="hljs-number">2</span>;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.a); <span class="hljs-comment">// 3</span>
+  <span class="hljs-keyword">var</span> a = <span class="hljs-number">2</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.a) <span class="hljs-comment">// 3</span>
 &#125;
-<span class="hljs-keyword">var</span> a = <span class="hljs-number">3</span>;
-foo(); <span class="hljs-comment">// foo() === window.foo()，此时this指向全局变量，全局变量的a = 3，因此打印3</span>
+<span class="hljs-keyword">var</span> a = <span class="hljs-number">3</span>
+foo() <span class="hljs-comment">// foo() === window.foo()，此时this指向全局变量，全局变量的a = 3，因此打印3</span>
 
 <span class="hljs-comment">/** 情境二 **/</span>
 <span class="hljs-keyword">let</span> obj = &#123;
   b: <span class="hljs-number">1</span>,
   foo() &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.b);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.b)
   &#125;
 &#125;
-<span class="hljs-keyword">let</span> temp = obj.foo;
-temp(); <span class="hljs-comment">// undefined,	此时this指向全局对象，全局对象中不含b属性，因此打印undefined</span></code></pre>
+<span class="hljs-keyword">let</span> temp = obj.foo
+temp() <span class="hljs-comment">// undefined，此时this指向全局对象，全局对象中不含b属性，因此打印undefined</span></code></pre>
 
 <h3 id="对象函数"><a href="#对象函数" class="headerlink" title="对象函数"></a>对象函数</h3><p>即函数作为对象方法被调用，此时<code>this</code>指向该对象，方式：<code>对象名.函数名(...)</code>。</p>
 <p><strong>隐式绑定</strong></p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;
-  name: <span class="hljs-string">&quot;obj&quot;</span>,
+  name: <span class="hljs-string">&#x27;obj&#x27;</span>,
   fn() &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);
-  &#125;,
-&#125;;
-<span class="hljs-keyword">let</span> name = <span class="hljs-string">&quot;window&quot;</span>;
-obj.fn(); <span class="hljs-comment">// &#x27;obj&#x27; obj.fn() === obj.fn.call(obj)</span></code></pre>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
+  &#125;
+&#125;
+<span class="hljs-keyword">let</span> name = <span class="hljs-string">&#x27;window&#x27;</span>
+obj.fn() <span class="hljs-comment">// &#x27;obj&#x27; obj.fn() === obj.fn.call(obj)</span></code></pre>
 
 <h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>回调函数中的<code>this</code>默认指向全局对象，即函数参数传入<code>callback</code>，并在函数内调用<code>callback()</code>，此时为<code>函数名(...)</code>。</p>
 <pre><code class="hljs js"><span class="hljs-comment">/** 情境一 **/</span>
@@ -292,23 +292,23 @@ obj.fn(); <span class="hljs-comment">// &#x27;obj&#x27; obj.fn() === obj.fn.call
   num: <span class="hljs-number">1</span>,
   foo() &#123;
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>&#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)
     &#125;
-    fn();
-  &#125;,
-&#125;;
-obj.foo(); <span class="hljs-comment">// this指向window</span>
+    fn()
+  &#125;
+&#125;
+obj.foo() <span class="hljs-comment">// this指向window</span>
 
 <span class="hljs-comment">/** 情境2 **/</span>
 <span class="hljs-keyword">let</span> obj = &#123;
   num: <span class="hljs-number">1</span>,
   foo(callback) &#123;
-    callback();
-  &#125;,
-&#125;;
+    callback()
+  &#125;
+&#125;
 obj.foo(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name); <span class="hljs-comment">// this指向window</span>
-&#125;);</code></pre>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name) <span class="hljs-comment">// this指向window</span>
+&#125;)</code></pre>
 
 <h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>箭头函数并且没有自己的<code>this</code>，<code>arguments</code>，<code>super</code>或<code>new.target</code>，由外围最近一层非箭头函数的<code>this</code>决定。</p>
 <p>箭头函数不能作为构造函数，主要原因在于，第一，箭头函数没有自己的<code>this</code>，无法调用<code>call/apply</code>；第二，没有<code>prototype</code>属性，而<code>new </code>命令执行时需要将构造函数的<code>prototype</code>赋值给对象的<code>_proto_</code>。</p>

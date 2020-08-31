@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="LQX">
+  <meta name="keywords" content="">
+  <title>Promise - QX97</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>QX97</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+                Promise
+              
+            </span>
+
+            
+              
+
+<div class="mt-1">
+  
+
+             <div class="post-meta mr-2">
+                
+                  <div>
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+              </div>
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="font-size: 2rem;">Promise</h1>
+            
+              <p class="new-note">
+                
+                  本文最后更新于：2020-08-31 21:43:27
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p>解决回调地狱</p>
+<p><code>Promise</code>既是对象，也是构造函数。</p>
+<p><code>Promise</code>包含三个状态，<code>pending/fulfilled/rejected</code>。<code>pending</code>表示异步操作未完成，<code>fulfilled</code>表示异步操作成功，<code>rejected</code>表示异步操作失败。状态变化只可能两种，(<code>resolve</code>)：未完成<code>pending</code>到成功<code>fulfilled</code>；(<code>reject</code>)：未完成<code>pending</code>到失败<code>rejected</code>，且状态变化只会发生一次。</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><pre><code class="hljs js"><span class="hljs-keyword">let</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> res = doSomeRequest() <span class="hljs-comment">// 一般为ajax请求</span>
+  <span class="hljs-keyword">if</span> (res.code === <span class="hljs-number">200</span>) &#123;
+    resolve(<span class="hljs-string">&#x27;request success&#x27;</span>)
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    reject(<span class="hljs-string">&#x27;request fail&#x27;</span>)
+  &#125;
+&#125;)
+promise
+  .then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(value)
+  &#125;)
+  .catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(error)
+  &#125;)
+  .finally(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;finally end&#x27;</span>)
+  &#125;)</code></pre>
+
+<h3 id="Promise-resolve"><a href="#Promise-resolve" class="headerlink" title="Promise.resolve()"></a>Promise.resolve()</h3><p>将现有对象转为<code>Promise</code>对象</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-string">&quot;foo&quot;</span>) =&gt; <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> resolve(<span class="hljs-string">&quot;foo&quot;</span>))</code></pre>
+
+<ul>
+<li><p>参数是<code>Promise</code>实例，将返回该实例。</p>
+</li>
+<li><p>参数是<code>thenable</code>对象，将该对象转为<code>Promise</code>对象后，将立即执行<code>thenable</code>对象中的<code>then</code>方法。</p>
+</li>
+<li><p>参数是不具有<code>then</code>方法的对象或数据类型不是对象，返回新的<code>Promise</code>对象，且状态为<code>fulfilled</code>。</p>
+</li>
+<li><p>不带有参数，将直接返回状态为<code>fulfilled</code>的<code>Promise</code>对象。</p>
+</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> thenable = &#123;
+  then: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
+    resolve(<span class="hljs-number">22</span>)
+  &#125;
+&#125; <span class="hljs-comment">// thenable对象示例</span></code></pre>
+
+<h3 id="Promise-reject"><a href="#Promise-reject" class="headerlink" title="Promise.reject()"></a>Promise.reject()</h3><p><code>Promise.reject(reason)</code>返回新的<code>Promise</code>对象，且状态为<code>rejected</code>。传入参数将直接作为后续方法的参数。</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Promise</span>.reject(<span class="hljs-string">&quot;hello&quot;</span>).catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(error)) <span class="hljs-comment">// hello</span></code></pre>
+
+<h3 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all()"></a>Promise.all()</h3><p>用于将多个<code>Promises</code>实例，包装成一个新的<code>Promise</code>实例。如果参数不是<code>Promise</code>实例，将调用<code>Promise.resolve</code>做处理。</p>
+<p>如果<code>Promise</code>参数中有一个<code>rejected</code>，则回调失败<code>reject</code>，失败原因记录为第一个失败的<code>Promise</code>结果，否则所有<code>Promise</code>参数成功时，返回值组成数组，传给回调函数<code>resolve</code>。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> promise1 = <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">43</span>)
+<span class="hljs-keyword">let</span> promise2 = <span class="hljs-number">2</span>
+<span class="hljs-keyword">let</span> promise3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
+  resolve(<span class="hljs-string">&#x27;hello&#x27;</span>)
+&#125;)
+<span class="hljs-built_in">Promise</span>.all([promise1, promise2, promise3]).then(<span class="hljs-function"><span class="hljs-params">values</span> =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(values)
+&#125;)</code></pre>
+
+<h3 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race()"></a>Promise.race()</h3><p>与<code>Promise.all</code>不同的是，<code>Promise.race</code>中的实例，一旦有实例成功<code>fulfilled</code>或失败<code>rejected</code>，率先改变的<code>Promise</code>实例的返回值将传递给回调函数。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> promise1 = <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">43</span>)
+<span class="hljs-keyword">let</span> promise2 = <span class="hljs-number">2</span>
+<span class="hljs-keyword">let</span> promise3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
+  resolve(<span class="hljs-string">&#x27;hello&#x27;</span>)
+&#125;)
+<span class="hljs-built_in">Promise</span>.race([promise1, promise2, promise3]).then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(value)
+&#125;)</code></pre>
+
+<h3 id="Promise-allSettled"><a href="#Promise-allSettled" class="headerlink" title="Promise.allSettled()"></a>Promise.allSettled()</h3><p>用于将多个<code>Promise</code>实例，包装成一个新的<code>Promise</code>实例。如果参数不是<code>Promise</code>实例，将调用<code>Promise.resolve</code>做处理。</p>
+<p>当所有<code>Promise</code>都返回结果，不论是<code>fulfilled</code>还是<code>rejected</code>，才会调用回调函数。</p>
+<p>有时我们不关心异步操作的结果，只关心异步操作是否结束，<code>Promise.allSettled</code>将很有效果，<code>Promise.all</code>无法实现。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> promise1 = <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">43</span>)
+<span class="hljs-keyword">let</span> promise2 = <span class="hljs-number">2</span>
+<span class="hljs-keyword">let</span> promise3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
+  resolve(<span class="hljs-string">&#x27;hello&#x27;</span>)
+&#125;)
+<span class="hljs-built_in">Promise</span>.allSettled([promise1, promise2, promise3]).then(<span class="hljs-function"><span class="hljs-params">results</span> =&gt;</span> &#123;
+  results.forEach(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(result.status))
+&#125;)</code></pre>
+
+<h3 id="自定义Promise-Ajax"><a href="#自定义Promise-Ajax" class="headerlink" title="自定义Promise + Ajax"></a>自定义Promise + Ajax</h3><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getJSON</span>(<span class="hljs-params">url</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
+    <span class="hljs-keyword">const</span> handler = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.readyState !== <span class="hljs-number">4</span>) &#123;
+        <span class="hljs-keyword">return</span>
+      &#125;
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.statue === <span class="hljs-number">200</span>) &#123;
+        resolve(response)
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;error&#x27;</span>))
+      &#125;
+    &#125;
+    <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> XMLHttpRequest()
+    client.open(<span class="hljs-string">&#x27;GET&#x27;</span>, url)
+    client.onreadystatechange = handler
+    client.responseType = <span class="hljs-string">&#x27;json&#x27;</span>
+    client.setRequestHeader(<span class="hljs-string">&#x27;Accept&#x27;</span>, <span class="hljs-string">&#x27;application/json&#x27;</span>)
+    client.send()
+  &#125;)
+  <span class="hljs-keyword">return</span> promise
+&#125;
+getJSON(<span class="hljs-string">&#x27;/getConfig&#x27;</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(value)
+  &#125;)
+  .catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(error)
+  &#125;)</code></pre>
+
+<h3 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h3><p><code>Generator</code>语法糖。</p>
+<p>代码层面上表现为同步，执行层面上为<code>Promise</code>异步。</p>
+<p><code>async</code>定义的函数会返回<code>promise</code>对象。</p>
+<p><code>await</code>只能定义在<code>async</code>函数中，<code>await</code>等待表达式，表达式可以是<code>Promise</code>对象，也可以是其他表达式。</p>
+<p><code>async</code>函数内<code>await</code>之前的语句将同步执行，<code>await</code>语句将暂停<code>async</code>函数，阻塞函数内<code>await</code>之后的语句执行。如果<code>await + Promise</code>  将阻塞并暂停<code>async</code>函数，等待<code>promise</code>对象的<code>resolve</code>状态返回，如果<code>await + 普通表达式</code>，将执行表达式并暂停<code>async</code>函数。</p>
+<p>暂停<code>async</code>函数，并不影响其他执行函数，其他函数将按序执行。</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 第一种情况</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a1</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;a1 start&#x27;</span>)
+  <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+      resolve()
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;resolve&#x27;</span>)
+    &#125;, <span class="hljs-number">1000</span>)
+  &#125;)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;a1 end &#x27;</span>)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a2</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;this is from a2&#x27;</span>)
+&#125;
+
+a1()
+a2()
+
+<span class="hljs-comment">/*打印结果：</span>
+<span class="hljs-comment">a1 start</span>
+<span class="hljs-comment">this is from a2 =&gt; await + Promise暂停函数a1后，并不影响函数a2的执行</span>
+<span class="hljs-comment">resolve</span>
+<span class="hljs-comment">a1 end </span>
+<span class="hljs-comment">*/</span>
+
+<span class="hljs-comment">// 第二种情况</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a1</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;a1 start&#x27;</span>)
+  <span class="hljs-keyword">await</span> a3()
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;a1 end &#x27;</span>)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a2</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;this is from a2&#x27;</span>)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a3</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;a3&#x27;</span>)
+&#125;
+a1()
+a2()
+
+<span class="hljs-comment">/* 打印结果：</span>
+<span class="hljs-comment">a1 start</span>
+<span class="hljs-comment">a3 =&gt; await + 普通表达式，立即执行表达式后暂停a1</span>
+<span class="hljs-comment">this is from a2</span>
+<span class="hljs-comment">a1 end </span>
+<span class="hljs-comment">*/</span>
+
+<span class="hljs-comment">// 第三种情况</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async1</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async1 start&#x27;</span>)
+  <span class="hljs-keyword">await</span> async2()
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async1 end&#x27;</span>)
+&#125;
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">async2</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;async2&#x27;</span>)
+&#125;
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;script start&#x27;</span>)
+
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;setTimeout&#x27;</span>)
+&#125;, <span class="hljs-number">0</span>)
+
+async1()
+
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve</span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;promise1&#x27;</span>)
+  resolve()
+&#125;).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;promise2&#x27;</span>)
+&#125;)
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;script end&#x27;</span>)
+
+<span class="hljs-comment">/* 打印结果：</span>
+<span class="hljs-comment">script start</span>
+<span class="hljs-comment">async1 start</span>
+<span class="hljs-comment">async2</span>
+<span class="hljs-comment">promise1</span>
+<span class="hljs-comment">script end</span>
+<span class="hljs-comment">async1 end</span>
+<span class="hljs-comment">promise2</span>
+<span class="hljs-comment">setTimeout</span>
+<span class="hljs-comment">*/</span></code></pre>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/28/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE/">
+                        <span class="hidden-mobile">商城项目</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><image src="/img/list.jpg" style="width: 1.5em; height: 1.5em;">
+&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div style="font-size: 0.8rem;">
+	<span>® 版权所有，转载请注明出处</span>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2020/08/31/Promise/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'TL9peIKTLokMq79j1VjMg7Xf-gzGzoHsz'
+    var app_key = '9oeF2MJ3q62GpENO2IqXAdkg'
+    var server_url = 'https://tl9peikt.lc-cn-n1-shared.com'
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+</body>
+</html>
