@@ -1,0 +1,820 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="LQX">
+  <meta name="keywords" content="">
+  <title>深浅拷贝 - QX97</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>QX97</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+                深浅拷贝
+              
+            </span>
+
+            
+              
+
+<div class="mt-1">
+  
+
+             <div class="post-meta mr-2">
+                
+                  <div>
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+              </div>
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="font-size: 2rem;">深浅拷贝</h1>
+            
+              <p class="new-note">
+                
+                  本文最后更新于：2020-09-01 23:26:01
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p>对象赋值为「传址」操作，两个对象将指向同一个存储空间。</p>
+<p>浅拷贝只会将对象的属性依次复制，但不会递归复制，即浅拷贝只会拷贝对象的第一层属性。当目标对象的属性为基本数据类型时，将进行「传值」操作，当属性为对象类型时，将进行「传址」操作。</p>
+<p>深拷贝不仅复制对象的第一层属性，还将递归的拷贝目标对象的所有属性。</p>
+<h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><pre><code class="hljs js"><span class="hljs-keyword">let</span> user = &#123;
+  age: <span class="hljs-number">19</span>, <span class="hljs-comment">// 基本类型</span>
+  grade: &#123;
+    pre: <span class="hljs-string">&#x27;hi&#x27;</span>,
+    full: <span class="hljs-literal">false</span>
+  &#125;
+&#125;
+<span class="hljs-keyword">let</span> temp = user <span class="hljs-comment">// 赋值</span>
+temp.age = <span class="hljs-number">20</span> <span class="hljs-comment">// 修改数据类型</span>
+temp.grade.pre = <span class="hljs-string">&#x27;hello&#x27;</span> <span class="hljs-comment">// 修改对象类型</span>
+temp.sex = <span class="hljs-string">&#x27;男&#x27;</span> <span class="hljs-comment">// 新增基本类型</span>
+temp.grade.date = [<span class="hljs-number">1997</span>, <span class="hljs-number">3</span>, <span class="hljs-number">20</span>] <span class="hljs-comment">// 新增对象属性</span>
+
+<span class="hljs-built_in">console</span>.log(temp)
+<span class="hljs-built_in">console</span>.log(user)
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">&#123;</span>
+<span class="hljs-comment">  age: 20,</span>
+<span class="hljs-comment">  grade: &#123; pre: &#x27;hello&#x27;, full: false, date: [ 1997, 3, 20 ] &#125;,</span>
+<span class="hljs-comment">  sex: &#x27;男&#x27;</span>
+<span class="hljs-comment">&#125;</span>
+<span class="hljs-comment">&#123;</span>
+<span class="hljs-comment">  age: 20,</span>
+<span class="hljs-comment">  grade: &#123; pre: &#x27;hello&#x27;, full: false, date: [ 1997, 3, 20 ] &#125;,</span>
+<span class="hljs-comment">  sex: &#x27;男&#x27;</span>
+<span class="hljs-comment">&#125;</span>
+<span class="hljs-comment">*/</span></code></pre>
+
+<h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><h4 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a>Object.assign()</h4><pre><code class="hljs js"><span class="hljs-keyword">let</span> user = &#123;
+  age: <span class="hljs-number">19</span>, <span class="hljs-comment">// 基本类型</span>
+  grade: &#123;
+    pre: <span class="hljs-string">&#x27;hi&#x27;</span>,
+    full: <span class="hljs-literal">false</span>
+  &#125;
+&#125;
+<span class="hljs-keyword">let</span> temp = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, user) <span class="hljs-comment">// 浅拷贝</span>
+temp.age = <span class="hljs-number">20</span> <span class="hljs-comment">// 修改数据类型</span>
+temp.grade.pre = <span class="hljs-string">&#x27;hello&#x27;</span> <span class="hljs-comment">// 修改对象类型</span>
+temp.sex = <span class="hljs-string">&#x27;男&#x27;</span> <span class="hljs-comment">// 新增基本类型</span>
+temp.grade.date = [<span class="hljs-number">1997</span>, <span class="hljs-number">3</span>, <span class="hljs-number">20</span>] <span class="hljs-comment">// 新增对象属性</span>
+
+<span class="hljs-built_in">console</span>.log(temp)
+<span class="hljs-built_in">console</span>.log(user)
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">&#123;</span>
+<span class="hljs-comment">  age: 20,</span>
+<span class="hljs-comment">  grade: &#123; pre: &#x27;hello&#x27;, full: false, date: [ 1997, 3, 20 ] &#125;,</span>
+<span class="hljs-comment">  sex: &#x27;男&#x27;</span>
+<span class="hljs-comment">&#125;</span>
+<span class="hljs-comment">&#123;</span>
+<span class="hljs-comment">  age: 19,</span>
+<span class="hljs-comment">  grade: &#123; pre: &#x27;hello&#x27;, full: false, date: [ 1997, 3, 20 ] &#125;</span>
+<span class="hljs-comment">&#125;</span>
+<span class="hljs-comment">*/</span></code></pre>
+
+<h4 id="Array-prototype-concat"><a href="#Array-prototype-concat" class="headerlink" title="Array.prototype.concat()"></a>Array.prototype.concat()</h4><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;arr&#x27;</span> &#125;, <span class="hljs-literal">null</span>, <span class="hljs-literal">undefined</span>] <span class="hljs-comment">// 包含基本类型和对象类型的数组</span>
+<span class="hljs-keyword">let</span> temp = arr.concat() <span class="hljs-comment">// 浅拷贝</span>
+temp[<span class="hljs-number">0</span>] = <span class="hljs-number">3</span> <span class="hljs-comment">// 修改基本数据类型</span>
+temp[<span class="hljs-number">1</span>].name = <span class="hljs-string">&#x27;temp&#x27;</span> <span class="hljs-comment">// 修改对象</span>
+temp[<span class="hljs-number">1</span>].type = <span class="hljs-string">&#x27;array&#x27;</span> <span class="hljs-comment">// 新增对象属性</span>
+
+<span class="hljs-built_in">console</span>.log(arr)
+<span class="hljs-built_in">console</span>.log(temp)
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">[ 1, &#123; name: &#x27;temp&#x27;, type: &#x27;array&#x27; &#125;, null, undefined ]</span>
+<span class="hljs-comment">[ 3, &#123; name: &#x27;temp&#x27;, type: &#x27;array&#x27; &#125;, null, undefined ]</span>
+<span class="hljs-comment">*/</span></code></pre>
+
+<h4 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice()"></a>Array.prototype.slice()</h4><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;arr&#x27;</span> &#125;, <span class="hljs-literal">null</span>, <span class="hljs-literal">undefined</span>] <span class="hljs-comment">// 包含基本类型和对象类型的数组</span>
+<span class="hljs-keyword">let</span> temp = arr.slice(<span class="hljs-number">0</span>) <span class="hljs-comment">// 浅拷贝</span>
+temp[<span class="hljs-number">0</span>] = <span class="hljs-number">3</span> <span class="hljs-comment">// 修改基本数据类型</span>
+temp[<span class="hljs-number">1</span>].name = <span class="hljs-string">&#x27;temp&#x27;</span> <span class="hljs-comment">// 修改对象</span>
+temp[<span class="hljs-number">1</span>].type = <span class="hljs-string">&#x27;array&#x27;</span> <span class="hljs-comment">// 新增对象属性</span>
+
+<span class="hljs-built_in">console</span>.log(arr)
+<span class="hljs-built_in">console</span>.log(temp)
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">[ 1, &#123; name: &#x27;temp&#x27;, type: &#x27;array&#x27; &#125;, null, undefined ]</span>
+<span class="hljs-comment">[ 3, &#123; name: &#x27;temp&#x27;, type: &#x27;array&#x27; &#125;, null, undefined ]</span>
+<span class="hljs-comment">*/</span></code></pre>
+
+<h4 id="…扩展运算符"><a href="#…扩展运算符" class="headerlink" title="…扩展运算符"></a>…扩展运算符</h4><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;arr&#x27;</span> &#125;, <span class="hljs-literal">null</span>, <span class="hljs-literal">undefined</span>] <span class="hljs-comment">// 包含基本类型和对象类型的数组</span>
+<span class="hljs-keyword">let</span> temp = [...arr] <span class="hljs-comment">// 浅拷贝</span>
+temp[<span class="hljs-number">0</span>] = <span class="hljs-number">3</span> <span class="hljs-comment">// 修改基本数据类型</span>
+temp[<span class="hljs-number">1</span>].name = <span class="hljs-string">&#x27;temp&#x27;</span> <span class="hljs-comment">// 修改对象</span>
+temp[<span class="hljs-number">1</span>].type = <span class="hljs-string">&#x27;array&#x27;</span> <span class="hljs-comment">// 新增对象属性</span>
+
+<span class="hljs-built_in">console</span>.log(arr)
+<span class="hljs-built_in">console</span>.log(temp)
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">[ 1, &#123; name: &#x27;temp&#x27;, type: &#x27;array&#x27; &#125;, null, undefined ]</span>
+<span class="hljs-comment">[ 3, &#123; name: &#x27;temp&#x27;, type: &#x27;array&#x27; &#125;, null, undefined ]</span>
+<span class="hljs-comment">*/</span></code></pre>
+
+<h4 id="自定义方法"><a href="#自定义方法" class="headerlink" title="自定义方法"></a>自定义方法</h4><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">shallowClone</span>(<span class="hljs-params">source</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> target = &#123;&#125;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> source) &#123;
+    target[i] = source[i]
+  &#125;
+  <span class="hljs-keyword">return</span> target
+&#125;
+<span class="hljs-comment">// ---方法验证---</span>
+<span class="hljs-keyword">let</span> source = &#123;
+  num: <span class="hljs-number">19</span>,
+  date: [<span class="hljs-number">1997</span>, <span class="hljs-number">3</span>, <span class="hljs-number">20</span>],
+  user: &#123;
+    phone: <span class="hljs-string">&#x27;88888&#x27;</span>,
+    age: <span class="hljs-number">20</span>
+  &#125;
+&#125;
+<span class="hljs-built_in">console</span>.log(shallowClone(source))
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">&#123; num: 19, date: [ 1997, 3, 20 ], user: &#123; phone: &#x27;88888&#x27;, age: 20 &#125; &#125;</span>
+<span class="hljs-comment">*/</span></code></pre>
+
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><h4 id="JSON-parse-JSON-stringify"><a href="#JSON-parse-JSON-stringify" class="headerlink" title="JSON.parse(JSON.stringify())"></a>JSON.parse(JSON.stringify())</h4><p><code>JSON.parse(JSON.stringify())</code>不会拷贝<code>undefined/函数</code></p>
+<p><code>JSON.parse(JSON.stringify())</code>将时间对象转为字符串形式</p>
+<p><code>JSON.parse(JSON.stringify())</code>将<code>Error</code>对象/正则<code>RegExp</code>转化为空对象</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;arr&#x27;</span> &#125;, <span class="hljs-literal">null</span>, <span class="hljs-literal">undefined</span>] <span class="hljs-comment">// 包含基本类型和对象类型的数组</span>
+<span class="hljs-keyword">let</span> temp = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(arr)) <span class="hljs-comment">// 深拷贝</span>
+temp[<span class="hljs-number">0</span>] = <span class="hljs-number">3</span> <span class="hljs-comment">// 修改基本数据类型</span>
+temp[<span class="hljs-number">1</span>].name = <span class="hljs-string">&#x27;temp&#x27;</span> <span class="hljs-comment">// 修改对象</span>
+temp[<span class="hljs-number">1</span>].type = <span class="hljs-string">&#x27;array&#x27;</span> <span class="hljs-comment">// 新增对象属性</span>
+
+<span class="hljs-built_in">console</span>.log(arr)
+<span class="hljs-built_in">console</span>.log(temp)
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">[ 1, &#123; name: &#x27;arr&#x27; &#125;, null, undefined ]</span>
+<span class="hljs-comment">[ 3, &#123; name: &#x27;temp&#x27;, type: &#x27;array&#x27; &#125;, null, null ] </span>
+<span class="hljs-comment">*/</span></code></pre>
+
+<h4 id="自定义方法-1"><a href="#自定义方法-1" class="headerlink" title="自定义方法"></a>自定义方法</h4><pre><code class="hljs js"><span class="hljs-keyword">const</span> &#123; map &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;core-js/fn/array&#x27;</span>)
+
+<span class="hljs-keyword">const</span> mapTag = <span class="hljs-string">&#x27;[object Map]&#x27;</span>
+<span class="hljs-keyword">const</span> setTag = <span class="hljs-string">&#x27;[object Set]&#x27;</span>
+<span class="hljs-keyword">const</span> arrayTag = <span class="hljs-string">&#x27;[object Array]&#x27;</span>
+<span class="hljs-keyword">const</span> objectTag = <span class="hljs-string">&#x27;[object Object]&#x27;</span>
+<span class="hljs-keyword">const</span> argsTag = <span class="hljs-string">&#x27;[object Arguments]&#x27;</span>
+
+<span class="hljs-keyword">const</span> deepTag = [mapTag, setTag, arrayTag, objectTag, argsTag]
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isObject</span>(<span class="hljs-params">target</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> type = <span class="hljs-keyword">typeof</span> target
+  <span class="hljs-keyword">return</span> type !== <span class="hljs-literal">null</span> &amp;&amp; (type === <span class="hljs-string">&#x27;Object&#x27;</span> || type === <span class="hljs-string">&#x27;function&#x27;</span>)
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getType</span>(<span class="hljs-params">target</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.prototype.toString.call(target)
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getInit</span>(<span class="hljs-params">target</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> cor = target.constructor
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> cor()
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clone</span>(<span class="hljs-params">source, map = new Map()</span>) </span>&#123;
+  <span class="hljs-comment">// 基本数据类型处理</span>
+  <span class="hljs-keyword">if</span> (!isObject(source)) &#123;
+    <span class="hljs-keyword">return</span> source
+  &#125;
+  <span class="hljs-comment">// 初始化</span>
+  <span class="hljs-keyword">let</span> target
+  <span class="hljs-keyword">const</span> type = getType(source)
+  <span class="hljs-keyword">if</span> (deepTag.includes(getType(type))) &#123;
+    target = getInit(source)
+  &#125;
+  <span class="hljs-comment">// 防止循环引用</span>
+  <span class="hljs-keyword">if</span> (map.get(source)) &#123;
+    <span class="hljs-keyword">return</span> source
+  &#125;
+  map.set(source, target)
+
+  <span class="hljs-comment">//克隆set</span>
+  <span class="hljs-keyword">if</span> (setTag === type) &#123;
+    source.forEach(<span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> &#123;
+      targer.add(clone(element))
+    &#125;)
+    <span class="hljs-keyword">return</span> target
+  &#125;
+  <span class="hljs-keyword">if</span> (mapTag === type) &#123;
+    source.forEach(key, <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> &#123;
+      target.set(key, clone(value))
+    &#125;)
+    <span class="hljs-keyword">return</span> target
+  &#125;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> source) &#123;
+    target[i] = clone(source[i])
+  &#125;
+  <span class="hljs-keyword">return</span> target
+&#125;</code></pre>
+
+
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/31/Promise/">
+                        <span class="hidden-mobile">Promise</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><image src="/img/list.jpg" style="width: 1.5em; height: 1.5em;">
+&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div style="font-size: 0.8rem;">
+	<span>® 版权所有，转载请注明出处</span>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2020/09/01/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'TL9peIKTLokMq79j1VjMg7Xf-gzGzoHsz'
+    var app_key = '9oeF2MJ3q62GpENO2IqXAdkg'
+    var server_url = 'https://tl9peikt.lc-cn-n1-shared.com'
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+</body>
+</html>
