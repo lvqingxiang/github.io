@@ -209,7 +209,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-08-31 21:43:27
+                  本文最后更新于：2020-09-01 19:45:19
                 
               </p>
             
@@ -260,12 +260,20 @@ promise
 
 <h3 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all()"></a>Promise.all()</h3><p>用于将多个<code>Promises</code>实例，包装成一个新的<code>Promise</code>实例。如果参数不是<code>Promise</code>实例，将调用<code>Promise.resolve</code>做处理。</p>
 <p>如果<code>Promise</code>参数中有一个<code>rejected</code>，则回调失败<code>reject</code>，失败原因记录为第一个失败的<code>Promise</code>结果，否则所有<code>Promise</code>参数成功时，返回值组成数组，传给回调函数<code>resolve</code>。</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> promise1 = <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">43</span>)
+<pre><code class="hljs js"><span class="hljs-comment">// 第一种情况</span>
+<span class="hljs-keyword">let</span> promise1 = <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">43</span>)
 <span class="hljs-keyword">let</span> promise2 = <span class="hljs-number">2</span>
 <span class="hljs-keyword">let</span> promise3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
   resolve(<span class="hljs-string">&#x27;hello&#x27;</span>)
 &#125;)
 <span class="hljs-built_in">Promise</span>.all([promise1, promise2, promise3]).then(<span class="hljs-function"><span class="hljs-params">values</span> =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(values)
+&#125;)
+
+<span class="hljs-comment">// 第二种情况</span>
+<span class="hljs-keyword">const</span> promise1 = async1()
+<span class="hljs-keyword">const</span> promise2 = async2() 
+<span class="hljs-built_in">Promise</span>.all([promise1, promise2]).then(<span class="hljs-function"><span class="hljs-params">values</span> =&gt;</span> &#123;
   <span class="hljs-built_in">console</span>.log(values)
 &#125;)</code></pre>
 
