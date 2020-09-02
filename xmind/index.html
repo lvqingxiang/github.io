@@ -17,10 +17,20 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>分类 - QX97</title>
+  <title>xmind - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +53,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -151,7 +161,7 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                分类
+                xmind
               
             </span>
 
@@ -175,17 +185,24 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
+<div class="page-content">
+  <div class="markdown-body">
+  <center> 
+    <img src="/img/JavaScript.png" srcset="/img/loading.gif"> 
+    <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
+      JavaScript.png
+    </div> 
+  </center>
+</div>
+
+<style>
+  img:hover {
+    border-radius: 0.3125em; 
+    box-shadow: 0 0px 15px #2f4154;
+  }
+</style>
 
 
-
-
-
-
-<div class="category-list">
-  
-  
-  
-  
 </div>
 
               </div>
@@ -388,7 +405,7 @@
       if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/categories/index.html');
+          var target = decodeURI('/xmind/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -453,6 +470,21 @@
 
 
 
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
 
