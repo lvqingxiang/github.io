@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>商城项目 - QX97</title>
+  <title>组件通信 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -161,7 +161,7 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                商城项目
+                组件通信
               
             </span>
 
@@ -176,9 +176,7 @@
                   <div>
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Vue3/">Vue3</a>
+                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
                     
                   </div>
                 
@@ -219,29 +217,68 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="font-size: 2rem;">商城项目</h1>
+            <h1 style="font-size: 2rem;">组件通信</h1>
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-08-31 18:46:37
+                  本文最后更新于：2020-09-04 23:42:27
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="前提准备"><a href="#前提准备" class="headerlink" title="前提准备"></a>前提准备</h3><p><code>node</code>版本：v12.18.3</p>
-<p><code>vue-cli</code>版本：4.5.4</p>
-<p>系统环境：macOS 10.15.5</p>
-<p>代码编辑器：Visual Studio Code 1.48.0</p>
-<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><pre><code class="hljs js"><span class="hljs-comment">// 第一种情况 1.vue create [项目名称]，默认三种选择，选择前两项 2.进入项目目录 3.运行项目</span>
-<span class="hljs-comment">// 第二种情况 1.vue create [项目名称]，选择第三种，自定义preset 2.进入项目目录 3.运行项目</span>
-vue create mall
-cd mall
-npm run serve</code></pre>
-
-<center> 
-  <img src="/img/项目配置参考图.jpg" srcset="/img/loading.gif"> 
+              <h3 id="父子组件通信"><a href="#父子组件通信" class="headerlink" title="父子组件通信"></a>父子组件通信</h3><h4 id="props-emit"><a href="#props-emit" class="headerlink" title="props/$emit"></a>props/$emit</h4><center> 
+  <img src="/img/父子组件通信.jpg" srcset="/img/loading.gif"> 
   <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
-    项目配置参考图.jpg
+    父子组件通信.jpg
+  </div> 
+</center>
+
+<pre><code class="hljs js">&lt;<span class="hljs-comment">// `parent.vue`</span>
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;child :text=<span class="hljs-string">&quot;text&quot;</span> @click=<span class="hljs-string">&quot;onClick&quot;</span>&gt;&lt;/child&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  data() &#123;
+    <span class="hljs-keyword">return</span> &#123;
+      text: <span class="hljs-string">&#x27;child&#x27;</span>,
+    &#125;
+  &#125;,
+  methods: &#123;
+    onClick(param) &#123;
+      <span class="hljs-built_in">console</span>.log(param) <span class="hljs-comment">// &#x27;param&#x27;</span>
+    &#125;,
+  &#125;,
+&#125;
+&lt;/script&gt;
+
+<span class="hljs-comment">// `child.vue` </span>
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;p @click=<span class="hljs-string">&quot;onClick&quot;</span>&gt;&#123;&#123; text &#125;&#125;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  props: &#123;
+    text: <span class="hljs-built_in">String</span>,
+  &#125;,
+  methods: &#123;
+    onClick() &#123;
+      <span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-string">&#x27;param&#x27;</span>) <span class="hljs-comment">//提交变量</span>
+    &#125;,
+  &#125;,
+&#125;
+&lt;/script&gt;</code></pre>
+
+
+
+<h3 id="非父子组件通信"><a href="#非父子组件通信" class="headerlink" title="非父子组件通信"></a>非父子组件通信</h3><h4 id="attrs-listeners"><a href="#attrs-listeners" class="headerlink" title="$attrs/$listeners"></a>$attrs/$listeners</h4><center> 
+  <img src="/img/非父子组件通信.jpg" srcset="/img/loading.gif"> 
+  <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
+    非父子组件通信.jpg
   </div> 
 </center>
 
@@ -252,158 +289,69 @@ npm run serve</code></pre>
   }
 </style>
 
-<p>在项目根目录下创建<code>.eslintrc.js</code>文件，对项目编写规范进行约束，防止<code>Eslint</code>运行报错。</p>
-<pre><code class="hljs js"><span class="hljs-comment">// `.eslintrc.js`</span>
-<span class="hljs-built_in">module</span>.exports = &#123;
-  root: <span class="hljs-literal">true</span>,
-  env: &#123;
-    node: <span class="hljs-literal">true</span>,
-  &#125;,
-  <span class="hljs-keyword">extends</span>: [<span class="hljs-string">&#x27;plugin:vue/vue3-essential&#x27;</span>, <span class="hljs-string">&#x27;eslint:recommended&#x27;</span>, <span class="hljs-string">&#x27;@vue/prettier&#x27;</span>],
-  parserOptions: &#123;
-    parser: <span class="hljs-string">&#x27;babel-eslint&#x27;</span>,
-  &#125;,
-  rules: &#123;
-    <span class="hljs-string">&#x27;no-console&#x27;</span>: process.env.NODE_ENV === <span class="hljs-string">&#x27;production&#x27;</span> ? <span class="hljs-string">&#x27;warn&#x27;</span> : <span class="hljs-string">&#x27;off&#x27;</span>,
-    <span class="hljs-string">&#x27;no-debugger&#x27;</span>: process.env.NODE_ENV === <span class="hljs-string">&#x27;production&#x27;</span> ? <span class="hljs-string">&#x27;warn&#x27;</span> : <span class="hljs-string">&#x27;off&#x27;</span>,
-    quotes: [<span class="hljs-string">&#x27;error&#x27;</span>, <span class="hljs-string">&#x27;single&#x27;</span>],
-    semi: [<span class="hljs-string">&#x27;error&#x27;</span>, <span class="hljs-string">&#x27;never&#x27;</span>],
-  &#125;,
-&#125;
-</code></pre>
+<h4 id="中央事件总线EventBus"><a href="#中央事件总线EventBus" class="headerlink" title="中央事件总线EventBus"></a>中央事件总线EventBus</h4><p>适用于小型项目，代码可维护性低。</p>
+<p><code>const EventBus = new Vue()</code></p>
+<p><code>EventBus.$on(event, callback)</code>监听事件，<code>EventBus.$emit(event, params)</code>注册(触发)事件，<code>EventBus.$off(event, callback)</code>停止监听事件。</p>
+<p>注册的事件在组件销毁时必须进行卸载，否则会出现多次挂载多个响应。</p>
+<center> 
+  <img src="/img/中央事件总线.jpg" srcset="/img/loading.gif"> 
+  <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
+    中央事件总线.jpg
+  </div> 
+</center>
 
-<p>设置<code>settings.json</code>文件，解决<code>Eslint</code>与<code>Prettier</code>设置冲突问题</p>
-<pre><code class="hljs js"><span class="hljs-comment">// `settings.json`</span>
-&#123;
-  <span class="hljs-string">&quot;workbench.startupEditor&quot;</span>: <span class="hljs-string">&quot;newUntitledFile&quot;</span>,
-  <span class="hljs-string">&quot;workbench.iconTheme&quot;</span>: <span class="hljs-string">&quot;vscode-icons&quot;</span>,
-  <span class="hljs-string">&quot;editor.tabSize&quot;</span>: <span class="hljs-number">2</span>,
-  <span class="hljs-string">&quot;files.autoSave&quot;</span>: <span class="hljs-string">&quot;onWindowChange&quot;</span>,
-  <span class="hljs-string">&quot;emmet.excludeLanguages&quot;</span>: [<span class="hljs-string">&quot;markdown&quot;</span>],
-  <span class="hljs-string">&quot;javascript.preferences.quoteStyle&quot;</span>: <span class="hljs-string">&quot;single&quot;</span>,
-  <span class="hljs-string">&quot;typescript.preferences.quoteStyle&quot;</span>: <span class="hljs-string">&quot;single&quot;</span>,
-  <span class="hljs-string">&quot;vetur.format.defaultFormatter.html&quot;</span>: <span class="hljs-string">&quot;prettier&quot;</span>,
-  <span class="hljs-string">&quot;editor.defaultFormatter&quot;</span>: <span class="hljs-string">&quot;esbenp.prettier-vscode&quot;</span>,
-  <span class="hljs-string">&quot;editor.formatOnSave&quot;</span>: <span class="hljs-literal">true</span>,
-  <span class="hljs-string">&quot;editor.formatOnType&quot;</span>: <span class="hljs-literal">true</span>,
-  <span class="hljs-string">&quot;editor.formatOnPaste&quot;</span>: <span class="hljs-literal">true</span>,
-  <span class="hljs-string">&quot;editor.codeActionsOnSave&quot;</span>: &#123;
-    <span class="hljs-string">&quot;source.fixAll.eslint&quot;</span>: <span class="hljs-literal">true</span>
-  &#125;,
-  <span class="hljs-string">&quot;prettier.semi&quot;</span>: <span class="hljs-literal">false</span>,
-  <span class="hljs-string">&quot;prettier.singleQuote&quot;</span>: <span class="hljs-literal">true</span>
-&#125;</code></pre>
-
-<p>设置<code>vue.config.js</code>文件，对项目进行设置</p>
-<pre><code class="hljs js"><span class="hljs-comment">// `vue.config.js`</span>
-<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)
-<span class="hljs-keyword">const</span> resolve = <span class="hljs-function"><span class="hljs-params">dir</span> =&gt;</span> path.join(__dirname, dir)
-<span class="hljs-built_in">module</span>.exports = &#123;
-  devServer: &#123;
-    open: <span class="hljs-literal">true</span> <span class="hljs-comment">// 浏览器自启动</span>
-  &#125;,
-  chainWebpack: <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;
-    config.resolve.alias <span class="hljs-comment">// 设置路径别名</span>
-      .set(<span class="hljs-string">&#x27;assets&#x27;</span>, resolve(<span class="hljs-string">&#x27;src/assets&#x27;</span>))
-      .set(<span class="hljs-string">&#x27;views&#x27;</span>, resolve(<span class="hljs-string">&#x27;src/views&#x27;</span>))
-      .set(<span class="hljs-string">&#x27;components&#x27;</span>, resolve(<span class="hljs-string">&#x27;src/components&#x27;</span>))
-    config.plugin(<span class="hljs-string">&#x27;html&#x27;</span>).tap(<span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> &#123;
-      args[<span class="hljs-number">0</span>].title = <span class="hljs-string">&#x27;mall&#x27;</span> <span class="hljs-comment">// 修改应用名称</span>
-      <span class="hljs-keyword">return</span> args
-    &#125;)
+<h5 id="自定义方法"><a href="#自定义方法" class="headerlink" title="自定义方法"></a>自定义方法</h5><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventBus</span> </span>&#123;
+  <span class="hljs-keyword">constructor</span>() &#123;
+    <span class="hljs-built_in">this</span>.listeners = []
+  &#125;
+  isString(event) &#123;
+    <span class="hljs-keyword">return</span> event &amp;&amp; <span class="hljs-built_in">Object</span>.prototype.toString.call(event) === <span class="hljs-string">&#x27;[object String]&#x27;</span>
+  &#125;
+  isFunction(callback) &#123;
+    <span class="hljs-keyword">return</span> (
+      callback &amp;&amp;
+      <span class="hljs-built_in">Object</span>.prototype.toString.call(callback) === <span class="hljs-string">&#x27;[object Function]&#x27;</span>
+    )
+  &#125;
+  isVaild(event, callback) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.isString(event) &amp;&amp; <span class="hljs-built_in">this</span>.isFunction(callback)
+  &#125;
+  on(event, callback) &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.isVaild(event, callback)) &#123;
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.listeners[event] &amp;&amp; !<span class="hljs-built_in">this</span>.listeners[event].includes(callback)) &#123;
+        <span class="hljs-built_in">this</span>.listeners[event].push(callback) <span class="hljs-comment">// 注册过该事件但未注册回调函数，加入回调函数数组</span>
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-built_in">this</span>.listeners[event] = [callback] <span class="hljs-comment">// 未注册过该事件，初始化数组</span>
+      &#125;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;参数不合法&#x27;</span>)
+    &#125;
+  &#125;
+  emit(event, ...args) &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.isString(event) &amp;&amp; <span class="hljs-built_in">this</span>.listeners[event]) &#123;
+      <span class="hljs-built_in">this</span>.listeners[event].forEach(<span class="hljs-function">(<span class="hljs-params">callback</span>) =&gt;</span> &#123;
+        callback(...args) <span class="hljs-comment">// 触发on监听事件的callback</span>
+      &#125;)
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;参数不合法&#x27;</span>)
+    &#125;
+  &#125;
+  off(event, callback) &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.isVaild(event, callback)) &#123;
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.listeners[event]) &#123;
+        <span class="hljs-keyword">let</span> index = <span class="hljs-built_in">this</span>.listeners[event].indexOf(callback)
+        <span class="hljs-keyword">if</span> (index !== <span class="hljs-number">-1</span>) &#123;
+          <span class="hljs-built_in">this</span>.listeners[event].splice(index, <span class="hljs-number">1</span>)
+        &#125;
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-built_in">this</span>.listeners[event].length = <span class="hljs-number">0</span>
+      &#125; <span class="hljs-comment">// 只提供event，移除该event下所有callback。提供event + callback，移除该callback</span>
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;参数不合法&#x27;</span>)
+    &#125;
   &#125;
 &#125;</code></pre>
 
-<p>设置<code>package.json</code>，解决冲突</p>
-<pre><code class="hljs js"><span class="hljs-string">&quot;prettier&quot;</span>: &#123;
-    <span class="hljs-string">&quot;semi&quot;</span>: <span class="hljs-literal">false</span>,
-    <span class="hljs-string">&quot;singleQuote&quot;</span>: <span class="hljs-literal">true</span>
-&#125;</code></pre>
-
-<h3 id="设置vue文件模版"><a href="#设置vue文件模版" class="headerlink" title="设置vue文件模版"></a>设置<code>vue</code>文件模版</h3><ul>
-<li>安装plop插件</li>
-</ul>
-<pre><code class="hljs js">npm run --save-dev plop</code></pre>
-
-<ul>
-<li>根目录下创建<code>plopfile.js</code></li>
-</ul>
-<pre><code class="hljs js"><span class="hljs-comment">// `plopfile.js`</span>
-<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">plop</span>) </span>&#123;
-  plop.setGenerator(<span class="hljs-string">&#x27;vue基础模板&#x27;</span>, &#123;
-    description: <span class="hljs-string">&#x27;创建vue文件&#x27;</span>,
-    prompts: [
-      &#123;
-        type: <span class="hljs-string">&#x27;input&#x27;</span>, <span class="hljs-comment">// 交互类型</span>
-        name: <span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-comment">// 参数名称</span>
-        message: <span class="hljs-string">&#x27;请输入文件名称&#x27;</span> <span class="hljs-comment">// 交互提示</span>
-      &#125;,
-      &#123;
-        type: <span class="hljs-string">&#x27;input&#x27;</span>,
-        name: <span class="hljs-string">&#x27;path&#x27;</span>,
-        message: <span class="hljs-string">&#x27;请输入文件创建目录&#x27;</span>
-      &#125;
-    ],
-    actions: [
-      &#123;
-        type: <span class="hljs-string">&#x27;add&#x27;</span>, <span class="hljs-comment">// 动作类型</span>
-        path: <span class="hljs-string">&#x27;src/views/&#123;&#123; path &#125;&#125;/&#123;&#123; name &#125;&#125;.vue&#x27;</span>, <span class="hljs-comment">// &#x27;&#123;&#123;  &#125;&#125;&#x27; 双大括号内设置动态参数</span>
-        templateFile: <span class="hljs-string">&#x27;plop-templates/views/index.hbs&#x27;</span> <span class="hljs-comment">// 模板文件地址， 使用hbs文件</span>
-      &#125;
-    ]
-  &#125;)
-&#125;</code></pre>
-
-<ul>
-<li>根目录创建<code>plop-templates/views/index.hbs</code></li>
-</ul>
-<pre><code class="hljs js"><span class="hljs-comment">// `index.hbs` 自定义模版</span>
-&lt;template&gt;
-  &lt;div&gt;
-
-  &lt;/div&gt;
-&lt;/template&gt;
-    
-&lt;script&gt;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  name: <span class="hljs-string">&#x27;&#123;&#123;path&#125;&#125;/&#123;&#123;name&#125;&#125;&#x27;</span>,
-  components: &#123;
-
-  &#125;,
-  data () &#123;
-    <span class="hljs-keyword">return</span> &#123;
-
-    &#125;
-  &#125;,
-  computed: &#123;
-
-  &#125;,
-  created () &#123;
-
-  &#125;,
-  mounted () &#123;
-
-  &#125;,
-  methods: &#123;
-
-  &#125;,
-&#125;
-&lt;/script&gt;
-
-&lt;style scoped&gt;
-&lt;/style&gt;</code></pre>
-
-<p>设置<code>package.json</code></p>
-<pre><code class="hljs js"><span class="hljs-string">&quot;scripts&quot;</span>: &#123;
-  <span class="hljs-string">&quot;serve&quot;</span>: <span class="hljs-string">&quot;vue-cli-service serve --open&quot;</span>, <span class="hljs-comment">// --open同样可以设置浏览器自启动</span>
-  <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;vue-cli-service build&quot;</span>,
-  <span class="hljs-string">&quot;lint&quot;</span>: <span class="hljs-string">&quot;vue-cli-service lint&quot;</span>,
-  <span class="hljs-string">&quot;plop&quot;</span>: <span class="hljs-string">&quot;plop&quot;</span>
-&#125;,</code></pre>
-
-<pre><code class="hljs js">npm run plop <span class="hljs-comment">// 设置相关路径，名称，即可生成vue文件[etc. profile/index.vue]</span></code></pre>
-
-<h3 id="创建导航栏"><a href="#创建导航栏" class="headerlink" title="创建导航栏"></a>创建导航栏</h3><p>进行三栏布局，左右两侧放置图标，中间放置搜索框。设计搜索框 + 导航栏。</p>
 
             </div>
             <hr>
@@ -414,9 +362,7 @@ npm run serve</code></pre>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Vue3/">Vue3</a>
+                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
                     
                   </div>
                 
@@ -427,9 +373,9 @@ npm run serve</code></pre>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/29/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">
+                      <a href="/2020/08/31/Promise/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">组件通信</span>
+                        <span class="hidden-mobile">Promise</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -437,8 +383,8 @@ npm run serve</code></pre>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/08/27/this%E6%8C%87%E5%90%91/">
-                        <span class="hidden-mobile">this指向</span>
+                      <a href="/2020/08/28/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE/">
+                        <span class="hidden-mobile">商城项目</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -664,7 +610,7 @@ npm run serve</code></pre>
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/08/28/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE/');
+          var target = decodeURI('/2020/08/29/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
