@@ -1,0 +1,870 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="LQX">
+  <meta name="keywords" content="">
+  <title>ES5 VS ES6 - QX97</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>QX97</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/xmind/">
+                <i class="iconfont icon-slack-fill"></i>
+                思维导图
+              </a>
+            </li>
+          
+        
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+                ES5 VS ES6
+              
+            </span>
+
+            
+              
+
+<div class="mt-1">
+  
+
+             <div class="post-meta mr-2">
+                
+                  <div>
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/ES5/">ES5</a>
+                    
+                      <a class="hover-with-bg" href="/tags/ES6/">ES6</a>
+                    
+                  </div>
+                
+              </div>
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="font-size: 2rem;">ES5 VS ES6</h1>
+            
+              <p class="new-note">
+                
+                  本文最后更新于：2020-09-05 22:20:15
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <table>
+  <tr>
+    <th>数据类型</th>
+    <th colspan="2">es5</th>
+    <th>es6</th>
+  </tr>
+  <tr>
+    <td>字符串(<code>string</code>)</td>
+    <td colspan="2"><font size="2px">字符串可以被视为字符数组，字符串的单个字符或长度</font>(<code>length</code>)
+      <font size="2px">无法被改变</font></td>
+    <td>
+      <font size="2px">增加字符串遍历接口，使字符串可以被</font><code>for...of</code>
+      <font size="2px">循环遍历</font><br />
+      <font size="2px">增加模版字符串，使用反引号</font>(<code>`</code>)
+      <font size="2px">标识</font><br />    
+      <font size="2px">新增实例方法：</font><br />      
+      <a href="#ise"><code>includes(str, index)</code></a></font>
+      <font size="2px">返回布尔值，表示是否找到参数字符串</font><br /> 
+      <a href="#ise"><code>startsWith(str, index)</code></a></font>
+      <font size="2px">返回布尔值，表示参数字符串是否在字符串头部</font><br />
+      <a href="#ise"><code>endsWith(str, index)</code></a></font>
+      <font size="2px">返回布尔值，表示参数字符串是否在字符串尾部</font><br />
+      <a href="#pp"><code>padStart(num, str)</code></a>
+      <font size="2px">头部补全</font><br />
+      <a href="#pp"><code>padEnd(num, str)</code></a></font>
+      <font size="2px">尾部补全</font><br />
+      <a href="#tt"><code>trimStart()</code></a></font>
+      <font size="2px">消除头部空格</font><br />
+      <a href="#tt"><code>trimEnd()</code></a></font>
+      <font size="2px">消除尾部空格</font>
+    </td>
+  </tr>
+  <tr>
+    <td>数值(<code>number</code>)</td>
+    <td colspan="2">
+      <code>NaN</code><font size="2px">“非数字”，</font><code>NaN ≠ NaN</code><br />
+      <code>isFinite()</code></font>
+      <font size="2px">除了</font><code>Infinity/-Infinity/NaN/undefined</code><font size="2px">几类会返回</font>
+      <code>false</code>，<font size="2px">对于其他的数值都会返回</font>
+      <code>true</code><br />
+      <code>isNaN/isFinite</code></font>
+      <font size="2px">对于非数值输入，将先进行</font>
+      <a href="#Number"><code>Number()</code></a><font size="2px">转换</font>
+    </td>
+    <td>
+      <code>isFinite()</code>
+      </font><font size="2px">对于非数值一律返回</font><code>false</code><br />
+      <code>isNaN()</code></font>
+      <font size="2px">对于非</font><code>NaN</code>
+      <font size="2px">一律返回</font><code>false</code><br />
+      <a href="#trunc"><code>Math.trunc()</code></a>
+      <font size="2px">去除一个数的小数部分，返回整数部分</font><br />
+      <a href="#sign"><code>Math.sign()</code></a>
+      <font size="2px">判断一个数是正数/负数/零</font>
+    </td>
+  </tr>
+  <tr>
+    <td>布尔值(<code>boolean</code>)</td>
+    <td colspan="2">
+      <code>undefined/null/false/''/NaN/0</code><font size="2px">会被转换为</font><code>false</code>
+    </td>
+    <td><font size="2px">无新增</font></td>
+  </tr>
+  <tr>
+    <td><code>null</code></td>
+    <td colspan="2"><font size="2px">代表空</font></td>
+    <td><font size="2px">无新增</font></td>
+  </tr>
+  <tr>
+    <td><code>undefined</code></td>
+    <td colspan="2"><font size="2px">代表未定义</font></td>
+    <td><font size="2px">无新增</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4">对象(<code>object</code>)</td>
+    <td colspan="3"><font size="2px">无序的复合数据类型</font></td>
+  </tr>
+  <tr>
+    <td width="30"><code>function</code></td>
+    <td width="210">
+      <code>name</code><font size="2px">属性返回函数名，</font>
+      <code>length</code><font size="2px">属性返回函数参数个数</font><br />
+      <font size="2px">构造函数/普通函数</font><br />
+      <font size="2px">全局作用域/函数作用域</font><br />
+      <code>toString()</code><font size="2px">返回函数源码字符串</font><br />
+      <code>arguments</code><font size="2px">类数组对象</font><br />
+    </td>
+    <td>
+      <a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/function"><font size="2px">函数参数默认值</font></a><br />
+      <code>length</code><font size="2px">属性返回函数没有指定默认值的参数个数，可能会失真</font><br />
+      <font size="2px">全局作用域/函数作用域/块级作用域</font><br />
+      <font size="2px">箭头函数</font><br />
+      <code>rest</code><font size="2px">参数(...变量名)。用于获取函数的多余参数，用于取代</font><code>arguemnts</code><br />
+    </td>
+  </tr>
+  <tr>
+    <td><code>object</code></td>
+    <td><font size="2px">键名为字符串</font></td>
+    <td>
+      <font size="2px">属性及方法名的简写</font><br />
+      <code>for...in</code><font size="2px">属性遍历</font><br />
+      <code>super</code></font><font size="2px">关键字，指向当前对象的原型对象，只能在对象方法中使用</font><br />
+      <font size="2px">对象的扩展运算符</font><br />
+      <font size="2px">链判断运算符/</font><code>Null</code><font size="2px">判断运算符</font><br />
+    </td>
+  </tr>
+  <tr>
+    <td><code>Array</code></td>
+    <td>
+      <font size="2px">数组是特殊的字符串，</font><code>typeof</code>
+      <font size="2px">返回</font><code>object</code><br />
+      <code>Array.isArray()</code></font><font size="2px">返回布尔值，表示参数是否为数组</font><br />
+      <code>push/pop/shift/unshift</code><br />
+      <code>join/concat/reverse/slice</code><br />
+      <code>splice/sort/map/foreach</code><br />
+      <code>filter/reduce/reduceRight</code>
+    </td>
+    <td>
+      <font size="2px">扩展运算符</font><code>...</code><br />
+      <a href="#af"><code>Array.from()</code></a><font size="2px">用于将类似数组的对象及可遍历的对象转为真正的数组</font><br />
+      <code>Array.of()</code></font><font size="2px">总是返回参数值组成的数组，如果没有参数，就返回一个空数组</font><br />
+<code>Array.prototype.includes()</code></font><font size="2px">返回布尔值，表示数组是否包含给定值</font><br />
+      <a href="#apf"><code>Array.prototype.flat()</code></a>
+      <font size="2px">用于将嵌套数组拉平</font><br />
+    </td>
+  </tr>
+  <tr>
+    <td><code>Symbol</code></td>
+    <td colspan="2"></td>
+    <td>
+      <font size="2px">对象的属性名可以为字符串，也可以为</font>
+      <a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/symbol"><code>Symbol</code></a><br />
+      <code>for...in/for...of</code>
+      <font size="2px">不会遍历</font><code>Symbol</code>
+      <font size="2px">类型属性名</font>
+    </td>
+  </tr>
+  <tr>
+    <td><code>Set</code></td>
+    <td colspan="2"></td>
+    <td>
+      <a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/set-map"><code>Set</code></a>
+      <font size="2px">类似于数组，但成员值唯一，没有重复的值</font>
+    </td>
+  </tr>
+  <tr>
+    <td><code>Map</code></td>
+    <td colspan="2"></td>
+    <td>
+      <a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/set-map"><code>Map</code></a>
+      <font size="2px">类似于对象，但是键范围不仅限于字符串，各种类型的值包括对象都能作为键</font>
+    </td>
+  </tr>
+</table>
+
+<h3 id="includes-startsWith-endsWith"><a href="#includes-startsWith-endsWith" class="headerlink" title="includes/startsWith/endsWith"></a><span id="ise">includes/startsWith/endsWith</span></h3><p>包含两个参数<code>str</code>，<code>index</code></p>
+<p><code>str</code>：待检测字符串。</p>
+<p><code>index</code>：<code>includes/startsWith</code>表示字符串范围是<code>[index - (length-1)]</code>，<code>endsWith</code>表示字符串范围是<code>[0 - index]</code>。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&#x27;hello world&#x27;</span>
+<span class="hljs-comment">// includes</span>
+<span class="hljs-built_in">console</span>.log(s.includes(<span class="hljs-string">&#x27;hello&#x27;</span>)) <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(s.includes(<span class="hljs-string">&#x27;hello&#x27;</span>, <span class="hljs-number">2</span>)) <span class="hljs-comment">// false</span>
+<span class="hljs-comment">//startsWith</span>
+<span class="hljs-built_in">console</span>.log(s.startsWith(<span class="hljs-string">&#x27;h&#x27;</span>)) <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(s.startsWith(<span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-number">3</span>)) <span class="hljs-comment">// false</span>
+<span class="hljs-comment">//endsWith</span>
+<span class="hljs-built_in">console</span>.log(s.endsWith(<span class="hljs-string">&#x27;d&#x27;</span>)) <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(s.endsWith(<span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-number">6</span>)) <span class="hljs-comment">// false</span></code></pre>
+
+<h3 id="padStart-padEnd"><a href="#padStart-padEnd" class="headerlink" title="padStart/padEnd"></a><span id="pp">padStart/padEnd</span></h3><p>包含两个参数<code>num</code>，<code>str</code></p>
+<p><code>num</code>：字符串补全生效的最大长度。</p>
+<p><code>str</code>：用来补全的字符串。</p>
+<p>用于补全字符串。</p>
+<pre><code class="hljs js"><span class="hljs-comment">/*逻辑伪代码</span>
+<span class="hljs-comment">原字符串oldStr 补全字符串str 最大长度num</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">if</span>(str.length &gt;= num) &#123;
+  <span class="hljs-keyword">return</span> oldStr <span class="hljs-comment">// 补全字符串长度超出最大长度，返回原字符串</span>
+&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(str.length + oldStr.length &gt; num) &#123;
+  <span class="hljs-keyword">return</span> str.substr(<span class="hljs-number">0</span>, num - oldStr.length) + oldStr <span class="hljs-comment">// padStart: 长度之和超出最大长度，截取补全字符串长度</span>
+  <span class="hljs-keyword">return</span> oldStr + str.substr(<span class="hljs-number">0</span>, num - oldStr.length) <span class="hljs-comment">// padEnd: 长度之和超出最大长度，截取补全字符串长度</span>
+&#125;<span class="hljs-keyword">else</span> &#123;
+  str = str || <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-comment">// str默认使用空格</span>
+  <span class="hljs-keyword">return</span> str.repeat(num - oldStr.length) + oldStr <span class="hljs-comment">// padStart: 省略str则默认使用空格进行填充</span>
+  <span class="hljs-keyword">return</span> oldStr + str.repeat(num - oldStr.length) <span class="hljs-comment">// padEnd: 省略str则默认使用空格进行填充</span>
+&#125;</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// 补全数字</span>
+<span class="hljs-keyword">let</span> num = <span class="hljs-string">&#x27;1800&#x27;</span>
+<span class="hljs-built_in">console</span>.log(num.padEnd(<span class="hljs-number">10</span>, <span class="hljs-string">&#x27;0&#x27;</span>)) <span class="hljs-comment">// 180000000000</span>
+<span class="hljs-comment">// 提示字符串格式</span>
+<span class="hljs-keyword">let</span> date = <span class="hljs-string">&#x27;09-05&#x27;</span>
+<span class="hljs-built_in">console</span>.log(date.padStart(<span class="hljs-number">10</span>, <span class="hljs-string">&#x27;YYYY-MM-DD&#x27;</span>)) <span class="hljs-comment">// YYYY-09-05</span></code></pre>
+
+<h3 id="trimStart-trimEnd"><a href="#trimStart-trimEnd" class="headerlink" title="trimStart/trimEnd"></a><span id="tt">trimStart/trimEnd</span></h3><p><code>trimStart</code>消除头部空格，保留尾部空格。<code>trimEnd</code>消除尾部空格，保留头部空格。</p>
+<h3 id="Number"><a href="#Number" class="headerlink" title="Number()"></a><span id="Number">Number()</span></h3><p>将任意类型值转换为数值。</p>
+<p><code>Number</code>接收对象或基本数据类型。</p>
+<p>字符串：不能被转换的字符串将返回<code>NaN</code></p>
+<p>布尔值：<code>true</code> 为1，<code>false</code>为0</p>
+<p><code>undefined</code>：<code>NaN</code></p>
+<p><code>Null</code>：0</p>
+<p>对象：<code>NaN</code>，包含单个数值的数组将返回该数值</p>
+<h3 id="Math-trunc"><a href="#Math-trunc" class="headerlink" title="Math.trunc()"></a><span id="trunc">Math.trunc()</span></h3><p>非数值，使用<code>Number()</code>函数进行转换。</p>
+<h3 id="Math-sign"><a href="#Math-sign" class="headerlink" title="Math.sign()"></a><span id="sign">Math.sign()</span></h3><p>非数值，使用<code>Number()</code>函数进行转换。</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 伪代码</span>
+num &gt; <span class="hljs-number">0</span>, <span class="hljs-keyword">return</span> +<span class="hljs-number">1</span> <span class="hljs-comment">// 正数返回+1</span>
+num &lt; <span class="hljs-number">0</span>, <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span> <span class="hljs-comment">// 负数返回-1</span>
+num === <span class="hljs-number">0</span>, <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> <span class="hljs-comment">// 0返回0</span>
+num === <span class="hljs-number">-0</span> <span class="hljs-keyword">return</span> <span class="hljs-number">-0</span> <span class="hljs-comment">// -0返回-0</span>
+other, <span class="hljs-keyword">return</span> <span class="hljs-literal">NaN</span> <span class="hljs-comment">// 其他返回NaN</span></code></pre>
+
+<h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a><span id="af">Array.from()</span></h3><p>用于将<code>array-like</code>对象和<code>iterable</code>对象转化为真正的数组。</p>
+<p>支持<code>map</code>处理功能。</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Array</span>.from(arrayLike, <span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item * <span class="hljs-number">2</span>)</code></pre>
+
+<h3 id="Array-prototype-flat"><a href="#Array-prototype-flat" class="headerlink" title="Array.prototype.flat()"></a><span id="apf">Array.prototype.flat()</span></h3><p>数组的成员还是数组时，可以使用<code>Array.prototype.flat</code>进行拉平。</p>
+<p>默认拉平1层，可以传递整数参数，自定义拉平层数，或<code>Infinity</code>全部拉平。将跳过数组空位。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [[<span class="hljs-number">1</span>], [[<span class="hljs-number">1</span>], <span class="hljs-number">2</span>], [[[<span class="hljs-number">1</span>], <span class="hljs-number">2</span>], <span class="hljs-number">3</span>], , ,]
+<span class="hljs-built_in">console</span>.log(arr.flat()) <span class="hljs-comment">// [ 1, [ 1 ], 2, [ [ 1 ], 2 ], 3 ] 默认拉平1层，跳过空位</span>
+<span class="hljs-built_in">console</span>.log(arr.flat(<span class="hljs-number">3</span>)) <span class="hljs-comment">// [ 1, 1, 2, 1, 2, 3 ] 自定义拉平层数，跳过空位</span>
+<span class="hljs-built_in">console</span>.log(arr.flat(<span class="hljs-literal">Infinity</span>)) <span class="hljs-comment">// [ 1, 1, 2, 1, 2, 3 ] // Infinity全部拉平，跳过空位</span>
+<span class="hljs-built_in">console</span>.log(arr.flatMap(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x)) <span class="hljs-comment">// [ 1, [ 1 ], 2, [ [ 1 ], 2 ], 3 ] map操作后flat，只能展开1层</span></code></pre>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/ES5/">ES5</a>
+                    
+                      <a class="hover-with-bg" href="/tags/ES6/">ES6</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/04/%E7%99%BE%E5%88%86%E6%AF%94/">
+                        <span class="hidden-mobile">百分比</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><image src="/img/list.jpg" style="width: 1.5em; height: 1.5em;">
+&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div style="font-size: 0.8rem;">
+	<span>© 版权所有，转载请注明出处</span>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2020/09/05/ES5VSES6/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'TL9peIKTLokMq79j1VjMg7Xf-gzGzoHsz'
+    var app_key = '9oeF2MJ3q62GpENO2IqXAdkg'
+    var server_url = 'https://tl9peikt.lc-cn-n1-shared.com'
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+</body>
+</html>
