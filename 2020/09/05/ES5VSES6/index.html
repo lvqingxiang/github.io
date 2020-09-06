@@ -225,7 +225,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-06 14:53:21
+                  本文最后更新于：2020-09-06 15:47:21
                 
               </p>
             
@@ -466,7 +466,8 @@ other, <span class="hljs-keyword">return</span> <span class="hljs-literal">NaN</
 <p><code>arr.slice(start, end)</code>参数为<code>start</code>，<code>end</code>。<code>start</code>默认值为0，<code>end</code>默认值为<code>arr.length - 1</code>。</p>
 <p>当<code>slice</code>参数为空，视为浅拷贝，提取范围为<code>[start, end)</code>。</p>
 <p>可用于将类数组对象转化为真正的数组<code>Array.prototype.slice.call(arrayLike)</code>。</p>
-<pre><code class="hljs js"><span class="hljs-built_in">Array</span>.prototype.myslice = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">begin = <span class="hljs-number">0</span>, end = this.length</span>) </span>&#123;
+<pre><code class="hljs js"><span class="hljs-comment">// slice</span>
+<span class="hljs-built_in">Array</span>.prototype.myslice = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">begin = <span class="hljs-number">0</span>, end = this.length</span>) </span>&#123;
   <span class="hljs-keyword">let</span> cloned = []
   begin = begin &gt;= <span class="hljs-number">0</span> ? begin : <span class="hljs-built_in">Math</span>.max(<span class="hljs-number">0</span>, <span class="hljs-built_in">this</span>.length + begin)
   end = <span class="hljs-keyword">typeof</span> end == <span class="hljs-string">&#x27;number&#x27;</span> ? <span class="hljs-built_in">Math</span>.min(end, <span class="hljs-built_in">this</span>.length) : <span class="hljs-built_in">this</span>.length
@@ -495,6 +496,7 @@ other, <span class="hljs-keyword">return</span> <span class="hljs-literal">NaN</
 <p><code>arr.splice(start, count, ...args)</code>，参数分别是起始位置，删除个数，插入元素。</p>
 <p><code>sort</code>默认按照字典序对数组进行排序</p>
 <pre><code class="hljs js"><span class="hljs-comment">// splice</span>
+<span class="hljs-comment">// 第一种方式</span>
 <span class="hljs-built_in">Array</span>.prototype.mySplice = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">start = <span class="hljs-number">0</span>, count = this.length - start, ...args</span>) </span>&#123;
   <span class="hljs-keyword">let</span> result = []
   <span class="hljs-comment">// 初始化</span>
@@ -609,6 +611,29 @@ other, <span class="hljs-keyword">return</span> <span class="hljs-literal">NaN</
               
             </div>
 
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'lvqingxiang/lvqingxiang.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
             
           </article>
         </div>
