@@ -225,7 +225,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-05 22:20:15
+                  本文最后更新于：2020-09-06 14:53:21
                 
               </p>
             
@@ -342,10 +342,10 @@
       <font size="2px">数组是特殊的字符串，</font><code>typeof</code>
       <font size="2px">返回</font><code>object</code><br />
       <code>Array.isArray()</code></font><font size="2px">返回布尔值，表示参数是否为数组</font><br />
-      <code>push/pop/shift/unshift</code><br />
-      <code>join/concat/reverse/slice</code><br />
-      <code>splice/sort/map/foreach</code><br />
-      <code>filter/reduce/reduceRight</code>
+      <a href="#arr"><code>push/pop/shift/unshift</code><br />
+      <a href="#arr"><code>join/concat/reverse/slice</code><br />
+      <a href="#arr"><code>splice/sort/map/foreach</code><br />
+      <a href="#arr"><code>filter/reduce/reduceRight</code>
     </td>
     <td>
       <font size="2px">扩展运算符</font><code>...</code><br />
@@ -399,10 +399,10 @@
 <span class="hljs-built_in">console</span>.log(s.endsWith(<span class="hljs-string">&#x27;d&#x27;</span>)) <span class="hljs-comment">// true</span>
 <span class="hljs-built_in">console</span>.log(s.endsWith(<span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-number">6</span>)) <span class="hljs-comment">// false</span></code></pre>
 
-<h3 id="padStart-padEnd"><a href="#padStart-padEnd" class="headerlink" title="padStart/padEnd"></a><span id="pp">padStart/padEnd</span></h3><p>包含两个参数<code>num</code>，<code>str</code></p>
+<h3 id="padStart-padEnd"><a href="#padStart-padEnd" class="headerlink" title="padStart/padEnd"></a><span id="pp">padStart/padEnd</span></h3><p>用于补全字符串。</p>
+<p>包含两个参数<code>num</code>，<code>str</code></p>
 <p><code>num</code>：字符串补全生效的最大长度。</p>
 <p><code>str</code>：用来补全的字符串。</p>
-<p>用于补全字符串。</p>
 <pre><code class="hljs js"><span class="hljs-comment">/*逻辑伪代码</span>
 <span class="hljs-comment">原字符串oldStr 补全字符串str 最大长度num</span>
 <span class="hljs-comment">*/</span>
@@ -432,8 +432,10 @@
 <p><code>undefined</code>：<code>NaN</code></p>
 <p><code>Null</code>：0</p>
 <p>对象：<code>NaN</code>，包含单个数值的数组将返回该数值</p>
-<h3 id="Math-trunc"><a href="#Math-trunc" class="headerlink" title="Math.trunc()"></a><span id="trunc">Math.trunc()</span></h3><p>非数值，使用<code>Number()</code>函数进行转换。</p>
-<h3 id="Math-sign"><a href="#Math-sign" class="headerlink" title="Math.sign()"></a><span id="sign">Math.sign()</span></h3><p>非数值，使用<code>Number()</code>函数进行转换。</p>
+<h3 id="Math-trunc"><a href="#Math-trunc" class="headerlink" title="Math.trunc()"></a><span id="trunc">Math.trunc()</span></h3><p>去除一个数的小数部分，返回整数部分。</p>
+<p>非数值，使用<code>Number()</code>函数进行转换。</p>
+<h3 id="Math-sign"><a href="#Math-sign" class="headerlink" title="Math.sign()"></a><span id="sign">Math.sign()</span></h3><p>判断一个数到底是正数、负数、还是零。</p>
+<p>非数值，使用<code>Number()</code>函数进行转换。</p>
 <pre><code class="hljs js"><span class="hljs-comment">// 伪代码</span>
 num &gt; <span class="hljs-number">0</span>, <span class="hljs-keyword">return</span> +<span class="hljs-number">1</span> <span class="hljs-comment">// 正数返回+1</span>
 num &lt; <span class="hljs-number">0</span>, <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span> <span class="hljs-comment">// 负数返回-1</span>
@@ -452,6 +454,120 @@ other, <span class="hljs-keyword">return</span> <span class="hljs-literal">NaN</
 <span class="hljs-built_in">console</span>.log(arr.flat(<span class="hljs-number">3</span>)) <span class="hljs-comment">// [ 1, 1, 2, 1, 2, 3 ] 自定义拉平层数，跳过空位</span>
 <span class="hljs-built_in">console</span>.log(arr.flat(<span class="hljs-literal">Infinity</span>)) <span class="hljs-comment">// [ 1, 1, 2, 1, 2, 3 ] // Infinity全部拉平，跳过空位</span>
 <span class="hljs-built_in">console</span>.log(arr.flatMap(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x)) <span class="hljs-comment">// [ 1, [ 1 ], 2, [ [ 1 ], 2 ], 3 ] map操作后flat，只能展开1层</span></code></pre>
+
+<h3 id="数组常用方法"><a href="#数组常用方法" class="headerlink" title="数组常用方法"></a><span id="arr">数组常用方法</span></h3><h4 id="push-pop"><a href="#push-pop" class="headerlink" title="push/pop"></a>push/pop</h4><p><code>push()</code>在数组末尾添加<code>1-n</code>个新元素，返回数组长度，会修改原数组。</p>
+<p><code>pop()</code>删除数组末尾元素，返回该元素，会修改原数组。</p>
+<h4 id="shift-unshift"><a href="#shift-unshift" class="headerlink" title="shift/unshift"></a>shift/unshift</h4><p><code>shift()</code>删除数组头元素，返回该元素，会修改原数组。</p>
+<p><code>unshift()</code>在数组数组头部添加<code>1-n</code>个新元素，返回数组长度，会修改原数组。</p>
+<h4 id="join-concat"><a href="#join-concat" class="headerlink" title="join/concat"></a>join/concat</h4><p><code>join</code>将数组内容以指定分隔符串联为字符串，默认以逗号串联。</p>
+<p><code>concat</code>用于数组合并，返回新数组，原数组不变。</p>
+<h4 id="reverse-slice"><a href="#reverse-slice" class="headerlink" title="reverse/slice"></a>reverse/slice</h4><p><code>reverse</code>用于数组翻转，会修改原数组。</p>
+<p><code>slice</code>提取部分数组。返回新数组，原数组不变。</p>
+<p><code>arr.slice(start, end)</code>参数为<code>start</code>，<code>end</code>。<code>start</code>默认值为0，<code>end</code>默认值为<code>arr.length - 1</code>。</p>
+<p>当<code>slice</code>参数为空，视为浅拷贝，提取范围为<code>[start, end)</code>。</p>
+<p>可用于将类数组对象转化为真正的数组<code>Array.prototype.slice.call(arrayLike)</code>。</p>
+<pre><code class="hljs js"><span class="hljs-built_in">Array</span>.prototype.myslice = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">begin = <span class="hljs-number">0</span>, end = this.length</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> cloned = []
+  begin = begin &gt;= <span class="hljs-number">0</span> ? begin : <span class="hljs-built_in">Math</span>.max(<span class="hljs-number">0</span>, <span class="hljs-built_in">this</span>.length + begin)
+  end = <span class="hljs-keyword">typeof</span> end == <span class="hljs-string">&#x27;number&#x27;</span> ? <span class="hljs-built_in">Math</span>.min(end, <span class="hljs-built_in">this</span>.length) : <span class="hljs-built_in">this</span>.length
+  <span class="hljs-keyword">if</span> (end &lt; <span class="hljs-number">0</span>) &#123;
+    end += len
+  &#125;
+  <span class="hljs-keyword">let</span> size = end - begin
+  <span class="hljs-keyword">if</span> (size &gt; <span class="hljs-number">0</span>) &#123;
+    cloned = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(size)
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.charAt) &#123;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) &#123;
+        cloned[i] = <span class="hljs-built_in">this</span>.charAt(begin + i)
+      &#125;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) &#123;
+        cloned[i] = <span class="hljs-built_in">this</span>[begin + i]
+      &#125;
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> cloned
+&#125;
+<span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>]
+<span class="hljs-built_in">console</span>.log(arr.myslice(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)) <span class="hljs-comment">// [2, 3,  4]</span></code></pre>
+
+<h4 id="splice-sort"><a href="#splice-sort" class="headerlink" title="splice/sort"></a>splice/sort</h4><p><code>splice</code>用于删除或新增数组元素，返回被删除元素，会修改原数组。</p>
+<p><code>arr.splice(start, count, ...args)</code>，参数分别是起始位置，删除个数，插入元素。</p>
+<p><code>sort</code>默认按照字典序对数组进行排序</p>
+<pre><code class="hljs js"><span class="hljs-comment">// splice</span>
+<span class="hljs-built_in">Array</span>.prototype.mySplice = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">start = <span class="hljs-number">0</span>, count = this.length - start, ...args</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> result = []
+  <span class="hljs-comment">// 初始化</span>
+  start = start &lt; <span class="hljs-number">0</span> ? <span class="hljs-built_in">Math</span>.max(start + <span class="hljs-built_in">this</span>.length, <span class="hljs-number">0</span>) : <span class="hljs-built_in">Math</span>.min(<span class="hljs-built_in">this</span>.length, start)
+  count = <span class="hljs-built_in">Math</span>.min(<span class="hljs-built_in">Math</span>.max(count, <span class="hljs-number">0</span>), <span class="hljs-built_in">this</span>.length - start)
+  <span class="hljs-keyword">if</span> (start === <span class="hljs-number">0</span>) &#123;
+    <span class="hljs-keyword">return</span> result
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    result = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(count)
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; result.length; i++) &#123;
+      result[i] = <span class="hljs-built_in">this</span>[start + i]
+    &#125;
+    <span class="hljs-keyword">let</span> argNum = args.length
+    <span class="hljs-keyword">if</span> (count &gt; argNum) &#123;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = start + count; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;
+        <span class="hljs-keyword">let</span> fromIndex = i
+        <span class="hljs-keyword">let</span> toIndex = i - (count - argNum)
+        <span class="hljs-built_in">this</span>[toIndex] = <span class="hljs-built_in">this</span>[fromIndex]
+      &#125;
+      <span class="hljs-built_in">this</span>.length = <span class="hljs-built_in">this</span>.length - count + argNum
+    &#125;
+    <span class="hljs-keyword">if</span> (count &lt; argNum) &#123;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-built_in">this</span>.length - <span class="hljs-number">1</span>; i &gt;= start + count; i--) &#123;
+        <span class="hljs-keyword">let</span> fromIndex = i
+        <span class="hljs-keyword">let</span> toIndex = i + argNum - count
+        <span class="hljs-built_in">this</span>[toIndex] = <span class="hljs-built_in">this</span>[fromIndex]
+      &#125;
+    &#125;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; argNum; i++) &#123;
+      <span class="hljs-built_in">this</span>[start + i] = args[i]
+    &#125;
+    <span class="hljs-keyword">return</span> result
+  &#125;
+&#125;
+<span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">34</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>]
+<span class="hljs-built_in">console</span>.log(arr.mySplice(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>), arr) <span class="hljs-comment">// [ 2, 34 ] [ 1, 4, 5, 7, 6, 8 ]</span>
+
+<span class="hljs-comment">// 第二种方式</span>
+<span class="hljs-built_in">Array</span>.prototype.mySplice = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">start = <span class="hljs-number">0</span>, count = this.length - start, ...args</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> result = []
+  <span class="hljs-comment">// 初始化</span>
+  start = start &lt; <span class="hljs-number">0</span> ? <span class="hljs-built_in">Math</span>.max(start + <span class="hljs-built_in">this</span>.length, <span class="hljs-number">0</span>) : <span class="hljs-built_in">Math</span>.min(<span class="hljs-built_in">this</span>.length, start)
+  count = <span class="hljs-built_in">Math</span>.min(<span class="hljs-built_in">Math</span>.max(count, <span class="hljs-number">0</span>), <span class="hljs-built_in">this</span>.length - start)
+  <span class="hljs-keyword">if</span> (start === <span class="hljs-number">0</span>) &#123;
+    <span class="hljs-keyword">return</span> result
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    <span class="hljs-keyword">let</span> leftArr = []
+    <span class="hljs-keyword">let</span> rightArr = []
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;
+      <span class="hljs-keyword">if</span> (i &lt; start) &#123;
+        leftArr.push(<span class="hljs-built_in">this</span>[i])
+      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i &gt;= start + count) &#123;
+        rightArr.push(<span class="hljs-built_in">this</span>[i])
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        result.push(<span class="hljs-built_in">this</span>[i])
+      &#125;
+    &#125;
+    <span class="hljs-built_in">this</span>.length = <span class="hljs-number">0</span>
+    ;[...leftArr, ...args, ...rightArr].forEach(<span class="hljs-function">(<span class="hljs-params">ele, i</span>) =&gt;</span> (<span class="hljs-built_in">this</span>[i] = ele))
+    <span class="hljs-keyword">return</span> result
+  &#125;
+&#125;
+<span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">34</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>]
+<span class="hljs-built_in">console</span>.log(arr.mySplice(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>), arr) <span class="hljs-comment">// [ 2, 34, 6 ] [ 1, 4, 5, 7, 8 ]</span></code></pre>
+
+<h4 id="map-forEach-filter"><a href="#map-forEach-filter" class="headerlink" title="map/forEach/filter"></a>map/forEach/filter</h4><p><code>map</code>操作后返回新数组，且会跳过数组空位。</p>
+<p><code>forEach</code>遍历数组，且无法中断，且会跳过空位。</p>
+<p><code>filter</code>用于过滤数组成员，满足条件的数组成员组成新数组返回，原数组不变。</p>
+<h4 id="reduce-reduceRight"><a href="#reduce-reduceRight" class="headerlink" title="reduce/reduceRight"></a>reduce/reduceRight</h4><p><code>reduce</code>遍历数组返回数组处理结果。<code>reduce(callback(accumulator, curValue, curIndex, srcArray), initValue)</code>，当<code>initValue</code>为空，将使用数组的第一个元素作为初始值。当<code>initValue</code>不为空，<code>curIndex</code>将从0开始累计。</p>
+<p><code>reduce</code>从左到右计算，<code>reduceRight</code>从右到左计算。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> sum = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].reduce(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">accumulator, curValue</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> accumulator + curValue;
+&#125;, <span class="hljs-number">0</span>); <span class="hljs-comment">// 6</span></code></pre>
 
 
             </div>
