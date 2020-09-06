@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>作用域/执行上下文 - QX97</title>
+  <title>CSS选择器 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -161,7 +161,7 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                作用域/执行上下文
+                CSS选择器
               
             </span>
 
@@ -176,7 +176,7 @@
                   <div>
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                      <a class="hover-with-bg" href="/tags/CSS/">CSS</a>
                     
                   </div>
                 
@@ -217,58 +217,140 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="font-size: 2rem;">作用域/执行上下文</h1>
+            <h1 style="font-size: 2rem;">CSS选择器</h1>
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-06 18:56:41
+                  本文最后更新于：2020-09-06 21:56:49
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>是一种抽象概念，决定了变量和函数的可见性及生命周期。一般有三种，分别是全局作用域，函数作用域，块级作用域。在函数或变量声明时确定，与编写的<code>JS</code>代码有关，属于静态作用域，也称为词法作用域。</p>
-<h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><p>当<code>JavaScript</code>代码在运行时，会产生执行上下文。执行上下文主要有2种类型，一种是全局上下文，一种是函数上下文。全局上下文只有一个，执行上下文可以有多个。每次调用函数都会产生新的执行上下文。</p>
-<p>上下文执行栈用于存储代码执行期间产生的所有上下文，采用先进后出原则。</p>
-<p>当<code>JS</code>代码开始运行时，则产生执行上下文。会首先产生全局上下文压入栈中，之后如果产生函数调用，则会将该函数上下文压入栈中，应用先进后出原则，<code>JS</code>引擎只会执行栈顶的上下文，执行完毕后将该上下文出栈。</p>
-<p>执行上下文主要经历两个阶段，创建阶段和执行阶段。创建阶段即函数被调用但还未执行内部代码块的阶段，执行阶段则为真正执行内部代码块的过程。</p>
-<center> 
-    <img src="/img/创建过程.jpg" srcset="/img/loading.gif" /> 
-  <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
-    创建过程.jpg
-  </div> 
-</center>
+              <h3 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h3><h4 id="通配选择器"><a href="#通配选择器" class="headerlink" title="通配选择器"></a>通配选择器</h4><p>*，匹配所有<code>html</code>元素，性能差，不建议使用。</p>
+<h4 id="标签选择器"><a href="#标签选择器" class="headerlink" title="标签选择器"></a>标签选择器</h4><p>匹配<code>html</code>元素标签。</p>
+<h4 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h4><p>匹配<code>html</code>元素<code>class</code>属性。</p>
+<h4 id="ID选择器"><a href="#ID选择器" class="headerlink" title="ID选择器"></a>ID选择器</h4><p>匹配<code>html</code>元素<code>id</code>属性。</p>
+<pre><code class="hljs css">* &#123;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+&#125; 
+<span class="hljs-selector-tag">div</span> &#123;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+&#125;
+<span class="hljs-selector-class">.container</span> &#123;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#0f0</span>;
+&#125;
+<span class="hljs-selector-id">#footer</span> &#123;
+  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.5em</span>;
+  <span class="hljs-attribute">text-decoration</span>: underline;
+&#125;</code></pre>
 
-<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><p><strong>执行上下文创建过程：</strong></p>
-<ol>
-<li>确定<code>this</code>指向，绑定this</li>
-<li>词法环境(<code>LexicalEnvironment</code>)被创建</li>
-<li>变量环境(<code>VariableEnvironemnt</code>)被创建</li>
-</ol>
-<p>词法环境包含环境记录和对外部环境的引用。环境记录存储<code>let/const</code>声明的变量及函数声明地址，对外部环境的引用意味着可以访问外部词法环境。</p>
-<p>词法环境包含全局环境和函数环境。函数环境的环境记录包含<code>arguments</code>对象。</p>
-<p>变量环境也是词法环境，但词法环境用于存储<code>let/const</code>变量，变量环境只用来存储<code>var</code>变量。</p>
-<p><strong>执行上下文执行阶段：</strong></p>
-<p>在执行阶段完成对变量的分配，最后执行代码</p>
-<h3 id="ES3"><a href="#ES3" class="headerlink" title="ES3"></a>ES3</h3><p><strong>执行上下文创建过程：</strong></p>
-<ol>
-<li>创建变量对象(VO)</li>
-<li>创建作用域链</li>
-<li>确定<code>this</code>指向</li>
-</ol>
-<p>VO创建为3步：</p>
-<ol>
-<li>创建函数形参即<code>arguments</code>对象</li>
-<li>扫描函数声明，以函数名作为属性名，指向函数地址，如果函数名已存在，将被覆盖。</li>
-<li>扫描变量声明，以变量名作为属性名，初始化为<code>undefined</code>，如果属性名已存在，将跳过。</li>
-</ol>
-<p>执行过程，变量对象VO将成为激活对象AO。</p>
-<p>作用域链即为<code>ES6</code>中对外部环境的引用的实现。是变量对象的集合。通过一层一层的查找变量对象中的变量，确定变量是否可以被访问。</p>
-<style>
-  img:hover {
-    border-radius: 0.3125em; 
-    box-shadow: 0 0px 15px #2f4154;
-  }
-</style>
+<h4 id="组合选择器"><a href="#组合选择器" class="headerlink" title="组合选择器"></a>组合选择器</h4><p>利用组合选择符对选择器进行排列组合。</p>
+<ul>
+<li>后代【子元素、孙子元素等】组合器：以空格分隔。</li>
+<li>直接子代组合器：以大于号分隔。</li>
+<li>紧邻兄弟组合器：以加号分隔。加号两边为<font color='#ff0000'>兄弟元素</font>，拥有相同父元素，后一个元素紧跟前一个元素之后，非兄弟元素样式设置将无效。</li>
+<li>一般兄弟组合器：以波浪号分隔，表示左边元素之后的<font color="#f00">所有</font>相邻兄弟元素的样式设置。</li>
+</ul>
+<pre><code class="hljs css"><span class="hljs-selector-tag">div</span> <span class="hljs-selector-tag">p</span> &#123;
+  <span class="hljs-attribute">text-indent</span>: <span class="hljs-number">2em</span>;
+  <span class="hljs-attribute">text-transform</span>: uppercase;
+&#125;
+<span class="hljs-selector-class">.root</span> &gt; <span class="hljs-selector-tag">p</span> &#123;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> dashed <span class="hljs-number">#00f</span>;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#f00</span>;
+&#125;
+<span class="hljs-selector-id">#btn</span> + <span class="hljs-selector-tag">p</span> &#123;
+  <span class="hljs-attribute">text-shadow</span>: <span class="hljs-number">2px</span> <span class="hljs-number">2px</span> <span class="hljs-number">1px</span> <span class="hljs-number">#000</span>;
+  <span class="hljs-attribute">font-weight</span>: lighter;
+&#125;
+<span class="hljs-selector-tag">li</span> ~ <span class="hljs-selector-tag">li</span> &#123;
+  <span class="hljs-attribute">font-family</span>: Arial, Helvetica, sans-serif;
+  <span class="hljs-attribute">float</span>: right;
+&#125;</code></pre>
+
+<h4 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h4><p>表示被选择<code>html</code>元素的特殊状态。</p>
+<p><code>:link</code>：匹配未被访问的链接标签。</p>
+<p><code>:visited</code>：匹配已经被访问的链接标签。</p>
+<p><code>:hover</code>：鼠标悬停效果。</p>
+<p><code>:active</code>：鼠标按下到抬起的过程的选中状态。</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:link</span> &#123;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#eee</span>;
+  <span class="hljs-attribute">font-weight</span>: bolder;
+&#125;
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:visited</span> &#123;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#0f0</span>;
+  <span class="hljs-attribute">font-weight</span>: normal;
+&#125;
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:hover</span> &#123;
+  <span class="hljs-attribute">text-decoration</span>: none;
+  <span class="hljs-attribute">background</span>: transparent;
+&#125;
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:active</span>, <span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:active</span> &#123;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#f00</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">10px</span> solid <span class="hljs-number">#f00</span>;
+&#125;</code></pre>
+
+<p><strong>根据LVHA规律，往往以<code>:link</code>-<code>:visited</code>-<code>:hover</code>-<code>:active</code>的顺序进行css排布</strong></p>
+<p><code>(E):first-child</code>：兄弟元素中第一个元素为E【<code>css4</code>所选元素的父元素不必须】。</p>
+<p><code>(E):first-of-type</code>：兄弟元素中第一个E元素【<code>css4</code>所选元素的父元素不必须】。</p>
+<p><code>(E):last-child</code>：兄弟元素中最后一个元素为E。</p>
+<p><code>(E):last-of-type</code>：兄弟元素中最后一个E元素。</p>
+<p><code>(E):nth-child(an+b), n = (0, 1, 2, ...)</code> ：<code>正向</code>，以所有兄弟元素为基准，匹配<code>an+b</code>表达式且元素为<code>E</code>。</p>
+<p><code>(E):nth-last-child(an+b), n = (0, 1, 2, ...)</code>：<code>反向</code>，以所有兄弟元素为基准，反向匹配<code>an+b</code>表达式且元素为<code>E</code>。</p>
+<p><code>(E):nth-of-type(an+b), n = (0, 1, 2, ...)</code>：<code>正向</code>，以兄弟元素中所有E元素为基准，匹配<code>an+b</code>表达式。</p>
+<p><code>(E):nth-last-of-type(an+b), n = (0, 1, 2, ...)</code>：<code>反向</code>，以兄弟元素中所有E元素为基准，反向匹配<code>an+b</code>表达式。</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:first-child</span> &#123;
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(to right, #f00, #<span class="hljs-number">0</span>f0);
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.5</span>;
+&#125;
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:first-of-type</span> &#123;
+  <span class="hljs-attribute">overflow</span>: hidden;
+  <span class="hljs-attribute">position</span>: absolute;
+&#125;</code></pre>
+
+<h4 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h4><p>根据属性名或属性值进行匹配。</p>
+<p><code>[attr]</code>：匹配属性名<code>attr</code>。</p>
+<p><code>[attr=value]</code>：匹配属性名为<code>attr</code>，属性值为<code>value</code>的元素。</p>
+<p><code>[attr~=value]</code>：匹配属性名为<code>attr</code>，属性值含有<code>value</code>，<code>value</code>值不可拆分字符串，<code>&#39;value&#39; =&gt; value</code>。</p>
+<p><code>[attr*=value]</code>：匹配属性名为<code>attr</code>，属性值含有<code>value</code>，<code>value</code>值可拆分，<code>&#39;vvvvvalueeee&#39; =&gt; value</code>。</p>
+<p><code>[attr|=value]</code>：匹配属性名为<code>attr</code>，属性值开头为<code>value</code>或<code>value-</code>，<code>value</code>值不可拆分字符串。</p>
+<p><code>[attr^=value]</code>：匹配属性名为<code>attr</code>，属性值开头为<code>value</code>，<code>value</code>值可拆分。</p>
+<p><code>[attr$=value]</code>：匹配属性名为<code>attr</code>，属性值结尾为<code>value</code>，<code>value</code>值可拆分。</p>
+<p><code>[attr=value i]</code>：匹配属性名为<code>attr</code>，<code>i</code>或<code>I</code>会忽略属性值的大小写。</p>
+<h4 id="分组选择器"><a href="#分组选择器" class="headerlink" title="分组选择器"></a>分组选择器</h4><p>以逗号分隔，表示多个元素设置同一样式，一般用于设置公共样式。</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">p</span>, <span class="hljs-selector-tag">div</span> &#123;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#000</span>;
+  <span class="hljs-attribute">position</span>: fixed;
+&#125;</code></pre>
+
+<h4 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h4><p>允许对被选择元素的特定部分进行修改。</p>
+<p><code>::before</code>, <code>::after</code></p>
+<p><code>::first-letter</code>选中块级元素首行第一个字母或汉字。</p>
+<p><code>::first-line</code>选中块级元素首行。</p>
+<p><code>::selection</code>选中高亮。</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">div</span><span class="hljs-selector-pseudo">::before</span> &#123;
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;《&#x27;</span>;
+&#125;
+<span class="hljs-selector-tag">div</span><span class="hljs-selector-pseudo">::after</span> &#123;
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;》&#x27;</span>;
+&#125;
+<span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">::first-letter</span> &#123;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#000</span>;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;
+&#125;
+<span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">::first-line</span> &#123;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#0f0</span>;
+  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">10px</span>;
+&#125;
+<span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">::selection</span> &#123;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#0f0</span>;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#00f</span>;
+&#125;</code></pre>
+
+
             </div>
             <hr>
             <div>
@@ -278,7 +360,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                      <a class="hover-with-bg" href="/tags/CSS/">CSS</a>
                     
                   </div>
                 
@@ -289,18 +371,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CSS选择器</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/09/05/ES5VSES6/">
-                        <span class="hidden-mobile">ES5 VS ES6</span>
+                      <a href="/2020/09/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+                        <span class="hidden-mobile">作用域/执行上下文</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -549,7 +625,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/09/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/');
+          var target = decodeURI('/2020/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
