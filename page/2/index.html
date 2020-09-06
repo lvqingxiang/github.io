@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>归档 - QX97</title>
+  <title>QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -43,7 +43,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -144,14 +144,14 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/img/cloud.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                归档
+                阳春布德泽，万物生光辉
               
             </span>
 
@@ -175,50 +175,62 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 11 篇文章</p>
-  <hr>
-  
+
+  <div class="row mx-auto index-card">
     
-      
-      <p class="h5">2020</p>
     
-    <a href="/2020/09/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">作用域/执行上下文</span>
-      <time style="float: right;">09-06</time>
-    </a>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/26/%E5%8E%9F%E5%9E%8B%E9%93%BE/">原型链</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/26/%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+          
+          
+            
+          
+          原型链涉及两类对象，(构造)函数对象及(实例)普通对象，构造函数一般以首字母大写区分于普通函数。
+所有对象都有_proto_属性，只有函数对象有prototype属性。因此，普通对象只有_proto_属性，函数对象既有_proto_属性又有prototype属性。
+(实例)普通对象的_proto_属性指向(构造)函数对象的prototype属性，即foo._proto_ = Foo.prptoty
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-26 21:11" pubdate>
+              2020-08-26
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
   
-    
-    <a href="/2020/09/05/ES5VSES6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">ES5 VS ES6</span>
-      <time style="float: right;">09-05</time>
-    </a>
-  
-    
-    <a href="/2020/09/04/%E7%99%BE%E5%88%86%E6%AF%94/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">百分比</span>
-      <time style="float: right;">09-04</time>
-    </a>
-  
-    
-    <a href="/2020/09/03/%E9%95%BF%E5%BA%A6%E5%8D%95%E4%BD%8D/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">长度单位</span>
-      <time style="float: right;">09-03</time>
-    </a>
-  
-    
-    <a href="/2020/09/02/%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">事件机制</span>
-      <time style="float: right;">09-02</time>
-    </a>
-  
-    
-    <a href="/2020/09/01/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">深浅拷贝</span>
-      <time style="float: right;">09-01</time>
-    </a>
-  
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -422,7 +434,7 @@
       if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2020/09/index.html');
+          var target = decodeURI('/page/2/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {

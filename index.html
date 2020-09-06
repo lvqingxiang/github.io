@@ -181,6 +181,48 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        <a href="/2020/09/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/">作用域/执行上下文</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+          
+          
+            
+          
+          作用域是一种抽象概念，决定了变量和函数的可见性及生命周期。一般有三种，分别是全局作用域，函数作用域，块级作用域。在函数或变量声明时确定，与编写的JS代码有关，属于静态作用域，也称为词法作用域。
+执行上下文当JavaScript代码在运行时，会产生执行上下文。执行上下文主要有2种类型，一种是全局上下文，一种是函数上下文。全局上下文只有一个，执行上下文可以有多个。每次调用函数都会产生新的执行上下文。
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-06 18:17" pubdate>
+              2020-09-06
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         <a href="/2020/09/05/ES5VSES6/">ES5 VS ES6</a>
       </h1>
 
@@ -643,49 +685,19 @@ call()方法
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/26/%E5%8E%9F%E5%9E%8B%E9%93%BE/">原型链</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/26/%E5%8E%9F%E5%9E%8B%E9%93%BE/">
-          
-          
-            
-          
-          原型链涉及两类对象，(构造)函数对象及(实例)普通对象，构造函数一般以首字母大写区分于普通函数。
-所有对象都有_proto_属性，只有函数对象有prototype属性。因此，普通对象只有_proto_属性，函数对象既有_proto_属性又有prototype属性。
-(实例)普通对象的_proto_属性指向(构造)函数对象的prototype属性，即foo._proto_ = Foo.prptoty
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-26 21:11" pubdate>
-              2020-08-26
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
 
 
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 

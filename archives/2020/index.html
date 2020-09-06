@@ -176,12 +176,18 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 10 篇文章</p>
+  <p class="h4">共计 11 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2020</p>
+    
+    <a href="/2020/09/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">作用域/执行上下文</span>
+      <time style="float: right;">09-06</time>
+    </a>
+  
     
     <a href="/2020/09/05/ES5VSES6/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">ES5 VS ES6</span>
@@ -236,13 +242,19 @@
       <time style="float: right;">08-27</time>
     </a>
   
-    
-    <a href="/2020/08/26/%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">原型链</span>
-      <time style="float: right;">08-26</time>
-    </a>
-  
 </div>
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 

@@ -17,10 +17,20 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>归档 - QX97</title>
+  <title>作用域/执行上下文 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +53,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 40vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -151,9 +161,40 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                归档
+                作用域/执行上下文
               
             </span>
+
+            
+              
+
+<div class="mt-1">
+  
+
+             <div class="post-meta mr-2">
+                
+                  <div>
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+              </div>
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -166,67 +207,147 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 11 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/09/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">作用域/执行上下文</span>
-      <time style="float: right;">09-06</time>
-    </a>
-  
-    
-    <a href="/2020/09/05/ES5VSES6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">ES5 VS ES6</span>
-      <time style="float: right;">09-05</time>
-    </a>
-  
-    
-    <a href="/2020/09/04/%E7%99%BE%E5%88%86%E6%AF%94/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">百分比</span>
-      <time style="float: right;">09-04</time>
-    </a>
-  
-    
-    <a href="/2020/09/03/%E9%95%BF%E5%BA%A6%E5%8D%95%E4%BD%8D/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">长度单位</span>
-      <time style="float: right;">09-03</time>
-    </a>
-  
-    
-    <a href="/2020/09/02/%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">事件机制</span>
-      <time style="float: right;">09-02</time>
-    </a>
-  
-    
-    <a href="/2020/09/01/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">深浅拷贝</span>
-      <time style="float: right;">09-01</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="font-size: 2rem;">作用域/执行上下文</h1>
+            
+              <p class="new-note">
+                
+                  本文最后更新于：2020-09-06 18:46:57
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>是一种抽象概念，决定了变量和函数的可见性及生命周期。一般有三种，分别是全局作用域，函数作用域，块级作用域。在函数或变量声明时确定，与编写的<code>JS</code>代码有关，属于静态作用域，也称为词法作用域。</p>
+<h3 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h3><p>当<code>JavaScript</code>代码在运行时，会产生执行上下文。执行上下文主要有2种类型，一种是全局上下文，一种是函数上下文。全局上下文只有一个，执行上下文可以有多个。每次调用函数都会产生新的执行上下文。</p>
+<p>上下文执行栈用于存储代码执行期间产生的所有上下文，采用先进后出原则。</p>
+<p>当<code>JS</code>代码开始运行时，则产生执行上下文。会首先产生全局上下文压入栈中，之后如果产生函数调用，则会将该函数上下文压入栈中，应用先进后出原则，<code>JS</code>引擎只会执行栈顶的上下文，执行完毕后将该上下文出栈。</p>
+<p>执行上下文主要经历两个阶段，创建阶段和执行阶段。创建阶段即函数被调用但还未执行内部代码块的阶段，执行阶段则为真正执行内部代码块的过程。</p>
+<center> 
+    <img src="/img/执行过程.jpeg" srcset="/img/loading.gif" /> 
+  <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
+    创建过程.jpg
+  </div> 
+</center>
 
-
-              </div>
+<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><p><strong>执行上下文创建过程：</strong></p>
+<ol>
+<li>确定<code>this</code>指向，绑定this</li>
+<li>词法环境(<code>LexicalEnvironment</code>)被创建</li>
+<li>变量环境(<code>VariableEnvironemnt</code>)被创建</li>
+</ol>
+<p>词法环境包含环境记录和对外部环境的引用。环境记录存储<code>let/const</code>声明的变量及函数声明地址，对外部环境的引用意味着可以访问外部词法环境。</p>
+<p>词法环境包含全局环境和函数环境。函数环境的环境记录包含<code>arguments</code>对象。</p>
+<p>变量环境也是词法环境，但词法环境用于存储<code>let/const</code>变量，变量环境只用来存储<code>var</code>变量。</p>
+<p><strong>执行上下文执行阶段：</strong></p>
+<p>在执行阶段完成对变量的分配，最后执行代码</p>
+<h3 id="ES3"><a href="#ES3" class="headerlink" title="ES3"></a>ES3</h3><p><strong>执行上下文创建过程：</strong></p>
+<ol>
+<li>创建变量对象(VO)</li>
+<li>创建作用域链</li>
+<li>确定<code>this</code>指向</li>
+</ol>
+<p>VO创建为3步：</p>
+<ol>
+<li>创建函数形参即<code>arguments</code>对象</li>
+<li>扫描函数声明，以函数名作为属性名，指向函数地址，如果函数名已存在，将被覆盖。</li>
+<li>扫描变量声明，以变量名作为属性名，初始化为<code>undefined</code>，如果属性名已存在，将跳过。</li>
+</ol>
+<p>执行过程，变量对象VO将成为激活对象AO。</p>
+<p>作用域链即为<code>ES6</code>中对外部环境的引用的实现。是变量对象的集合。通过一层一层的查找变量对象中的变量，确定变量是否可以被访问。</p>
+<style>
+  img:hover {
+    border-radius: 0.3125em; 
+    box-shadow: 0 0px 15px #2f4154;
+  }
+</style>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/05/ES5VSES6/">
+                        <span class="hidden-mobile">ES5 VS ES6</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'lvqingxiang/lvqingxiang.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><image src="/img/list.jpg" style="width: 1.5em; height: 1.5em;">
+&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -419,10 +540,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2020/09/index.html');
+          var target = decodeURI('/2020/09/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -484,13 +605,67 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
 
 
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
