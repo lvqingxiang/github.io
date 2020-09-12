@@ -176,6 +176,8 @@
                   <div>
                     <i class="iconfont icon-tags"></i>
                     
+                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
+                    
                       <a class="hover-with-bg" href="/tags/web/">web</a>
                     
                   </div>
@@ -221,12 +223,13 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-12 18:07:00
+                  本文最后更新于：2020-09-12 21:20:01
                 
               </p>
             
             <div class="markdown-body" id="post-body">
               <h4 id="构建DOM树"><a href="#构建DOM树" class="headerlink" title="构建DOM树"></a>构建DOM树</h4><p>由于浏览器无法直接理解和使用<code>HTML</code>，所以需要将<code>HTML</code>转换为浏览器能够理解的结构。<code>HTML</code>解析器会将输入的<code>HTML</code>文件解析为<code>DOM</code>树。</p>
+<p><code>DOM</code>不等同于<code>HTML</code>文件。<code>JavaScript</code>会修改<code>DOM</code>，却不会反映到<code>HTML</code>文件上。</p>
 <h4 id="样式计算"><a href="#样式计算" class="headerlink" title="样式计算"></a>样式计算</h4><p><code>CSS</code>主要来源有<code>link引用/import引入/style属性内嵌/&lt;style&gt;标记内代码&lt;/style&gt;</code>，浏览器同样无法直接理解和使用<code>CSS</code>，所以需要将<code>CSS</code>转换为浏览器可以理解的结构<code>styleSheets</code>。之后对其进行属性值的标准化操作，即将所有值转换为渲染引擎容易理解的、标准化的计算值。(<code>ex: bold =&gt; 700/red =&gt; rgb(255, 0, 0)/rem =&gt; 16px</code>)，最后通过<code>CSS</code>的继承规则和层叠规则计算<code>DOM</code>树中每个节点的样式属性，并保存在<code>ComputedStyle</code>结构中。</p>
 <h4 id="创建布局树"><a href="#创建布局树" class="headerlink" title="创建布局树"></a>创建布局树</h4><p>计算<code>DOM</code>树中可见元素的几何位置，叫做布局。布局阶段需要完成创建布局树和布局计算。</p>
 <p>由于<code>DOM</code>树中含有很多不可见元素，比如<code>head</code>标签或<code>display: none</code>属性元素，因此需要构建只包含可见元素的布局树。在执行布局操作的时候，会把布局操作的结果重新写回布局树中，因此布局树既是输入内容也是输出内容。</p>
@@ -250,6 +253,65 @@
     box-shadow: 0 0px 15px #2f4154;
   }
 </style>
+
+<h4 id="重排"><a href="#重排" class="headerlink" title="重排"></a>重排</h4><p>如果通过<code>JavaScript</code>或<code>CSS</code>修改元素的几何位置属性，将触发重新布局，以及后面的一系列过程，这个过程就叫重排。将从样式计算开始更新渲染流水线，开销极大。</p>
+<p><strong>重排的发生场景</strong></p>
+<ul>
+<li>页面初始渲染</li>
+<li>添加/删除可见<code>DOM</code>元素，<code>overflow</code></li>
+<li>改变元素位置，<code>position/vertival-align</code></li>
+<li>改变元素尺寸，<code>margin/padding/border/width/height/min-height</code></li>
+<li>改变元素内容</li>
+<li>改变浏览器窗口</li>
+<li>激活<code>CSS</code>伪类，<code>:hover/:active/visited</code></li>
+<li>设置<code>style</code>属性值</li>
+<li>修改元素字体大小，<code>font-size</code></li>
+<li>查询属性或调用计算方法，<code>offsetWidth/offsetHeight</code></li>
+</ul>
+<h4 id="重排优化"><a href="#重排优化" class="headerlink" title="重排优化"></a>重排优化</h4><p>减少重排(回流)次数/范围。</p>
+<ul>
+<li>通过局部布局形式组织<code>HTML</code>代码，尽可能减少影响重排的范围。</li>
+<li>集中修改样式</li>
+<li><code>DOM</code>读写分离</li>
+<li><code>absolute/fixed</code>脱离文档流，由于元素成为<code>body</code>的子元素，重排开销小</li>
+<li>优化动画</li>
+</ul>
+<h4 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h4><p>由于没有引起几何位置的变换，所以就直接进入绘制阶段，然后执行之后的一系列子阶段。执行效率比重排操作高。</p>
+<p><strong>重绘的发生场景</strong></p>
+<p><code>color/background/border-radius/outline/box-shadow/text-decoration/background-image/...</code></p>
+<h4 id="display-none-visibility-hidden"><a href="#display-none-visibility-hidden" class="headerlink" title="display: none/visibility: hidden"></a>display: none/visibility: hidden</h4><ul>
+<li>子元素继承。<code>display</code>，不是继承属性，元素及其子元素均会消失，而<code>visibility</code>是继承元素，若子元素使用了<code>visibility</code>，将覆盖父元素<code>visibility</code>影响。</li>
+<li>空间占据。<code>display: none</code>的元素不会在渲染树中出现，而<code>visibility: hidden</code>的元素会出现。</li>
+<li>渲染。<code>display: none</code>会触发重排，而<code>visibility: hidden</code>只会触发重绘。</li>
+</ul>
+<h4 id="v-show-v-if"><a href="#v-show-v-if" class="headerlink" title="v-show/v-if"></a>v-show/v-if</h4><table>
+   <tr>
+    <th width="50%">v-if</th>
+    <th width="50%">v-else</th>
+  </tr>
+  <tr>
+    <td><font size="2px">动态的向<code>DOM</code>树中添加或删除<code>DOM</code>元素</font></td>
+    <td><font size="2px"><font size="2px">通过设置<code>DOM</code>元素的<code>display</code>属性，<code>block</code>为显示，<code>none</code>为隐藏。</font></td>
+  </tr>
+  <tr>
+    <td><font size="2px">切换有一个局部编译/卸载的过程，切换过程中合适的销毁和重建内部的事件监听和子组件</font></td>
+    <td><font size="2px">基于简单的<code>css</code>切换</font></td>
+  </tr>
+  <tr>
+    <td><font size="2px">有更高的切换消耗</font></td>
+    <td><font size="2px">有更高的初始渲染消耗</font></td>
+  </tr>
+  <tr>
+    <td><font size="2px">是惰性的，如果初始为假，则什么都不做，直到第一次为真时才开始局部编译</font></td>
+    <td><font size="2px">不论真假都会被编译，然后被缓存，<code>dom</code>元素保留</font></td>
+  </tr>
+  <tr>
+    <td><font size="2px">运行时条件很少改变，选择<code>v-if</code></font></td>
+    <td><font size="2px">频繁切换，选择<code>v-show</code></font></td>
+  </tr>
+</table>
+
+
             </div>
             <hr>
             <div>
@@ -258,6 +320,8 @@
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
                     
                       <a class="hover-with-bg" href="/tags/web/">web</a>
                     
