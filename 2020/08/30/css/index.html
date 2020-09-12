@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>CSS - QX97</title>
+  <title>CSS简谈 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -161,7 +161,7 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                CSS
+                CSS简谈
               
             </span>
 
@@ -219,11 +219,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="font-size: 2rem;">CSS</h1>
+            <h1 style="font-size: 2rem;">CSS简谈</h1>
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-07 20:08:10
+                  本文最后更新于：2020-09-10 23:29:37
                 
               </p>
             
@@ -272,6 +272,261 @@
       <code>div</code><br />
       <code>p</code><br />
       <code>h1-6</code><br />
+    </td>
+  </tr>
+</table>
+
+
+<h3 id="长度单位"><a href="#长度单位" class="headerlink" title="长度单位"></a>长度单位</h3><table>
+  <tr align=center>        
+    <th colspan=3>绝对定位</th>
+    <th colspan=2>相对定位</th>
+  </tr>
+  <tr align=center>
+    <td width="107">单位标识符</td>
+    <td width="90">描述</td>
+    <td width="165">相互关系</td>
+    <td width="107">单位标识符</td>
+    <td>描述</td>
+  </tr>
+  <tr align=center>
+    <td><code>px</font></code></td>
+    <td><font size="2px">像素</font><code>pixel</code></td>
+    <td><code>1in = 96px</code></td>
+    <td><code>em</font></code></td>
+    <td>
+      <font size="2px">相对</font>
+      <code>font-size</code>
+      <font size="2px">，等于元素(继承)</font>
+      <code>font-size</code>
+      <font size="2px">的计算值</font>
+    </td>
+  </tr>
+   <tr align=center>
+    <td><code>cm</font></code></td>
+    <td><font size="2px">厘米</font><code>centimeter</code></td>
+    <td><code>2.54cm = 96px</code></td>
+    <td><code>ex</font></code></td>
+    <td>
+      <font size="2px">元素</font>
+      <code>font</code>
+      <font size="2px">的</font>
+      <code>x-height</code><br />
+      <font size="2px">在含有X字母的字体里，是小写x的高度</font><br />
+      <font size="2px">一般</font>
+      <code>1ex ≈ 0.5em</code>
+    </td>
+  </tr>
+   <tr align=center>
+    <td><code>mm</font></code></td>
+    <td><font size="2px">毫米</font><code>millimeter</code></td>
+    <td><code>1mm = 0.1cm</code></td>
+    <td><code>rem</font></code></td>
+    <td>
+      <font size="2px">等于根元素(通常是</font>
+      <code>html</code>
+      <font size="2px">)的</font>
+      <code>font-size</code>
+      <font size="2px">大小</font>
+    </td>
+  </tr>
+   <tr align=center>
+    <td><code>in</font></code></td>
+    <td><font size="2px">英寸</font><code>inch</code></td>
+    <td><code>1in = 2.54cm</code><br/>
+      <code>1in = 96px</code></td>
+    <td><code>vh</font></code></td>
+    <td>
+      <font size="2px">相对</font>
+            <code>viewpoint</code>
+      <font size="2px">视口，为视口初始包含块的高度的1%</font>
+    </td>
+  </tr>
+   <tr align=center>
+    <td><code>pc</font></code></td>
+    <td><font size="2px"></font><code>pica</code></td>
+    <td><code>1pc = 12pt</code><br><code>1pc = 1/6 * in</code></td>
+    <td><code>vw</font></code></td>
+    <td>
+      <font size="2px">相对</font>
+      <code>viewpoint</code>
+      <font size="2px">视口，为视口初始包含块宽度的1%</font>
+    </td>
+  </tr>
+   <tr align=center>
+    <td><code>pt</font></code></td>
+    <td><font size="2px">磅</font><code>point</code></td>
+    <td>
+      <code>1pt = 1/12 * pc</code><br />
+      <code>1pt = 1/72 * in</code>
+    </td>
+    <td><code>vmin</font></code></td>
+    <td><code>Math.min(vw, vh)</code></td>
+  </tr>
+   <tr align=center>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><code>vmax</font></code></td>
+    <td><code>Math.max(vw, vh)</code></td>
+  </tr>
+</table>
+
+<h3 id="百分比"><a href="#百分比" class="headerlink" title="百分比"></a>百分比</h3><table>
+  <tr>
+    <th width="220">css</th>
+    <th>基准</th>
+  </tr>
+  <tr>
+    <td>
+      <code>width</font></code>
+      <code>max-width</font></code>
+      <code>min-width</font></code>
+    </td>
+    <td>
+      <font size="2px">正常文档流或设置浮动时，基于父元素</font>
+      <code>content-box</code>
+      <font size="2px">的宽度</font><br />
+      <font size="2px">绝对定位时，基于父元素</font>
+      <code>padding-box</code>
+      <font size="2px">的宽度</font>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>height</font></code>
+      <code>max-height</font></code>
+      <code>min-height</font></code>
+    </td>
+    <td>
+      <font size="2px">正常文档流或设置浮动时，基于父元素</font>
+      <code>content-box</code>
+      <font size="2px">的高度</font><br />
+      <font size="2px">绝对定位时，基于父元素</font>
+      <code>padding-box</code>
+      <font size="2px">的高度</font><br />
+      <font size="2px">正常文档流中，当父元素高度设置为</font>
+      <code>auto</code>
+      <font size="2px">，子元素的的高度百分比设置将会被忽略，被视为</font>
+      <code>auto</code>
+    </td>
+  </tr>
+  <tr>
+    <td><code>line-height</font></code></td>
+    <td>
+      <font size="2px">基于</font><code>font-size</code><br />
+      <font size="2px"><strong><em>数字和百分比的区别</em></strong></font><br />
+      <font size="2px">当</font>
+      <code>line-height</code>
+      <font size="2px">被设置为数字时，子元素</font>
+      <code>line-height = 子元素fontSize值 * lineHeight值</code><br />
+      <font size="2px">当</font>
+      <code>line-height</code>
+      <font size="2px">被设置为百分比时，子元素</font>
+      <code>line-height = 父元素fontSize值 * lineHeight百分比</code>
+      </font>
+    </td>
+  </tr>
+  <tr>
+    <td><code>font-size</font></code></td>
+    <td>
+      <font size="2px">基于当前字体，当前的字体大小为100%</font>
+    </td>
+  </tr>
+  <tr>
+    <td><code>vertical-align</font></code></td>
+    <td>
+      <font size="2px">基于</font><code>line-height</code><font size="2px">进行计算</font>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>margin</font></code>
+      <code>padding</font></code>
+    </td>
+    <td>
+      <font size="2px">正常文档流或设置浮动时，基于父元素</font>
+      <code>content-box</code>
+      <font size="2px">的宽度</font><br />
+      <font size="2px">绝对定位时，基于父元素</font>
+      <code>padding-box</code>
+      <font size="2px">的宽度</font><br />
+      <font size="2px">书写模式会影响</font>
+      <code>margin</code>
+      <font size="2px">参照</font>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>left</font></code>
+      <code>right</font></code>
+    </td>
+    <td>
+      <font size="2px">适用于定位元素</font><br />
+      <code>position: absolute;</code>
+      <font size="2px">基于最近非</font>
+      <code>static</code>
+      <font size="2px">定位的祖先元素(若无，则初始包含块)的</font>
+      <code>padding-box</code>
+      <font size="2px">的宽度</font><br />
+      <code>position: relative;</code>
+      <font size="2px">基于父元素的</font>
+      <code>content-box</code>
+      <font size="2px">的宽度</font>
+    </td>
+  </tr>
+    <tr>
+    <td>
+      <code>top</font></code>
+      <code>bottom</font></code>
+    </td>
+    <td>
+      <font size="2px">适用于定位元素</font><br />
+      <code>position: absolute;</code>
+      <font size="2px">基于最近非</font>
+      <code>static</code>
+      <font size="2px">定位的祖先元素(若无，则初始包含块)的</font>
+      <code>padding-box</code>
+      <font size="2px">的高度</font><br />
+      <code>position: relative;</code>
+      <font size="2px">基于父元素的</font>
+      <code>content-box</code>
+      <font size="2px">的高度</font>
+    </td>
+  </tr>
+  </tr>
+    <tr>
+    <td>
+      <code>border-radius</font></code>
+    </td>
+    <td>
+      <font size="2px">相对自身的</font><code>border-box</code>
+    </td>
+  </tr>
+  </tr>
+    <tr>
+    <td>
+      <code>background-position</font></code>
+    </td>
+    <td>
+      <font size="2px">图片默认定位起点为</font>
+      <code>padding-box</code><br />
+      <code>background-position: x y;</code><br />
+      <code>x<font size="2px">偏移量:</font></code>
+      <font size="2px">(容器宽度 - 图片宽度) * 百分比，超出部分隐藏</font><br />
+      <code>y<font size="2px">偏移量:</font></code>
+      <font size="2px">(容器高度 - 图片高度) * 百分比，超出部分隐藏</font>
+    </td>
+  </tr>
+  </tr>
+    <tr>
+    <td>
+      <code>transform: translate</font></code>
+    </td>
+    <td>
+      <font size="2px">以</font>
+      <code>border-box</code>
+      <font size="2px">的宽高作为参照</font>
     </td>
   </tr>
 </table>

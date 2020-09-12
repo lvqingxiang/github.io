@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>百分比 - QX97</title>
+  <title>页面构建渲染 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -161,7 +161,7 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                百分比
+                页面构建渲染
               
             </span>
 
@@ -176,9 +176,7 @@
                   <div>
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Html/">Html</a>
-                    
-                      <a class="hover-with-bg" href="/tags/CSS/">CSS</a>
+                      <a class="hover-with-bg" href="/tags/web/">web</a>
                     
                   </div>
                 
@@ -219,175 +217,39 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="font-size: 2rem;">百分比</h1>
+            <h1 style="font-size: 2rem;">页面构建渲染</h1>
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-05 18:10:03
+                  本文最后更新于：2020-09-12 18:07:00
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <table>
-  <tr>
-    <th width="220">css</th>
-    <th>基准</th>
-  </tr>
-  <tr>
-    <td>
-      <code>width</font></code>
-      <code>max-width</font></code>
-      <code>min-width</font></code>
-    </td>
-    <td>
-      <font size="2px">正常文档流或设置浮动时，基于父元素</font>
-      <code>content-box</code>
-      <font size="2px">的宽度</font><br />
-      <font size="2px">绝对定位时，基于父元素</font>
-      <code>padding-box</code>
-      <font size="2px">的宽度</font>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <code>height</font></code>
-      <code>max-height</font></code>
-      <code>min-height</font></code>
-    </td>
-    <td>
-      <font size="2px">正常文档流或设置浮动时，基于父元素</font>
-      <code>content-box</code>
-      <font size="2px">的高度</font><br />
-      <font size="2px">绝对定位时，基于父元素</font>
-      <code>padding-box</code>
-      <font size="2px">的高度</font><br />
-      <font size="2px">正常文档流中，当父元素高度设置为</font>
-      <code>auto</code>
-      <font size="2px">，子元素的的高度百分比设置将会被忽略，被视为</font>
-      <code>auto</code>
-    </td>
-  </tr>
-  <tr>
-    <td><code>line-height</font></code></td>
-    <td>
-      <font size="2px">基于</font><code>font-size</code><br />
-      <font size="2px"><strong><em>数字和百分比的区别</em></strong></font><br />
-      <font size="2px">当</font>
-      <code>line-height</code>
-      <font size="2px">被设置为数字时，子元素</font>
-      <code>line-height = 子元素fontSize值 * lineHeight值</code><br />
-      <font size="2px">当</font>
-      <code>line-height</code>
-      <font size="2px">被设置为百分比时，子元素</font>
-      <code>line-height = 父元素fontSize值 * lineHeight百分比</code>
-      </font>
-    </td>
-  </tr>
-  <tr>
-    <td><code>font-size</font></code></td>
-    <td>
-      <font size="2px">基于当前字体，当前的字体大小为100%</font>
-    </td>
-  </tr>
-  <tr>
-    <td><code>vertical-align</font></code></td>
-    <td>
-      <font size="2px">基于</font><code>line-height</code><font size="2px">进行计算</font>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <code>margin</font></code>
-      <code>padding</font></code>
-    </td>
-    <td>
-      <font size="2px">正常文档流或设置浮动时，基于父元素</font>
-      <code>content-box</code>
-      <font size="2px">的宽度</font><br />
-      <font size="2px">绝对定位时，基于父元素</font>
-      <code>padding-box</code>
-      <font size="2px">的宽度</font><br />
-      <font size="2px">书写模式会影响</font>
-      <code>margin</code>
-      <font size="2px">参照</font>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <code>left</font></code>
-      <code>right</font></code>
-    </td>
-    <td>
-      <font size="2px">适用于定位元素</font><br />
-      <code>position: absolute;</code>
-      <font size="2px">基于最近非</font>
-      <code>static</code>
-      <font size="2px">定位的祖先元素(若无，则初始包含块)的</font>
-      <code>padding-box</code>
-      <font size="2px">的宽度</font><br />
-      <code>position: relative;</code>
-      <font size="2px">基于父元素的</font>
-      <code>content-box</code>
-      <font size="2px">的宽度</font>
-    </td>
-  </tr>
-    <tr>
-    <td>
-      <code>top</font></code>
-      <code>bottom</font></code>
-    </td>
-    <td>
-      <font size="2px">适用于定位元素</font><br />
-      <code>position: absolute;</code>
-      <font size="2px">基于最近非</font>
-      <code>static</code>
-      <font size="2px">定位的祖先元素(若无，则初始包含块)的</font>
-      <code>padding-box</code>
-      <font size="2px">的高度</font><br />
-      <code>position: relative;</code>
-      <font size="2px">基于父元素的</font>
-      <code>content-box</code>
-      <font size="2px">的高度</font>
-    </td>
-  </tr>
-  </tr>
-    <tr>
-    <td>
-      <code>border-radius</font></code>
-    </td>
-    <td>
-      <font size="2px">相对自身的</font><code>border-box</code>
-    </td>
-  </tr>
-  </tr>
-    <tr>
-    <td>
-      <code>background-position</font></code>
-    </td>
-    <td>
-      <font size="2px">图片默认定位起点为</font>
-      <code>padding-box</code><br />
-      <code>background-position: x y;</code><br />
-      <code>x<font size="2px">偏移量:</font></code>
-      <font size="2px">(容器宽度 - 图片宽度) * 百分比，超出部分隐藏</font><br />
-      <code>y<font size="2px">偏移量:</font></code>
-      <font size="2px">(容器高度 - 图片高度) * 百分比，超出部分隐藏</font>
-    </td>
-  </tr>
-  </tr>
-    <tr>
-    <td>
-      <code>transform: translate</font></code>
-    </td>
-    <td>
-      <font size="2px">以</font>
-      <code>border-box</code>
-      <font size="2px">的宽高作为参照</font>
-    </td>
-  </tr>
-</table>
+              <h4 id="构建DOM树"><a href="#构建DOM树" class="headerlink" title="构建DOM树"></a>构建DOM树</h4><p>由于浏览器无法直接理解和使用<code>HTML</code>，所以需要将<code>HTML</code>转换为浏览器能够理解的结构。<code>HTML</code>解析器会将输入的<code>HTML</code>文件解析为<code>DOM</code>树。</p>
+<h4 id="样式计算"><a href="#样式计算" class="headerlink" title="样式计算"></a>样式计算</h4><p><code>CSS</code>主要来源有<code>link引用/import引入/style属性内嵌/&lt;style&gt;标记内代码&lt;/style&gt;</code>，浏览器同样无法直接理解和使用<code>CSS</code>，所以需要将<code>CSS</code>转换为浏览器可以理解的结构<code>styleSheets</code>。之后对其进行属性值的标准化操作，即将所有值转换为渲染引擎容易理解的、标准化的计算值。(<code>ex: bold =&gt; 700/red =&gt; rgb(255, 0, 0)/rem =&gt; 16px</code>)，最后通过<code>CSS</code>的继承规则和层叠规则计算<code>DOM</code>树中每个节点的样式属性，并保存在<code>ComputedStyle</code>结构中。</p>
+<h4 id="创建布局树"><a href="#创建布局树" class="headerlink" title="创建布局树"></a>创建布局树</h4><p>计算<code>DOM</code>树中可见元素的几何位置，叫做布局。布局阶段需要完成创建布局树和布局计算。</p>
+<p>由于<code>DOM</code>树中含有很多不可见元素，比如<code>head</code>标签或<code>display: none</code>属性元素，因此需要构建只包含可见元素的布局树。在执行布局操作的时候，会把布局操作的结果重新写回布局树中，因此布局树既是输入内容也是输出内容。</p>
+<h4 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h4><p>由于页面可能存在复杂效果，如<code>3D</code>变换、页面滚动、<code>z-index</code>排序、绝对定位等，为了更加方便的实现这些效果，渲染引擎还需要为特定的节点生成专用的图层，并生成一棵对应的图层树<code>LayerTree</code>。图层叠加合成最终页面。并不是布局树每个节点都包含一个图层，如果一个图层没有对应的层，将从属于父节点的图层。</p>
+<p>拥有层叠上下文属性的元素/需要剪裁的地方就会被提升成为单独一层。</p>
+<h4 id="图层绘制"><a href="#图层绘制" class="headerlink" title="图层绘制"></a>图层绘制</h4><p>在完成图层树后，渲染引擎会对图层树中每个图层进行绘制。具体实现则是将一个图层的绘制拆分成很多小的绘制指令，再把这些指令按照顺序组成一个待绘制列表。</p>
+<h4 id="栅格化-raster"><a href="#栅格化-raster" class="headerlink" title="栅格化(raster)"></a>栅格化(raster)</h4><p>绘制列表只是记录绘制顺序和绘制指令的列表，实际的绘制操作由渲染引擎的合成线程完成。</p>
+<p>栅格化是指将图块转换为位图，图块是栅格化执行的最小单位。</p>
+<p>合成线程将图层划分为图块<code>tile</code>，通常是256 * 256或512 * 512，然后合成线程会按照视口附近的图块来优先生成位图，实际生成位图的操作由栅格化执行。渲染进程维护栅格化的线程池，通常，栅格化操作会使用<code>GPU</code>来加速生成，使用<code>GPU</code>生成位图的过程叫做快速栅格化，或<code>GPU</code>栅格化，生成的位图被保存在<code>GPU</code>内存中，这里涉及到了跨进程操作。</p>
+<h4 id="合成和显示"><a href="#合成和显示" class="headerlink" title="合成和显示"></a>合成和显示</h4><p>一旦所有图块都被光栅化，合成线程就会生成一个绘制图块的命令<code>DrawQard</code>，然后将该命令提交给浏览器进程，浏览器进程中的<code>viz</code>组件，接收命令，然后根据<code>DrawQard</code>命令，将其页面内容绘制到内存中，最后再将内存显示到屏幕上。</p>
+<center> 
+    <img src="/img/页面构建.jpg" srcset="/img/loading.gif" /> 
+  <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
+    页面构建.jpg
+  </div> 
+</center>
 
-
+<style>
+  img:hover {
+    border-radius: 0.3125em; 
+    box-shadow: 0 0px 15px #2f4154;
+  }
+</style>
             </div>
             <hr>
             <div>
@@ -397,9 +259,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Html/">Html</a>
-                    
-                      <a class="hover-with-bg" href="/tags/CSS/">CSS</a>
+                      <a class="hover-with-bg" href="/tags/web/">web</a>
                     
                   </div>
                 
@@ -410,18 +270,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/09/05/ES5VSES6/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ES5 VS ES6</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/09/03/%E9%95%BF%E5%BA%A6%E5%8D%95%E4%BD%8D/">
-                        <span class="hidden-mobile">长度单位</span>
+                      <a href="/2020/09/08/vue/">
+                        <span class="hidden-mobile">Vue杂叙</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -670,7 +524,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/09/04/%E7%99%BE%E5%88%86%E6%AF%94/');
+          var target = decodeURI('/2020/09/10/web/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {

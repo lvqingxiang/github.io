@@ -17,20 +17,10 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>长度单位 - QX97</title>
+  <title>标签 - web - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-  
-
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -53,7 +43,7 @@
 
 
 <body>
-  <header style="height: 40vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -161,42 +151,9 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                长度单位
+                标签 - web
               
             </span>
-
-            
-              
-
-<div class="mt-1">
-  
-
-             <div class="post-meta mr-2">
-                
-                  <div>
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Html/">Html</a>
-                    
-                      <a class="hover-with-bg" href="/tags/CSS/">CSS</a>
-                    
-                  </div>
-                
-              </div>
-
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
-      </span>
-    
-  
-</div>
 
             
           </div>
@@ -209,208 +166,37 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 1 篇文章</p>
+  <hr>
+  
+    
       
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="font-size: 2rem;">长度单位</h1>
-            
-              <p class="new-note">
-                
-                  本文最后更新于：2020-09-05 18:10:12
-                
-              </p>
-            
-            <div class="markdown-body" id="post-body">
-              <table>
-  <tr align=center>        
-    <th colspan=3>绝对定位</th>
-    <th colspan=2>相对定位</th>
-  </tr>
-  <tr align=center>
-    <td width="107">单位标识符</td>
-    <td width="90">描述</td>
-    <td width="165">相互关系</td>
-    <td width="107">单位标识符</td>
-    <td>描述</td>
-  </tr>
-  <tr align=center>
-    <td><code>px</font></code></td>
-    <td><font size="2px">像素</font><code>pixel</code></td>
-    <td><code>1in = 96px</code></td>
-    <td><code>em</font></code></td>
-    <td>
-      <font size="2px">相对</font>
-      <code>font-size</code>
-      <font size="2px">，等于元素(继承)</font>
-      <code>font-size</code>
-      <font size="2px">的计算值</font>
-    </td>
-  </tr>
-   <tr align=center>
-    <td><code>cm</font></code></td>
-    <td><font size="2px">厘米</font><code>centimeter</code></td>
-    <td><code>2.54cm = 96px</code></td>
-    <td><code>ex</font></code></td>
-    <td>
-      <font size="2px">元素</font>
-      <code>font</code>
-      <font size="2px">的</font>
-      <code>x-height</code><br />
-      <font size="2px">在含有X字母的字体里，是小写x的高度</font><br />
-      <font size="2px">一般</font>
-      <code>1ex ≈ 0.5em</code>
-    </td>
-  </tr>
-   <tr align=center>
-    <td><code>mm</font></code></td>
-    <td><font size="2px">毫米</font><code>millimeter</code></td>
-    <td><code>1mm = 0.1cm</code></td>
-    <td><code>rem</font></code></td>
-    <td>
-      <font size="2px">等于根元素(通常是</font>
-      <code>html</code>
-      <font size="2px">)的</font>
-      <code>font-size</code>
-      <font size="2px">大小</font>
-    </td>
-  </tr>
-   <tr align=center>
-    <td><code>in</font></code></td>
-    <td><font size="2px">英寸</font><code>inch</code></td>
-    <td><code>1in = 2.54cm</code><br/>
-      <code>1in = 96px</code></td>
-    <td><code>vh</font></code></td>
-    <td>
-      <font size="2px">相对</font>
-            <code>viewpoint</code>
-      <font size="2px">视口，为视口初始包含块的高度的1%</font>
-    </td>
-  </tr>
-   <tr align=center>
-    <td><code>pc</font></code></td>
-    <td><font size="2px"></font><code>pica</code></td>
-    <td><code>1pc = 12pt</code><br><code>1pc = 1/6 * in</code></td>
-    <td><code>vw</font></code></td>
-    <td>
-      <font size="2px">相对</font>
-      <code>viewpoint</code>
-      <font size="2px">视口，为视口初始包含块宽度的1%</font>
-    </td>
-  </tr>
-   <tr align=center>
-    <td><code>pt</font></code></td>
-    <td><font size="2px">磅</font><code>point</code></td>
-    <td>
-      <code>1pt = 1/12 * pc</code><br />
-      <code>1pt = 1/72 * in</code>
-    </td>
-    <td><code>vmin</font></code></td>
-    <td><code>Math.min(vw, vh)</code></td>
-  </tr>
-   <tr align=center>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><code>vmax</font></code></td>
-    <td><code>Math.max(vw, vh)</code></td>
-  </tr>
-</table>
+      <p class="h5">2020</p>
+    
+    <a href="/2020/09/10/web/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">页面构建渲染</span>
+      <time style="float: right;">09-10</time>
+    </a>
+  
+</div>
 
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Html/">Html</a>
-                    
-                      <a class="hover-with-bg" href="/tags/CSS/">CSS</a>
-                    
-                  </div>
-                
+
               </div>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2020/09/04/%E7%99%BE%E5%88%86%E6%AF%94/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">百分比</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2020/09/02/%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/">
-                        <span class="hidden-mobile">事件机制</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
-
-            
-              <!-- Comments -->
-              <article class="comments" id="comments">
-                
-                
-  <script type="text/javascript">
-    function loadUtterances() {
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'lvqingxiang/lvqingxiang.github.io');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', 'github-light');
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
-    }
-    waitElementVisible('comments', loadUtterances)
-  </script>
-
-
-              </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><image src="/img/list.jpg" style="width: 1.5em; height: 1.5em;">
-&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
     
   </main>
 
@@ -603,10 +389,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
+      if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/09/03/%E9%95%BF%E5%BA%A6%E5%8D%95%E4%BD%8D/');
+          var target = decodeURI('/tags/web/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -668,67 +454,13 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
 
 
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
 
 
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
 
 
 
