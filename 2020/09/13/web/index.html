@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>页面构建渲染 - QX97</title>
+  <title>web - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -161,7 +161,7 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                页面构建渲染
+                web
               
             </span>
 
@@ -178,7 +178,7 @@
                     
                       <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
                     
-                      <a class="hover-with-bg" href="/tags/web/">web</a>
+                      <a class="hover-with-bg" href="/tags/Web/">Web</a>
                     
                   </div>
                 
@@ -219,27 +219,27 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="font-size: 2rem;">页面构建渲染</h1>
+            <h1 style="font-size: 2rem;">web</h1>
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-12 21:20:01
+                  本文最后更新于：2020-09-13 18:59:20
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h4 id="构建DOM树"><a href="#构建DOM树" class="headerlink" title="构建DOM树"></a>构建DOM树</h4><p>由于浏览器无法直接理解和使用<code>HTML</code>，所以需要将<code>HTML</code>转换为浏览器能够理解的结构。<code>HTML</code>解析器会将输入的<code>HTML</code>文件解析为<code>DOM</code>树。</p>
+              <h3 id="构建DOM树"><a href="#构建DOM树" class="headerlink" title="构建DOM树"></a>构建DOM树</h3><p>由于浏览器无法直接理解和使用<code>HTML</code>，所以需要将<code>HTML</code>转换为浏览器能够理解的结构。<code>HTML</code>解析器会将输入的<code>HTML</code>文件解析为<code>DOM</code>树。</p>
 <p><code>DOM</code>不等同于<code>HTML</code>文件。<code>JavaScript</code>会修改<code>DOM</code>，却不会反映到<code>HTML</code>文件上。</p>
-<h4 id="样式计算"><a href="#样式计算" class="headerlink" title="样式计算"></a>样式计算</h4><p><code>CSS</code>主要来源有<code>link引用/import引入/style属性内嵌/&lt;style&gt;标记内代码&lt;/style&gt;</code>，浏览器同样无法直接理解和使用<code>CSS</code>，所以需要将<code>CSS</code>转换为浏览器可以理解的结构<code>styleSheets</code>。之后对其进行属性值的标准化操作，即将所有值转换为渲染引擎容易理解的、标准化的计算值。(<code>ex: bold =&gt; 700/red =&gt; rgb(255, 0, 0)/rem =&gt; 16px</code>)，最后通过<code>CSS</code>的继承规则和层叠规则计算<code>DOM</code>树中每个节点的样式属性，并保存在<code>ComputedStyle</code>结构中。</p>
-<h4 id="创建布局树"><a href="#创建布局树" class="headerlink" title="创建布局树"></a>创建布局树</h4><p>计算<code>DOM</code>树中可见元素的几何位置，叫做布局。布局阶段需要完成创建布局树和布局计算。</p>
+<h3 id="样式计算"><a href="#样式计算" class="headerlink" title="样式计算"></a>样式计算</h3><p><code>CSS</code>主要来源有<code>link引用/import引入/style属性内嵌/&lt;style&gt;标记内代码&lt;/style&gt;</code>，浏览器同样无法直接理解和使用<code>CSS</code>，所以需要将<code>CSS</code>转换为浏览器可以理解的结构<code>styleSheets</code>。之后对其进行属性值的标准化操作，即将所有值转换为渲染引擎容易理解的、标准化的计算值。(<code>ex: bold =&gt; 700/red =&gt; rgb(255, 0, 0)/rem =&gt; 16px</code>)，最后通过<code>CSS</code>的继承规则和层叠规则计算<code>DOM</code>树中每个节点的样式属性，并保存在<code>ComputedStyle</code>结构中。</p>
+<h3 id="创建布局树"><a href="#创建布局树" class="headerlink" title="创建布局树"></a>创建布局树</h3><p>计算<code>DOM</code>树中可见元素的几何位置，叫做布局。布局阶段需要完成创建布局树和布局计算。</p>
 <p>由于<code>DOM</code>树中含有很多不可见元素，比如<code>head</code>标签或<code>display: none</code>属性元素，因此需要构建只包含可见元素的布局树。在执行布局操作的时候，会把布局操作的结果重新写回布局树中，因此布局树既是输入内容也是输出内容。</p>
-<h4 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h4><p>由于页面可能存在复杂效果，如<code>3D</code>变换、页面滚动、<code>z-index</code>排序、绝对定位等，为了更加方便的实现这些效果，渲染引擎还需要为特定的节点生成专用的图层，并生成一棵对应的图层树<code>LayerTree</code>。图层叠加合成最终页面。并不是布局树每个节点都包含一个图层，如果一个图层没有对应的层，将从属于父节点的图层。</p>
+<h3 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h3><p>由于页面可能存在复杂效果，如<code>3D</code>变换、页面滚动、<code>z-index</code>排序、绝对定位等，为了更加方便的实现这些效果，渲染引擎还需要为特定的节点生成专用的图层，并生成一棵对应的图层树<code>LayerTree</code>。图层叠加合成最终页面。并不是布局树每个节点都包含一个图层，如果一个图层没有对应的层，将从属于父节点的图层。</p>
 <p>拥有层叠上下文属性的元素/需要剪裁的地方就会被提升成为单独一层。</p>
-<h4 id="图层绘制"><a href="#图层绘制" class="headerlink" title="图层绘制"></a>图层绘制</h4><p>在完成图层树后，渲染引擎会对图层树中每个图层进行绘制。具体实现则是将一个图层的绘制拆分成很多小的绘制指令，再把这些指令按照顺序组成一个待绘制列表。</p>
-<h4 id="栅格化-raster"><a href="#栅格化-raster" class="headerlink" title="栅格化(raster)"></a>栅格化(raster)</h4><p>绘制列表只是记录绘制顺序和绘制指令的列表，实际的绘制操作由渲染引擎的合成线程完成。</p>
+<h3 id="图层绘制"><a href="#图层绘制" class="headerlink" title="图层绘制"></a>图层绘制</h3><p>在完成图层树后，渲染引擎会对图层树中每个图层进行绘制。具体实现则是将一个图层的绘制拆分成很多小的绘制指令，再把这些指令按照顺序组成一个待绘制列表。</p>
+<h3 id="栅格化-raster"><a href="#栅格化-raster" class="headerlink" title="栅格化(raster)"></a>栅格化(raster)</h3><p>绘制列表只是记录绘制顺序和绘制指令的列表，实际的绘制操作由渲染引擎的合成线程完成。</p>
 <p>栅格化是指将图块转换为位图，图块是栅格化执行的最小单位。</p>
 <p>合成线程将图层划分为图块<code>tile</code>，通常是256 * 256或512 * 512，然后合成线程会按照视口附近的图块来优先生成位图，实际生成位图的操作由栅格化执行。渲染进程维护栅格化的线程池，通常，栅格化操作会使用<code>GPU</code>来加速生成，使用<code>GPU</code>生成位图的过程叫做快速栅格化，或<code>GPU</code>栅格化，生成的位图被保存在<code>GPU</code>内存中，这里涉及到了跨进程操作。</p>
-<h4 id="合成和显示"><a href="#合成和显示" class="headerlink" title="合成和显示"></a>合成和显示</h4><p>一旦所有图块都被光栅化，合成线程就会生成一个绘制图块的命令<code>DrawQard</code>，然后将该命令提交给浏览器进程，浏览器进程中的<code>viz</code>组件，接收命令，然后根据<code>DrawQard</code>命令，将其页面内容绘制到内存中，最后再将内存显示到屏幕上。</p>
+<h3 id="合成和显示"><a href="#合成和显示" class="headerlink" title="合成和显示"></a>合成和显示</h3><p>一旦所有图块都被光栅化，合成线程就会生成一个绘制图块的命令<code>DrawQard</code>，然后将该命令提交给浏览器进程，浏览器进程中的<code>viz</code>组件，接收命令，然后根据<code>DrawQard</code>命令，将其页面内容绘制到内存中，最后再将内存显示到屏幕上。</p>
 <center> 
     <img src="/img/页面构建.jpg" srcset="/img/loading.gif" /> 
   <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
@@ -254,7 +254,7 @@
   }
 </style>
 
-<h4 id="重排"><a href="#重排" class="headerlink" title="重排"></a>重排</h4><p>如果通过<code>JavaScript</code>或<code>CSS</code>修改元素的几何位置属性，将触发重新布局，以及后面的一系列过程，这个过程就叫重排。将从样式计算开始更新渲染流水线，开销极大。</p>
+<h3 id="重排"><a href="#重排" class="headerlink" title="重排"></a>重排</h3><p>如果通过<code>JavaScript</code>或<code>CSS</code>修改元素的几何位置属性，将触发重新布局，以及后面的一系列过程，这个过程就叫重排。将从样式计算开始更新渲染流水线，开销极大。</p>
 <p><strong>重排的发生场景</strong></p>
 <ul>
 <li>页面初始渲染</li>
@@ -268,7 +268,7 @@
 <li>修改元素字体大小，<code>font-size</code></li>
 <li>查询属性或调用计算方法，<code>offsetWidth/offsetHeight</code></li>
 </ul>
-<h4 id="重排优化"><a href="#重排优化" class="headerlink" title="重排优化"></a>重排优化</h4><p>减少重排(回流)次数/范围。</p>
+<h3 id="重排优化"><a href="#重排优化" class="headerlink" title="重排优化"></a>重排优化</h3><p>减少重排(回流)次数/范围。</p>
 <ul>
 <li>通过局部布局形式组织<code>HTML</code>代码，尽可能减少影响重排的范围。</li>
 <li>集中修改样式</li>
@@ -276,15 +276,15 @@
 <li><code>absolute/fixed</code>脱离文档流，由于元素成为<code>body</code>的子元素，重排开销小</li>
 <li>优化动画</li>
 </ul>
-<h4 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h4><p>由于没有引起几何位置的变换，所以就直接进入绘制阶段，然后执行之后的一系列子阶段。执行效率比重排操作高。</p>
+<h3 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h3><p>由于没有引起几何位置的变换，所以就直接进入绘制阶段，然后执行之后的一系列子阶段。执行效率比重排操作高。</p>
 <p><strong>重绘的发生场景</strong></p>
 <p><code>color/background/border-radius/outline/box-shadow/text-decoration/background-image/...</code></p>
-<h4 id="display-none-visibility-hidden"><a href="#display-none-visibility-hidden" class="headerlink" title="display: none/visibility: hidden"></a>display: none/visibility: hidden</h4><ul>
+<h3 id="display-none-visibility-hidden"><a href="#display-none-visibility-hidden" class="headerlink" title="display: none/visibility: hidden"></a>display: none/visibility: hidden</h3><ul>
 <li>子元素继承。<code>display</code>，不是继承属性，元素及其子元素均会消失，而<code>visibility</code>是继承元素，若子元素使用了<code>visibility</code>，将覆盖父元素<code>visibility</code>影响。</li>
 <li>空间占据。<code>display: none</code>的元素不会在渲染树中出现，而<code>visibility: hidden</code>的元素会出现。</li>
 <li>渲染。<code>display: none</code>会触发重排，而<code>visibility: hidden</code>只会触发重绘。</li>
 </ul>
-<h4 id="v-show-v-if"><a href="#v-show-v-if" class="headerlink" title="v-show/v-if"></a>v-show/v-if</h4><table>
+<h3 id="v-show-v-if"><a href="#v-show-v-if" class="headerlink" title="v-show/v-if"></a>v-show/v-if</h3><table>
    <tr>
     <th width="50%">v-if</th>
     <th width="50%">v-else</th>
@@ -311,7 +311,123 @@
   </tr>
 </table>
 
+<h3 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h3><ul>
+<li><p>前端优化的其中一点就是尽可能少的操作<code>DOM</code>，频繁的操作DOM将造成浏览器的重排或重绘，因此需要集中修改差异，保证<code>DOM</code>性能。</p>
+</li>
+<li><p>其次，在代码中手动操作<code>DOM</code>不易维护。</p>
+</li>
+<li><p>实现更好的跨平台。</p>
+</li>
+</ul>
+<p>虚拟<code>DOM</code>(<code>VDOM</code>)是真实<code>DOM</code>树的映射，是一个<code>JavaScript</code>对象。在创建阶段，由基础数据创建出虚拟<code>DOM</code>，反映真实<code>DOM</code>树结构。当虚拟<code>DOM</code>树中某些节点改变时，会得到一棵新的虚拟<code>DOM</code>树，通过<code>diff</code>算法对比新旧虚拟<code>DOM</code>树，找出差异<code>patches</code>，在真实<code>DOM</code>树上只变更差异部分，而不用更新整个视图。</p>
+<h4 id="VDOM——DOM"><a href="#VDOM——DOM" class="headerlink" title="VDOM——DOM"></a>VDOM——DOM</h4><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">VNode</span>(<span class="hljs-params">tag, data, children</span>) </span>&#123;
+  <span class="hljs-built_in">this</span>.tag = tag
+  <span class="hljs-built_in">this</span>.data = data
+  <span class="hljs-built_in">this</span>.children = children
+&#125;
 
+<span class="hljs-comment">// 虚拟DOM -&gt; DOM</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createEle</span>(<span class="hljs-params">vnode</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> el = <span class="hljs-built_in">document</span>.createElement(vnode.tag)
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> vnode.data.attrs) &#123;
+    setAttr(el, i, vnode.data.attrs[i])
+  &#125;
+  vnode.children.forEach(<span class="hljs-function"><span class="hljs-params">child</span> =&gt;</span> &#123;
+    child = child <span class="hljs-keyword">instanceof</span> VNode ? cerateEle(child) : <span class="hljs-built_in">document</span>.createTextNode(child)
+    el.append(child)
+  &#125;)
+  <span class="hljs-keyword">return</span> el
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setAttr</span>(<span class="hljs-params">node, key, value</span>) </span>&#123;
+  <span class="hljs-keyword">switch</span>(key) &#123;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;value&#x27;</span>: 
+      <span class="hljs-keyword">if</span>(node.tagName.toUpperCase() === <span class="hljs-string">&#x27;INPUT&#x27;</span> || node.tagName.toUpperCase() === <span class="hljs-string">&#x27;TEXTAREA&#x27;</span>) &#123;
+        node.value = value
+      &#125;<span class="hljs-keyword">else</span> &#123;
+        node.setAttribute(key, value)
+      &#125;
+      <span class="hljs-keyword">break</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;style&#x27;</span>:
+      node.style.cssText = value
+      <span class="hljs-keyword">break</span>
+    <span class="hljs-keyword">default</span>:
+      node.setAttribute(key, value)
+  &#125;
+&#125;</code></pre>
+
+<h4 id="DOM-DIFF"><a href="#DOM-DIFF" class="headerlink" title="DOM-DIFF"></a>DOM-DIFF</h4><p>对虚拟<code>dom</code>节点进行深度优先遍历，并对每一个虚拟<code>dom</code>节点进行编号，在遍历的过程中对同一个层级的节点进行比较，最终得到比较后的差异<code>patches</code></p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">diff</span>(<span class="hljs-params">oldVNode, newVNode</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> index = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">let</span> patches = &#123;&#125;
+  traversal(oldVNode, newVNode, index, patches)
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">traversal</span>(<span class="hljs-params">oldVNode, newVNode, index, patches</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> curPatches = []
+  <span class="hljs-keyword">if</span>(newVNode === <span class="hljs-literal">undefined</span>) &#123;
+    curPatches.push(&#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;remove&#x27;</span>&#125;) <span class="hljs-comment">// 节点被删除</span>
+    patches[index] = curPatches
+  &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(newVNode <span class="hljs-keyword">instanceof</span> VNode &amp;&amp; oldVNode <span class="hljs-keyword">instanceof</span> VNode)&#123;
+    <span class="hljs-keyword">if</span>(oldVNode.tag !== newVNode.tag) &#123;
+      curPatches.push(&#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;replace&#x27;</span>, <span class="hljs-attr">content</span>: newVNode.tag&#125;)
+    &#125;<span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-keyword">let</span> attrDiff = diffAttrs(oldVNode, newVNode) 
+      <span class="hljs-keyword">if</span>(resultDiff.length &gt; <span class="hljs-number">0</span>) &#123;
+        curPatches.push(&#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;attrs&#x27;</span>, <span class="hljs-attr">attrs</span>: attrDiff &#125;)
+      &#125;
+      patches[index] = curPatches
+    &#125;
+    oldNode.children.forEach(<span class="hljs-function">(<span class="hljs-params">ele, index</span>) =&gt;</span> &#123;
+      index++
+      traversal(element, newVNode.children[index], index, patches)
+    &#125;)
+  &#125;<span class="hljs-keyword">else</span> &#123;
+    <span class="hljs-comment">// 文本类型</span>
+    <span class="hljs-keyword">if</span>(oldVNode !== newVNode) &#123;
+      curPatches.push(&#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;text&#x27;</span>, <span class="hljs-attr">content</span>: newVNode&#125;)
+    &#125;
+    patches[index] = curPatches
+  &#125;
+&#125;</code></pre>
+
+<h4 id="patch"><a href="#patch" class="headerlink" title="patch"></a>patch</h4><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">walk</span>(<span class="hljs-params">realDom, index, patches</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> curPatch = patches[index]
+  <span class="hljs-keyword">if</span>(curPatch) &#123;
+    apply(realDom, curPatch)
+  &#125;
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; realDom.childNodes.length; i++) &#123;
+    <span class="hljs-keyword">let</span> childNode = readDom.childNodes[i]
+    index++
+    walk(childNode, index, patches)
+  &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">applyPatch</span>(<span class="hljs-params">curNode, curPatch</span>) </span>&#123;
+  curPatch.forEach(<span class="hljs-function">(<span class="hljs-params">patch</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> type = patch[<span class="hljs-string">&#x27;type&#x27;</span>]
+    <span class="hljs-keyword">switch</span> (type) &#123;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;remove&#x27;</span>:
+        curNode.parentNode.removeChild(curNode)
+        <span class="hljs-keyword">break</span>
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;replace&#x27;</span>:
+        <span class="hljs-keyword">let</span> content = patch[<span class="hljs-string">&#x27;content&#x27;</span>]
+        <span class="hljs-keyword">let</span> newEle = <span class="hljs-literal">null</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> content === <span class="hljs-string">&#x27;String&#x27;</span>) &#123;
+          newEle = <span class="hljs-built_in">document</span>.createTextNode(content)
+        &#125; <span class="hljs-keyword">else</span> &#123;
+          newEle = createEle(content)
+        &#125;
+        curNode.parentNode.replaceChild(newEle, curNode)
+        <span class="hljs-keyword">break</span>
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;text&#x27;</span>:
+        curNode.textContent = patch[<span class="hljs-string">&#x27;content&#x27;</span>]
+        <span class="hljs-keyword">break</span>
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;attrs&#x27;</span>:
+        <span class="hljs-keyword">const</span> attrs = patch[<span class="hljs-string">&#x27;attrs&#x27;</span>]
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> attrs) &#123;
+          curNode.setAttribute(key, attrs[key])
+        &#125;
+    &#125;
+  &#125;)
+&#125;</code></pre>
             </div>
             <hr>
             <div>
@@ -323,7 +439,7 @@
                     
                       <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
                     
-                      <a class="hover-with-bg" href="/tags/web/">web</a>
+                      <a class="hover-with-bg" href="/tags/Web/">Web</a>
                     
                   </div>
                 
@@ -588,7 +704,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/09/10/web/');
+          var target = decodeURI('/2020/09/13/web/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {

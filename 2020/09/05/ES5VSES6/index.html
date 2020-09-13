@@ -225,7 +225,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-12 21:08:27
+                  本文最后更新于：2020-09-13 07:59:01
                 
               </p>
             
@@ -469,7 +469,7 @@ other, <span class="hljs-keyword">return</span> <span class="hljs-literal">NaN</
 <pre><code class="hljs js"><span class="hljs-comment">// slice</span>
 <span class="hljs-built_in">Array</span>.prototype.myslice = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">begin = <span class="hljs-number">0</span>, end = this.length</span>) </span>&#123;
   <span class="hljs-keyword">let</span> cloned = []
-  begin = begin &gt;= <span class="hljs-number">0</span> ? begin : <span class="hljs-built_in">Math</span>.max(<span class="hljs-number">0</span>, <span class="hljs-built_in">this</span>.length + begin)
+  begin = begin &gt;= <span class="hljs-number">0</span> ? <span class="hljs-built_in">Math</span>.min(begin, <span class="hljs-built_in">this</span>.length) : <span class="hljs-built_in">Math</span>.max(<span class="hljs-number">0</span>, <span class="hljs-built_in">this</span>.length + begin)
   end = <span class="hljs-keyword">typeof</span> end == <span class="hljs-string">&#x27;number&#x27;</span> ? <span class="hljs-built_in">Math</span>.min(end, <span class="hljs-built_in">this</span>.length) : <span class="hljs-built_in">this</span>.length
   <span class="hljs-keyword">if</span> (end &lt; <span class="hljs-number">0</span>) &#123;
     end += len
