@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-06 08:49:25
+                  本文最后更新于：2020-09-14 20:54:50
                 
               </p>
             
@@ -285,7 +285,7 @@ temp.grade.date = [<span class="hljs-number">1997</span>, <span class="hljs-numb
 <span class="hljs-comment">*/</span></code></pre>
 
 <h4 id="Array-prototype-concat"><a href="#Array-prototype-concat" class="headerlink" title="Array.prototype.concat()"></a>Array.prototype.concat()</h4><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;arr&#x27;</span> &#125;, <span class="hljs-literal">null</span>, <span class="hljs-literal">undefined</span>] <span class="hljs-comment">// 包含基本类型和对象类型的数组</span>
-<span class="hljs-keyword">let</span> temp = arr.concat() <span class="hljs-comment">// 浅拷贝</span>
+<span class="hljs-keyword">let</span> temp = arr.concat(&#123; <span class="hljs-attr">sex</span>: <span class="hljs-string">&#x27;男&#x27;</span> &#125;) <span class="hljs-comment">// 浅拷贝</span>
 temp[<span class="hljs-number">0</span>] = <span class="hljs-number">3</span> <span class="hljs-comment">// 修改基本数据类型</span>
 temp[<span class="hljs-number">1</span>].name = <span class="hljs-string">&#x27;temp&#x27;</span> <span class="hljs-comment">// 修改对象</span>
 temp[<span class="hljs-number">1</span>].type = <span class="hljs-string">&#x27;array&#x27;</span> <span class="hljs-comment">// 新增对象属性</span>
@@ -294,7 +294,7 @@ temp[<span class="hljs-number">1</span>].type = <span class="hljs-string">&#x27;
 <span class="hljs-built_in">console</span>.log(temp)
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">[ 1, &#123; name: &#x27;temp&#x27;, type: &#x27;array&#x27; &#125;, null, undefined ]</span>
-<span class="hljs-comment">[ 3, &#123; name: &#x27;temp&#x27;, type: &#x27;array&#x27; &#125;, null, undefined ]</span>
+<span class="hljs-comment">[ 3, &#123; name: &#x27;temp&#x27;, type: &#x27;array&#x27; &#125;, null, undefined, &#123; sex: &#x27;男&#x27; &#125; ]</span>
 <span class="hljs-comment">*/</span></code></pre>
 
 <h4 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice()"></a>Array.prototype.slice()</h4><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;arr&#x27;</span> &#125;, <span class="hljs-literal">null</span>, <span class="hljs-literal">undefined</span>] <span class="hljs-comment">// 包含基本类型和对象类型的数组</span>
