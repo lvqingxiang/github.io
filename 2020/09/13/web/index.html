@@ -223,7 +223,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-13 19:00:15
+                  本文最后更新于：2020-09-15 22:43:48
                 
               </p>
             
@@ -428,6 +428,18 @@
     &#125;
   &#125;)
 &#125;</code></pre>
+
+<h3 id="CSS-JavaScript阻塞"><a href="#CSS-JavaScript阻塞" class="headerlink" title="CSS/JavaScript阻塞"></a>CSS/JavaScript阻塞</h3><p><code>css</code>会阻塞<code>dom</code>渲染及之后的<code>JavaScript</code>执行，但不会阻塞<code>dom</code>解析。</p>
+<p><code>JavaScript</code>默认立即执行，外部脚本则必须等待脚本下载执行结束，才能处理剩余页面，会阻塞它之后的<code>dom</code>的解析和渲染。如果<code>JavaScript</code>脚本中引用了外部<code>css</code>文件，会先等待<code>css</code>加载解析完成，再执行<code>JavaScript</code>脚本。</p>
+<h3 id="defer-async"><a href="#defer-async" class="headerlink" title="defer/async"></a>defer/async</h3><p>html页面的生命周期包含三个重要事件：</p>
+<p><code>DOMContentLoaded</code>：DOM已经构建，但样式表或图片等资源可能还未加载完成。</p>
+<p><code>load</code>：浏览器已经 将HTML及图片或样式等外部资源全部加载完毕。</p>
+<p><code>beforeunload/unload</code>：用户正在离开页面。</p>
+<p>对内联&lt;<code>script</code>&gt;无效，只针对外部引入<code>JavaScript</code>脚本。</p>
+<p><code>defer/async</code>在加载时都不会阻塞dom解析渲染。</p>
+<p><code>async</code>异步加载完后，按照”加载优先“原则立即执行，执行时会阻塞<code>dom</code>解析渲染。</p>
+<p><code>defer</code>异步加载脚本，按照文档顺序在<code>dom</code>解析完成，<code>DOMContentLoaded</code>事件之前依次执行脚本。</p>
+
             </div>
             <hr>
             <div>
@@ -450,7 +462,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/09/13/react%E9%A1%B9%E7%9B%AE/">
+                      <a href="/2020/09/14/react%E9%A1%B9%E7%9B%AE/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">React项目初学</span>
                         <span class="visible-mobile">上一篇</span>
