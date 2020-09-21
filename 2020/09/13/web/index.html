@@ -223,7 +223,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-15 22:43:48
+                  本文最后更新于：2020-09-16 21:45:54
                 
               </p>
             
@@ -392,7 +392,7 @@
 <h4 id="patch"><a href="#patch" class="headerlink" title="patch"></a>patch</h4><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">walk</span>(<span class="hljs-params">realDom, index, patches</span>) </span>&#123;
   <span class="hljs-keyword">const</span> curPatch = patches[index]
   <span class="hljs-keyword">if</span>(curPatch) &#123;
-    apply(realDom, curPatch)
+    applyPatch(realDom, curPatch)
   &#125;
   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; realDom.childNodes.length; i++) &#123;
     <span class="hljs-keyword">let</span> childNode = readDom.childNodes[i]

@@ -221,14 +221,14 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-16 00:02:20
+                  本文最后更新于：2020-09-19 22:51:06
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h3><blockquote>
+              <p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/ta/coding-interviews">剑指offer</a></p>
+<h3 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h3><blockquote>
 <p>在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
-<p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&&tqId=11154&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking">题目地址</a></p>
 </blockquote>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Find</span>(<span class="hljs-params">target, array</span>) </span>&#123;
   <span class="hljs-keyword">if</span> (array.length &lt; <span class="hljs-number">1</span> || !<span class="hljs-built_in">parseInt</span>(target)) &#123;
@@ -264,6 +264,123 @@
   <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
 &#125;</code></pre>
 
+<h3 id="替换空格"><a href="#替换空格" class="headerlink" title="替换空格"></a>替换空格</h3><blockquote>
+<p>请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replaceSpace</span>(<span class="hljs-params">str</span>)</span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">return</span> str.replace(<span class="hljs-regexp">/\s/g</span>, <span class="hljs-string">&#x27;%20&#x27;</span>)
+&#125;</code></pre>
+
+<h3 id="从尾到头打印链表"><a href="#从尾到头打印链表" class="headerlink" title="从尾到头打印链表"></a>从尾到头打印链表</h3><blockquote>
+<p>输入一个链表，按链表从尾到头的顺序返回一个ArrayList。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printListFromTailToHead</span>(<span class="hljs-params">head</span>)</span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">let</span> result = []
+    <span class="hljs-keyword">if</span>(head === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> result
+    result = [head.val]
+    <span class="hljs-keyword">while</span>(head.next !== <span class="hljs-literal">null</span>) &#123;
+        result.push(head.next.val)
+        head = head.next
+    &#125;
+    <span class="hljs-keyword">return</span> result.reverse()
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printListFromTailToHead</span>(<span class="hljs-params">head</span>)</span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">let</span> result = []
+    <span class="hljs-keyword">while</span>(head) &#123;
+        result.push(head.val)
+        head = head.next
+    &#125;
+    <span class="hljs-keyword">return</span> result.reverse()
+&#125;</code></pre>
+
+<h3 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a>重建二叉树</h3><blockquote>
+<p>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TreeNode</span>(<span class="hljs-params">x</span>) </span>&#123;
+  <span class="hljs-built_in">this</span>.val = x
+  <span class="hljs-built_in">this</span>.left = <span class="hljs-literal">null</span>
+  <span class="hljs-built_in">this</span>.right = <span class="hljs-literal">null</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reConstructBinaryTree</span>(<span class="hljs-params">pre, vin</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (!pre || !vin) <span class="hljs-keyword">return</span>
+  <span class="hljs-keyword">let</span> root = <span class="hljs-keyword">new</span> TreeNode(pre[<span class="hljs-number">0</span>])
+  <span class="hljs-keyword">return</span> build(pre, vin, root)
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">build</span>(<span class="hljs-params">pre, vin, root</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> index = vin.indexOf(pre[<span class="hljs-number">0</span>])
+  <span class="hljs-keyword">let</span> left = vin.slice(<span class="hljs-number">0</span>, index)
+  <span class="hljs-keyword">let</span> right = vin.slice(index + <span class="hljs-number">1</span>)
+  <span class="hljs-keyword">if</span> (left.length &gt; <span class="hljs-number">0</span>) &#123;
+    root.left = <span class="hljs-keyword">new</span> TreeNode(pre[<span class="hljs-number">1</span>])
+    <span class="hljs-keyword">let</span> newPre = pre.slice(<span class="hljs-number">1</span>, left.length + <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">let</span> newVin = vin.slice(<span class="hljs-number">0</span>, left.length)
+    build(newPre, newVin, root.left)
+  &#125;
+  <span class="hljs-keyword">if</span> (right.length &gt; <span class="hljs-number">0</span>) &#123;
+    root.right = <span class="hljs-keyword">new</span> TreeNode(pre[left.length + <span class="hljs-number">1</span>])
+    <span class="hljs-keyword">let</span> newPre = pre.slice(left.length + <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">let</span> newVin = vin.slice(left.length + <span class="hljs-number">1</span>)
+    build(newPre, newVin, root.right)
+  &#125;
+  <span class="hljs-keyword">return</span> root
+&#125;</code></pre>
+
+<h3 id="用两个栈实现队列"><a href="#用两个栈实现队列" class="headerlink" title="用两个栈实现队列"></a>用两个栈实现队列</h3><blockquote>
+<p>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> stack = []
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">push</span>(<span class="hljs-params">node</span>) </span>&#123;
+  stack.splice(stack.length, <span class="hljs-number">0</span>, node)
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pop</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">let</span> popStack = stack.splice(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+  <span class="hljs-keyword">return</span> popStack
+&#125;</code></pre>
+
+<h3 id="旋转数组的最小数字"><a href="#旋转数组的最小数字" class="headerlink" title="旋转数组的最小数字"></a>旋转数组的最小数字</h3><blockquote>
+<p>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">minNumberInRotateArray</span>(<span class="hljs-params">rotateArray</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> arrLength = rotateArray.length
+  <span class="hljs-keyword">if</span> (arrLength &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+  <span class="hljs-keyword">if</span> (arrLength === <span class="hljs-number">1</span>) &#123;
+    <span class="hljs-keyword">return</span> rotateArray[<span class="hljs-number">0</span>]
+  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arrLength === <span class="hljs-number">2</span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.min(rotateArray[<span class="hljs-number">0</span>], rotateArray[<span class="hljs-number">1</span>])
+  &#125;
+  <span class="hljs-keyword">let</span> start = rotateArray[<span class="hljs-number">0</span>]
+  <span class="hljs-keyword">let</span> minIndex = <span class="hljs-built_in">Math</span>.floor(arrLength / <span class="hljs-number">2</span>)
+  <span class="hljs-keyword">let</span> min = rotateArray[minIndex]
+  <span class="hljs-keyword">let</span> end = rotateArray[arrLength - <span class="hljs-number">1</span>]
+  <span class="hljs-keyword">if</span> (start &lt; end) <span class="hljs-keyword">return</span> start
+  <span class="hljs-keyword">if</span> (min &gt; end) &#123;
+    <span class="hljs-keyword">return</span> minNumberInRotateArray(rotateArray.slice(minIndex + <span class="hljs-number">1</span>))
+  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (min &lt; end) &#123;
+    <span class="hljs-keyword">return</span> minNumberInRotateArray(rotateArray.slice(<span class="hljs-number">0</span>, minIndex + <span class="hljs-number">1</span>))
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    <span class="hljs-keyword">return</span> minNumberInRotateArray(rotateArray.slice(<span class="hljs-number">0</span>, arrLength - <span class="hljs-number">1</span>))
+  &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">minNumberInRotateArray</span>(<span class="hljs-params">rotateArray</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> arrLength = rotateArray.length
+  <span class="hljs-keyword">if</span> (arrLength &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+  <span class="hljs-keyword">if</span> (arrLength === <span class="hljs-number">1</span>) &#123;
+    <span class="hljs-keyword">return</span> rotateArray[<span class="hljs-number">0</span>]
+  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arrLength === <span class="hljs-number">2</span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.min(rotateArray[<span class="hljs-number">0</span>], rotateArray[<span class="hljs-number">1</span>])
+  &#125;
+  <span class="hljs-keyword">let</span> minIndex = <span class="hljs-built_in">Math</span>.floor(arrLength / <span class="hljs-number">2</span>)
+  <span class="hljs-keyword">let</span> leftRotateArray = rotateArray.slice(<span class="hljs-number">0</span>, minIndex)
+  <span class="hljs-keyword">let</span> rightRotateArray = rotateArray.slice(minIndex)
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.min(
+    minNumberInRotateArray(leftRotateArray),
+    minNumberInRotateArray(rightRotateArray)
+  )
+&#125;</code></pre>
+
 
             </div>
             <hr>
@@ -284,6 +401,12 @@
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2020/09/20/vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">双向绑定</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

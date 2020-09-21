@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-12 19:47:46
+                  本文最后更新于：2020-09-16 00:16:21
                 
               </p>
             
@@ -310,7 +310,7 @@
 
 <h5 id="自定义方法"><a href="#自定义方法" class="headerlink" title="自定义方法"></a>自定义方法</h5><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventBus</span> </span>&#123;
   <span class="hljs-keyword">constructor</span>() &#123;
-    <span class="hljs-built_in">this</span>.listeners = []
+    <span class="hljs-built_in">this</span>.listeners = &#123;&#125;
   &#125;
   isString(event) &#123;
     <span class="hljs-keyword">return</span> event &amp;&amp; <span class="hljs-built_in">Object</span>.prototype.toString.call(event) === <span class="hljs-string">&#x27;[object String]&#x27;</span>
