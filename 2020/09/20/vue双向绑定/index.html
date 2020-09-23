@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-22 00:05:22
+                  本文最后更新于：2020-09-22 22:56:40
                 
               </p>
             
@@ -235,6 +235,9 @@
 
 <p>观察者模式中，观察者<code>Observer</code>能够感知<code>Subject</code>，发布订阅模式，发布者<code>Publisher</code>和订阅者<code>Subscriber</code>不知道对方的存在，通过中间商<code>Event Channel</code>进行通信。</p>
 <p>观察者模式大多数是同步的，发布订阅模式大多数是异步的。</p>
+<p>观察者模式<code>Observer</code>直接订阅主体<code>Subject</code>，当主体激活，所有<code>Observer</code>都将收到通知。</p>
+<p>发布订阅模式将订阅者<code>Subscriber</code>希望订阅的事件(分类别)注册到调度中心，当发布者<code>Publisher</code>发布事件，由调度中心统一调度，区分类别，通知订阅者。</p>
+<p>两者都实现了对象间一对多的依赖关系，当一个对象发生改变，所有依赖它的对象都将收到通知。</p>
 <pre><code class="hljs js"><span class="hljs-comment">// 观察者模式</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Observer</span> </span>&#123;
   <span class="hljs-keyword">constructor</span>() &#123;&#125;
@@ -256,7 +259,26 @@
 <span class="hljs-keyword">let</span> ob = <span class="hljs-keyword">new</span> Observer()
 <span class="hljs-keyword">let</span> sub = <span class="hljs-keyword">new</span> Subject()
 sub.attach(ob)
-sub.notify()</code></pre>
+sub.notify()
+
+<span class="hljs-comment">// 发布订阅模式</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventChannel</span> </span>&#123;
+  <span class="hljs-keyword">constructor</span>() &#123;
+    <span class="hljs-built_in">this</span>.subscribers = &#123;&#125;
+  &#125;
+  subscribe(event, callback) &#123;
+    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.subscribers[event]) &#123;
+      <span class="hljs-built_in">this</span>.subscribers[event] = [callback]
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-built_in">this</span>.subscribers[event].push(callback)
+    &#125;
+  &#125;
+  publish(event, ...arg) &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.subscribers[event]) &#123;
+      <span class="hljs-built_in">this</span>.subscribers[event].forEach(<span class="hljs-function">(<span class="hljs-params">callback</span>) =&gt;</span> callback(...arg))
+    &#125;
+  &#125;
+&#125;</code></pre>
 
 <h3 id="Vue2"><a href="#Vue2" class="headerlink" title="Vue2"></a>Vue2</h3><p>当<code>JavaScript</code>对象传入<code>vue</code>实例作为<code>data</code>选项，<code>vue</code>将遍历该对象的所有属性，并使用<code>Object.defineProperty</code>将属性转为<code>getter/setter</code>。</p>
 <p>这些<code>getter/setter</code>对用户不可见，但在内部能够让<code>vue</code>追踪依赖，在属性被访问和修改时通知变更。</p>
@@ -370,13 +392,11 @@ Compile.prototype = &#123;
     &#125;)
   &#125;,
   updateView(node, value) &#123;
-    node.textContent = <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&#x27;undefined&#x27;</span> ? value : <span class="hljs-string">&#x27;&#x27;</span>
+    node.textContent = <span class="hljs-keyword">typeof</span> value !== <span class="hljs-string">&#x27;undefined&#x27;</span> ? value : <span class="hljs-string">&#x27;&#x27;</span>
   &#125;,
 &#125;</code></pre>
 
-
-
-<style>
+<h3 id="Vue3"><a href="#Vue3" class="headerlink" title="Vue3"></a>Vue3</h3><style>
   img:hover {
     border-radius: 0.3125em; 
     box-shadow: 0 0px 15px #2f4154;

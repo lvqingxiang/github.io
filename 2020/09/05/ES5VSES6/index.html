@@ -225,7 +225,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-13 07:59:01
+                  本文最后更新于：2020-09-23 21:43:59
                 
               </p>
             
@@ -494,7 +494,7 @@ other, <span class="hljs-keyword">return</span> <span class="hljs-literal">NaN</
 
 <h4 id="splice-sort"><a href="#splice-sort" class="headerlink" title="splice/sort"></a>splice/sort</h4><p><code>splice</code>用于删除或新增数组元素，返回被删除元素，会修改原数组。</p>
 <p><code>arr.splice(start, count, ...args)</code>，参数分别是起始位置，删除个数，插入元素。</p>
-<p><code>sort</code>默认按照字典序对数组进行排序</p>
+<p><code>sort</code>默认按照字典序对数组进行排序，会修改原数组。</p>
 <pre><code class="hljs js"><span class="hljs-comment">// splice</span>
 <span class="hljs-comment">// 第一种方式</span>
 <span class="hljs-built_in">Array</span>.prototype.mySplice = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">start = <span class="hljs-number">0</span>, count = this.length - start, ...args</span>) </span>&#123;
@@ -570,6 +570,33 @@ other, <span class="hljs-keyword">return</span> <span class="hljs-literal">NaN</
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> sum = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].reduce(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">accumulator, curValue</span>) </span>&#123;
   <span class="hljs-keyword">return</span> accumulator + curValue;
 &#125;, <span class="hljs-number">0</span>); <span class="hljs-comment">// 6</span></code></pre>
+
+<h3 id="数组方法分类"><a href="#数组方法分类" class="headerlink" title="数组方法分类"></a>数组方法分类</h3><table>
+  <tr>
+    <th align="center">修改原数组</th>
+    <th align="center">原数组不变</th>
+  </tr>
+  <tr align="center">
+    <td><code>splice</code></td>
+    <td><code>slice</code></td>
+  </tr>
+   <tr align="center">
+    <td><code>reverse</code></td>
+    <td><code>concat</code></td>
+  </tr>
+  <tr align="center">
+    <td><code>push/pop</code></td>
+    <td><code>join</code></td>
+  </tr>
+  <tr align="center">
+    <td><code>shift/unshift</code></td>
+    <td><code>filter/map</code></td>
+  </tr>
+  <tr align="center">
+    <td><code>sort</code></td>
+    <td><code>reduce</code></td>
+  </tr>
+</table>
 
 
             </div>
