@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-28 21:00:53
+                  本文最后更新于：2020-10-09 23:29:59
                 
               </p>
             
@@ -242,6 +242,7 @@
   &#125;
   <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
 &#125;
+
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Find</span>(<span class="hljs-params">target, array</span>) </span>&#123;
   <span class="hljs-keyword">if</span> (array.length &lt; <span class="hljs-number">1</span> || !<span class="hljs-built_in">parseInt</span>(target)) &#123;
     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
@@ -286,6 +287,7 @@
     &#125;
     <span class="hljs-keyword">return</span> result.reverse()
 &#125;
+
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printListFromTailToHead</span>(<span class="hljs-params">head</span>)</span>
 <span class="hljs-function"></span>&#123;
     <span class="hljs-keyword">let</span> result = []
@@ -364,6 +366,7 @@
     <span class="hljs-keyword">return</span> minNumberInRotateArray(rotateArray.slice(<span class="hljs-number">0</span>, arrLength - <span class="hljs-number">1</span>))
   &#125;
 &#125;
+
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">minNumberInRotateArray</span>(<span class="hljs-params">rotateArray</span>) </span>&#123;
   <span class="hljs-keyword">const</span> arrLength = rotateArray.length
   <span class="hljs-keyword">if</span> (arrLength &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
@@ -532,7 +535,118 @@
   <span class="hljs-keyword">return</span> root
 &#125;</code></pre>
 
+<h3 id="顺时针打印矩阵"><a href="#顺时针打印矩阵" class="headerlink" title="顺时针打印矩阵"></a>顺时针打印矩阵</h3><blockquote>
+<p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printMatrix</span>(<span class="hljs-params">matrix</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> res = []
+  <span class="hljs-keyword">let</span> row = matrix.length
+  <span class="hljs-keyword">if</span> (row &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> res
+  <span class="hljs-keyword">let</span> column = matrix[<span class="hljs-number">0</span>].length
+  res.push(...matrix[<span class="hljs-number">0</span>])
+  <span class="hljs-keyword">if</span> (row === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> res
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; row; i++) &#123;
+    res.push(matrix[i][column - <span class="hljs-number">1</span>])
+    matrix[i] = matrix[i].slice(<span class="hljs-number">0</span>, column - <span class="hljs-number">1</span>)
+  &#125;
+  <span class="hljs-keyword">if</span> (column === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> res
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = column - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+    res.push(matrix[row - <span class="hljs-number">1</span>][i])
+  &#125;
+  <span class="hljs-keyword">if</span> (row - <span class="hljs-number">2</span> &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> res
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = row - <span class="hljs-number">2</span>; i &gt; <span class="hljs-number">0</span>; i--) &#123;
+    res.push(matrix[i][<span class="hljs-number">0</span>])
+    matrix[i] = matrix[i].slice(<span class="hljs-number">1</span>)
+  &#125;
+  matrix = matrix.slice(<span class="hljs-number">1</span>, row - <span class="hljs-number">1</span>).filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.length &gt; <span class="hljs-number">0</span>)
+  res.push(...printMatrix(matrix))
+  <span class="hljs-keyword">return</span> res
+&#125;</code></pre>
 
+
+
+<h3 id="包含min函数的栈"><a href="#包含min函数的栈" class="headerlink" title="包含min函数的栈"></a>包含min函数的栈</h3><blockquote>
+<p>定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> curStack = []
+<span class="hljs-keyword">let</span> otherStack = []
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">push</span>(<span class="hljs-params">node</span>) </span>&#123;
+  curStack.push(node)
+  <span class="hljs-keyword">if</span> (otherStack.length === <span class="hljs-number">0</span>) &#123;
+    otherStack.push(node)
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    <span class="hljs-keyword">if</span> (node &gt; top()) &#123;
+      otherStack.push(top())
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      otherStack.push(node)
+    &#125;
+  &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pop</span>(<span class="hljs-params"></span>) </span>&#123;
+  curStack.splice(curStack.length - <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+  otherStack.splice(otherStack.length - <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">top</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">return</span> otherStack[otherStack.length - <span class="hljs-number">1</span>]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">min</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">return</span> top()
+&#125;</code></pre>
+
+<h3 id="栈的压入弹出"><a href="#栈的压入弹出" class="headerlink" title="栈的压入弹出"></a>栈的压入弹出</h3><blockquote>
+<p>输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">IsPopOrder</span>(<span class="hljs-params">pushV, popV</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> stack = []
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; i &lt; pushV.length; ) &#123;
+    <span class="hljs-keyword">if</span> (pushV[i] !== popV[j]) &#123;
+      stack.push(pushV[i++])
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      i++
+      j++
+      <span class="hljs-keyword">while</span> (stack.length &gt; <span class="hljs-number">0</span> &amp;&amp; stack[stack.length - <span class="hljs-number">1</span>] === popV[j]) &#123;
+        stack.pop()
+        j++
+      &#125;
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> stack.length === <span class="hljs-number">0</span>
+&#125;</code></pre>
+
+<h3 id="从上往下打印二叉树"><a href="#从上往下打印二叉树" class="headerlink" title="从上往下打印二叉树"></a>从上往下打印二叉树</h3><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PrintFromTopToBottom</span>(<span class="hljs-params">root</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> res = []
+  <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> res
+  res.push(root.val)
+  res.push(...subFindVal(root))
+  <span class="hljs-keyword">return</span> res
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subFindVal</span>(<span class="hljs-params">root</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> res = []
+  <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span>
+  <span class="hljs-keyword">if</span> (root.left) &#123;
+    res.push(root.left.val)
+  &#125;
+  <span class="hljs-keyword">if</span> (root.right) &#123;
+    res.push(root.right.val)
+  &#125;
+  res = res.concat(subFindVal(root.left) || [])
+  res = res.concat(subFindVal(root.right) || [])
+  <span class="hljs-keyword">return</span> res
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PrintFromTopToBottom</span>(<span class="hljs-params">root</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> res = [],
+    queue = []
+  <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> res
+  queue.push(root)
+  <span class="hljs-keyword">while</span> (queue.length) &#123;
+    <span class="hljs-keyword">let</span> t = queue[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">if</span> (t.left) queue.push(t.left)
+    <span class="hljs-keyword">if</span> (t.right) queue.push(t.right)
+    res.push(queue.shift())
+  &#125;
+  <span class="hljs-keyword">return</span> res
+&#125;</code></pre>
 
 
             </div>
