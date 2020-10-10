@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-10-08 22:25:23
+                  本文最后更新于：2020-10-10 21:41:00
                 
               </p>
             
@@ -255,7 +255,51 @@ right = <span class="hljs-number">400</span> - <span class="hljs-number">300</sp
 left = <span class="hljs-number">300</span> + <span class="hljs-number">100</span> * <span class="hljs-number">1</span> / ( <span class="hljs-number">1</span> + <span class="hljs-number">2</span>) = <span class="hljs-number">333.33</span>
 right = <span class="hljs-number">200</span> + <span class="hljs-number">100</span> * <span class="hljs-number">2</span> / ( <span class="hljs-number">1</span> + <span class="hljs-number">2</span>) = <span class="hljs-number">266.67</span></code></pre>
 
-<h3 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h3>
+<h3 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h3><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;square&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;block&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+// 方式1
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+<span class="css"><span class="hljs-selector-class">.square</span> &#123;</span>
+  display: flex;
+  justify-content: center;
+  align-items: center;
+&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+
+// 方式2
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+<span class="css"><span class="hljs-selector-class">.square</span> &#123;</span>
+	position: relative;
+&#125;
+<span class="css"><span class="hljs-selector-class">.block</span> &#123;</span>
+  position: absolute;
+  width: 120px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -60px;
+&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+
+// 方式3
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+<span class="css"><span class="hljs-selector-class">.square</span> &#123;</span>
+	position: relative;
+&#125;
+<span class="css"><span class="hljs-selector-class">.block</span> &#123;</span>
+  position: absolute;
+  width: 120px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre>
+
+
             </div>
             <hr>
             <div>

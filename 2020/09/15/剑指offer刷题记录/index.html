@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-10-09 23:29:59
+                  本文最后更新于：2020-10-10 14:16:42
                 
               </p>
             
@@ -644,6 +644,67 @@
     <span class="hljs-keyword">if</span> (t.left) queue.push(t.left)
     <span class="hljs-keyword">if</span> (t.right) queue.push(t.right)
     res.push(queue.shift())
+  &#125;
+  <span class="hljs-keyword">return</span> res
+&#125;</code></pre>
+
+<h3 id="二叉搜索树的后序遍历序列"><a href="#二叉搜索树的后序遍历序列" class="headerlink" title="二叉搜索树的后序遍历序列"></a>二叉搜索树的后序遍历序列</h3><blockquote>
+<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则返回true,否则返回false。假设输入的数组的任意两个数字都互不相同。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">VerifySquenceOfBST</span>(<span class="hljs-params">sequence</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (sequence.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">return</span> subVSO(sequence)
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subVSO</span>(<span class="hljs-params">sequence</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> len = sequence.length
+  <span class="hljs-keyword">if</span> (len &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">let</span> root = sequence[len - <span class="hljs-number">1</span>]
+  <span class="hljs-keyword">let</span> leftIndex = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i++) &#123;
+    <span class="hljs-keyword">if</span> (sequence[i] &gt; root) &#123;
+      <span class="hljs-keyword">break</span>
+    &#125;
+    leftIndex++
+  &#125;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = leftIndex; i &lt; len - <span class="hljs-number">1</span>; i++) &#123;
+    <span class="hljs-keyword">if</span> (sequence[i] &lt; root) &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> (
+    subVSO(sequence.slice(<span class="hljs-number">0</span>, leftIndex)) &amp;&amp;
+    subVSO(sequence.slice(leftIndex, len - <span class="hljs-number">1</span>))
+  )
+&#125;</code></pre>
+
+<h3 id="二叉树中和为某一值的路径"><a href="#二叉树中和为某一值的路径" class="headerlink" title="二叉树中和为某一值的路径"></a>二叉树中和为某一值的路径</h3><blockquote>
+<p>输入一颗二叉树的根节点和一个整数，按字典序打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FindPath</span>(<span class="hljs-params">root, expectNumber</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> arr = [],
+    res = []
+  <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> res
+  <span class="hljs-keyword">return</span> subFind(root, expectNumber, arr, res)
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subFind</span>(<span class="hljs-params">root, expectNumber, arr, res</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (!root.left &amp;&amp; !root.right) &#123;
+    <span class="hljs-keyword">if</span> (root.val === expectNumber) &#123;
+      arr.push(root.val)
+      res.push(arr)
+    &#125;
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    <span class="hljs-keyword">let</span> leftArr = arr.concat(),
+      rightArr = arr.concat()
+    <span class="hljs-keyword">if</span> (root.val &lt; expectNumber) &#123;
+      <span class="hljs-keyword">if</span> (root.left) &#123;
+        leftArr.push(root.val)
+        subFind(root.left, expectNumber - root.val, leftArr, res)
+      &#125;
+      <span class="hljs-keyword">if</span> (root.right) &#123;
+        rightArr.push(root.val)
+        subFind(root.right, expectNumber - root.val, rightArr, res)
+      &#125;
+    &#125;
   &#125;
   <span class="hljs-keyword">return</span> res
 &#125;</code></pre>
