@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-10-10 14:16:42
+                  本文最后更新于：2020-10-11 14:53:11
                 
               </p>
             
@@ -707,6 +707,109 @@
     &#125;
   &#125;
   <span class="hljs-keyword">return</span> res
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FindPath</span>(<span class="hljs-params">root, expectNumber</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> arr = [],
+    res = []
+  <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> res
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subFind</span>(<span class="hljs-params">root, expectNumber</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (!root.left &amp;&amp; !root.right) &#123;
+      <span class="hljs-keyword">if</span> (root.val === expectNumber) &#123;
+        arr.push(root.val)
+        res.push(arr)
+      &#125;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-keyword">if</span> (root.val &lt; expectNumber) &#123;
+        arr.push(root.val)
+        <span class="hljs-keyword">if</span> (root.left) &#123;
+          subFind(root.left, expectNumber - root.val)
+        &#125;
+        <span class="hljs-keyword">if</span> (root.right) &#123;
+          arr = arr.slice(<span class="hljs-number">0</span>, arr.indexOf(root.val) + <span class="hljs-number">1</span>)
+          subFind(root.right, expectNumber - root.val)
+        &#125;
+      &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> res
+  &#125;
+  <span class="hljs-keyword">return</span> subFind(root, expectNumber)
+&#125;</code></pre>
+
+<h3 id="负责链表的复制"><a href="#负责链表的复制" class="headerlink" title="负责链表的复制"></a>负责链表的复制</h3><blockquote>
+<p>输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针random指向一个随机节点），请对此链表进行深拷贝，并返回拷贝后的头结点。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">RandomListNode</span>(<span class="hljs-params">x</span>) </span>&#123;
+  <span class="hljs-built_in">this</span>.label = x
+  <span class="hljs-built_in">this</span>.next = <span class="hljs-literal">null</span>
+  <span class="hljs-built_in">this</span>.random = <span class="hljs-literal">null</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Clone</span>(<span class="hljs-params">pHead</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (!pHead) <span class="hljs-keyword">return</span>
+  <span class="hljs-keyword">let</span> tempHead = pHead
+  <span class="hljs-keyword">let</span> newHead = <span class="hljs-keyword">new</span> RandomListNode(<span class="hljs-number">0</span>)
+  <span class="hljs-keyword">let</span> tempNewHead = newHead,
+    temp2NewHead = newHead,
+    res = newHead
+  <span class="hljs-keyword">let</span> labelArr = []
+  <span class="hljs-keyword">while</span> (pHead) &#123;
+    labelArr.push(pHead.label)
+    newHead.label = pHead.label
+    <span class="hljs-keyword">if</span> (pHead.next) &#123;
+      newHead.next = <span class="hljs-keyword">new</span> RandomListNode(<span class="hljs-number">0</span>)
+      newHead = newHead.next
+    &#125;
+    pHead = pHead.next
+  &#125;
+  <span class="hljs-keyword">while</span> (tempHead) &#123;
+    <span class="hljs-keyword">if</span> (tempHead.random) &#123;
+      <span class="hljs-keyword">let</span> index = labelArr.indexOf(tempHead.random.label)
+      <span class="hljs-keyword">let</span> head = tempNewHead
+      <span class="hljs-keyword">while</span> (index--) &#123;
+        head = head.next
+      &#125;
+      temp2NewHead.random = head
+    &#125;
+    tempHead = tempHead.next
+    temp2NewHead = temp2NewHead.next
+  &#125;
+  <span class="hljs-keyword">return</span> res
+&#125;</code></pre>
+
+<h3 id="二叉搜索树和双向链表"><a href="#二叉搜索树和双向链表" class="headerlink" title="二叉搜索树和双向链表"></a>二叉搜索树和双向链表</h3><blockquote>
+<p>输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Convert</span>(<span class="hljs-params">pRootOfTree</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (!pRootOfTree) <span class="hljs-keyword">return</span>
+  <span class="hljs-keyword">let</span> valArr = []
+  LDR(pRootOfTree, valArr)
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; valArr.length - <span class="hljs-number">1</span>; i++) &#123;
+    valArr[i].right = valArr[i + <span class="hljs-number">1</span>]
+    valArr[i + <span class="hljs-number">1</span>].left = valArr[i]
+  &#125;
+  <span class="hljs-keyword">return</span> valArr[<span class="hljs-number">0</span>]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LDR</span>(<span class="hljs-params">root, arr</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (root.left) LDR(root.left, arr)
+  arr.push(root)
+  <span class="hljs-keyword">if</span> (root.right) LDR(root.right, arr)
+  <span class="hljs-keyword">return</span> arr
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Convert</span>(<span class="hljs-params">pRootOfTree</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> head = <span class="hljs-literal">null</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subConvert</span>(<span class="hljs-params">pRootOfTree</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (!pRootOfTree) <span class="hljs-keyword">return</span>
+    subConvert(pRootOfTree.right)
+    <span class="hljs-keyword">if</span> (head) &#123;
+      pRootOfTree.right = head
+      head.left = pRootOfTree
+    &#125;
+    head = pRootOfTree
+    subConvert(pRootOfTree.left)
+    <span class="hljs-keyword">return</span> head
+  &#125;
+  <span class="hljs-keyword">return</span> subConvert(pRootOfTree)
 &#125;</code></pre>
 
 

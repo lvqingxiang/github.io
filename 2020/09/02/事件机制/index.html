@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-12 18:02:14
+                  本文最后更新于：2020-10-11 22:49:47
                 
               </p>
             
@@ -229,7 +229,9 @@
               <p><code>JavaScript</code>引擎负责处理执行<code>JavaScript</code>程序，<code>JavaScript</code>为单线程，依靠任务队列进行代码的执行，所以<code>JS</code>引擎会一直等待着任务队列中任务的到来，并对任务进行处理。</p>
 <p><code>JavaScript</code>只在一个线程上执行，但<code>JS</code>引擎有多个线程。执行<code>JS</code>脚本的用于只有一个线程，被称为主线程，引擎的其他线程协助配合。</p>
 <p>任务分为同步任务和异步任务。遵循事件循环<code>Event Loop</code>机制。同步任务都在主线程上执行，形成执行栈，异步任务进入任务(消息)队列。一个事件循环中可以有多个任务队列。一个任务队列是一系列有序任务的集合。每个任务都有任务源<code>task sourece</code>，相同任务源的任务在同一任务队列，不同任务源的任务在不同任务队列。</p>
-<p>任务队列分为宏任务(<code>macrotask</code>)和微任务(<code>microtask</code>)。宏任务具体分为：<code>setTimeout</code>/ <code>setInterval</code>/ <code>ajax</code> /<code>dom</code>操作/<code>IO</code>/<code>&lt;script&gt;整体代码&lt;/script&gt;</code>/<code>UI</code>交互，微任务具体分为：<code>process.nextTick</code>/<code>Promise.then/Promise.catch/MutationObserver</code>。</p>
+<p>任务队列分为宏任务(<code>macrotask</code>)和微任务(<code>microtask</code>)。</p>
+<p>宏任务具体分为：<code>setTimeout</code>/ <code>setInterval</code>/<code>setImmediate</code>/ <code>ajax</code> /<code>dom</code>操作/<code>IO</code>/<code>&lt;script&gt;脚本&lt;/script&gt;</code>/<code>postMessage</code>/<code>MessageChannel</code>/<code>UI-render</code>。</p>
+<p>微任务具体分为：<code>process.nextTick</code>/<code>Promise.then/Promise.catch/MutationObserver</code>。</p>
 <p>宏任务队列为<code>Set</code>集合，即存在多个宏任务队列，微任务队列只有一个。</p>
 <p><code>Promise</code>构造函数参数(<code>new Promise</code>)将会在执行栈中立即执行。</p>
 <center> 
@@ -245,8 +247,11 @@
     box-shadow: 0 0px 15px #2f4154;
   }
 </style>
-
-
+<h3 id="nextTicks"><a href="#nextTicks" class="headerlink" title="$nextTicks"></a>$nextTicks</h3><p><code>Vue</code>异步更新<code>DOM</code>，在侦听到数据变化后，开启异步队列，并缓冲同一事件循环中发生的所有数据变更。</p>
+<p>延迟调用优先级为<code>Promise-&gt;setImmediate-&gt;MessageChannel-&gt;setTimeout</code>。</p>
+<p>如果使用<code>Promise</code>，即为微任务，会在当前事件循环数据变更完成，<code>DOM</code>更新完成后，调用<code>nextTick</code>中的延迟函数<code>callback</code>，在当前事件循环中执行。</p>
+<p>否则，即为宏任务，而宏任务将在下一次事件循环中被执行。相比于<code>Promise</code>，将多一次<code>UI-render</code>。</p>
+<h3 id="响应式更新"><a href="#响应式更新" class="headerlink" title="响应式更新"></a>响应式更新</h3>
             </div>
             <hr>
             <div>
