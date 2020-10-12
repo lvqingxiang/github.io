@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-10-11 14:53:11
+                  本文最后更新于：2020-10-12 23:10:57
                 
               </p>
             
@@ -810,6 +810,62 @@
     <span class="hljs-keyword">return</span> head
   &#125;
   <span class="hljs-keyword">return</span> subConvert(pRootOfTree)
+&#125;</code></pre>
+
+<h3 id="字符串的排列"><a href="#字符串的排列" class="headerlink" title="字符串的排列"></a>字符串的排列</h3><blockquote>
+<p>输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则按字典序打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Permutation</span>(<span class="hljs-params">str</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> arr = []
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; str.length; i++) &#123;
+    <span class="hljs-keyword">if</span> (arr.length === <span class="hljs-number">0</span>) &#123;
+      arr.push(str[i])
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[arr.length - <span class="hljs-number">1</span>] === str[i]) &#123;
+      arr[arr.length - <span class="hljs-number">1</span>] += str[i]
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-keyword">let</span> tempStr = arr[arr.length - <span class="hljs-number">1</span>]
+      <span class="hljs-keyword">let</span> lastStr = tempStr[tempStr.length - <span class="hljs-number">1</span>]
+      <span class="hljs-keyword">if</span> (lastStr === str[i]) &#123;
+        arr[arr.length - <span class="hljs-number">1</span>] += str[i]
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        arr.push(str[i])
+      &#125;
+    &#125;
+  &#125;
+  arr.sort()
+  <span class="hljs-keyword">return</span> getStrArr(arr)
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getStrArr</span>(<span class="hljs-params">arr</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;&#x27;</span>
+  <span class="hljs-keyword">let</span> res = []
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subGetStrArr</span>(<span class="hljs-params">arr</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (arr.length === <span class="hljs-number">1</span>) &#123;
+      str += arr[<span class="hljs-number">0</span>]
+      res.push(str)
+      <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;
+      <span class="hljs-keyword">let</span> tempArr = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(arr))
+      <span class="hljs-keyword">let</span> curStr = arr[i]
+      <span class="hljs-keyword">if</span> (curStr.length === <span class="hljs-number">1</span>) &#123;
+        str += curStr
+        tempArr.splice(i, <span class="hljs-number">1</span>)
+        subGetStrArr(tempArr)
+        str = str.slice(<span class="hljs-number">0</span>, str.lastIndexOf(arr[i]))
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-keyword">const</span> len = curStr.length - <span class="hljs-number">1</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; len; j++) &#123;
+          <span class="hljs-keyword">let</span> newStr = curStr.slice(j, len)
+          str += curStr[j]
+          tempArr.splice(i, <span class="hljs-number">1</span>, newStr)
+          subGetStrArr(tempArr)
+          str = str.slice(<span class="hljs-number">0</span>, str.lastIndexOf(curStr[j]))
+        &#125;
+      &#125;
+    &#125;
+  &#125;
+  subGetStrArr(arr)
+  <span class="hljs-keyword">return</span> res
 &#125;</code></pre>
 
 
