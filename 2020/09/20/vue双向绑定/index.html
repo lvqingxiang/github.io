@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-09-22 22:56:40
+                  本文最后更新于：2020-10-24 21:23:26
                 
               </p>
             
@@ -396,14 +396,16 @@ Compile.prototype = &#123;
   &#125;,
 &#125;</code></pre>
 
-<h3 id="Vue3"><a href="#Vue3" class="headerlink" title="Vue3"></a>Vue3</h3><style>
+<h3 id="Vue3"><a href="#Vue3" class="headerlink" title="Vue3"></a>Vue3</h3><p><code>defineProperty</code>挟持的是对象的属性，当对象属性新增时，需要重新遍历对象，对新增属性再使用<code>defineProperty</code>进行劫持。<code>defineProperty</code>无法监控到数组下标的变化，导致通过数组下标添加元素，不能实时响应，但<code>push/pop/shift/unshift/splice/sort/reverse</code>可以监听。</p>
+<p><code>Proxy</code>直接监听对象，而不是对象属性，不需要遍历操作，并返回一个新对象。<code>Proxy</code>还可以代理数组，还可以代理动态增加的属性。</p>
+<p><code>Proxy</code>返回新对象，可以直接操作新对象达到目的，<code>defineProperty</code>只能遍历对象属性直接修改。</p>
+<p><code>Proxy</code>多达13种拦截操作，例如<code>get/set/has...</code></p>
+<style>
   img:hover {
     border-radius: 0.3125em; 
     box-shadow: 0 0px 15px #2f4154;
   }
 </style>
-
-
             </div>
             <hr>
             <div>

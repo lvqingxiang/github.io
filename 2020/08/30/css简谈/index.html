@@ -223,7 +223,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-10-11 20:01:45
+                  本文最后更新于：2020-10-20 23:11:58
                 
               </p>
             
@@ -725,7 +725,39 @@ right = <span class="hljs-number">200</span> + <span class="hljs-number">100</sp
     <td></td>
 </table>
 
-<h4 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h4>
+<h4 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h4><h3 id="移动端边框1px适配"><a href="#移动端边框1px适配" class="headerlink" title="移动端边框1px适配"></a>移动端边框1px适配</h3><p>适配问题与<code>window.devicePixelRatio</code>有关，<code>window.devicePixelRatio = physical-px(物理像素) / css-px(css像素)</code>。</p>
+<p>当物理像素不变，<code>dpr</code>为2时，<code>css-px</code>即为<code>0.5px</code>，当<code>dpr</code>为1时，<code>css-px</code>即为<code>1px</code>。</p>
+<pre><code class="hljs js">.border &#123; <span class="hljs-attr">border</span>: <span class="hljs-number">1</span>px solid red &#125;
+@media screen and (-webkit-min-device-pixel-radio: <span class="hljs-number">2</span>) &#123;
+  border: <span class="hljs-number">0.5</span>px solid red
+&#125;
+@media screen and (-webkit-min-device-pixel-radio: <span class="hljs-number">3</span>) &#123;
+  border: <span class="hljs-number">0.33</span>px solid red
+&#125;
+
+@media screen and (-webkit-min-device-pixel-radio: <span class="hljs-number">2</span>) &#123;
+  border: <span class="hljs-number">1</span>px solid transparent
+  border-image: url(border.png) <span class="hljs-number">2</span> repeat
+&#125;
+
+.border &#123;
+  position: relative;
+  border: none;
+&#125;
+.border:after &#123;
+  position: absolute;
+  height: <span class="hljs-number">1</span>px;
+  width: <span class="hljs-number">100</span>%;
+  transform: scaleY(<span class="hljs-number">0.5</span>);
+&#125;</code></pre>
+
+
+
+
+
+
+
+
             </div>
             <hr>
             <div>
