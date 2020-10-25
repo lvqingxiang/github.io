@@ -223,7 +223,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-10-20 23:11:58
+                  本文最后更新于：2020-10-25 22:02:04
                 
               </p>
             
@@ -616,7 +616,7 @@
 <p><code>flex-flow</code>：<code>&lt;flex-direction&gt; || &lt;flex-wrap&gt;</code></p>
 <p><code>justify-content</code>：<code>flex-start➡️/center🀄️/flex-end⬅️/space-between/space-around</code></p>
 <p><code>align-items</code>：<code>flex-start/center/flex-end/baseline/stretch</code></p>
-<p><code>flex-grow</code>：<code>&lt;Integer&gt;</code>，放大比例，默认<code>0</code>，不放大。</p>
+<p><code>flex-grow</code>：<code>&lt;number&gt;</code>，放大比例，默认<code>0</code>，不放大。</p>
 <p><code>flex-shrink</code>：<code>&lt;number&gt;</code>，缩小比例，默认<code>1</code>，会缩小。</p>
 <p><code>flex-basis</code>：<code>&lt;length&gt; || auto</code>，默认基数大小，按照该属性计算是否有多余空间用于放大缩小。</p>
 <p><code>flex</code>：<code>none || [ &lt;flex-grow&gt; &lt;flex-shrink&gt;? || &lt;flex-basis&gt; ]</code></p>
@@ -624,7 +624,29 @@
 <p><code>flex: none === flex: 0 0 auto</code></p>
 <p><code>flex: initial === flex: 0 1 auto</code></p>
 <p><code>flex: 1 === flex: 1 1 0%</code></p>
-<p><code>align-self</code>：<code>auto/flex-start/flex-end/center/baseline/stretch</code>单个项目的对齐方式 **</p>
+<p><code>align-self</code>：<code>auto/flex-start/flex-end/center/baseline/stretch</code>单个项目的对齐方式  </p>
+<pre><code class="hljs js"><span class="hljs-comment">// 非负数字:n1,n2; 长度/百分比: L</span>
+flex: n1; = &#123; 
+  flex-grow: n1;
+  flex-shrink: <span class="hljs-number">1</span>;
+  flex-basis: <span class="hljs-number">0</span>%;
+&#125;
+flex: n1 n2; = &#123;
+  flex-grow: n1;
+  flex-shrink: n2;
+  flex-basis: <span class="hljs-number">0</span>%;
+&#125;
+flex: L; = &#123;
+  flex-grow: <span class="hljs-number">1</span>;
+  flex-shrink: <span class="hljs-number">1</span>;
+  flex-basis: L;
+&#125;
+flex: n1 L; = &#123;
+  flex-grow: n1;
+  flex-shrink: <span class="hljs-number">1</span>;
+  flex-basis: L;
+&#125;</code></pre>
+
 <h4 id="常规计算"><a href="#常规计算" class="headerlink" title="常规计算"></a>常规计算</h4><blockquote>
 <p>父元素600px，left条件：flex: 1 2 500px，right条件：flex: 2 1 400px，left/right实际长度为？</p>
 </blockquote>
@@ -751,13 +773,7 @@ right = <span class="hljs-number">200</span> + <span class="hljs-number">100</sp
   transform: scaleY(<span class="hljs-number">0.5</span>);
 &#125;</code></pre>
 
-
-
-
-
-
-
-
+<h3 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h3>
             </div>
             <hr>
             <div>

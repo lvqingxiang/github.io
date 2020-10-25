@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-10-24 10:19:26
+                  本文最后更新于：2020-10-25 13:40:43
                 
               </p>
             
@@ -1193,6 +1193,33 @@
     &#125;
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.max(leftDepth, rightDepth)
   &#125;
+&#125;</code></pre>
+
+<h3 id="和为S的两个数字"><a href="#和为S的两个数字" class="headerlink" title="和为S的两个数字"></a>和为S的两个数字</h3><blockquote>
+<p>输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FindNumbersWithSum</span>(<span class="hljs-params">array, sum</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> minSum = <span class="hljs-number">0</span>,
+    left = <span class="hljs-number">0</span>,
+    right = array.length - <span class="hljs-number">1</span>,
+    res = []
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = left; i &lt; array.length; i++) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i + <span class="hljs-number">1</span>; j &lt;= right; j++) &#123;
+      <span class="hljs-keyword">if</span> (array[i] + array[j] === sum) &#123;
+        <span class="hljs-keyword">if</span> (minSum === <span class="hljs-number">0</span> || array[i] * array[j] &lt; minSum) &#123;
+          <span class="hljs-keyword">if</span> (array[i] * array[j] &lt; minSum) res = []
+          res.push(array[i], array[j])
+          minSum = array[i] * array[j]
+        &#125;
+        left = i
+        right = j
+        i = left++
+        j = right--
+        <span class="hljs-keyword">break</span>
+      &#125;
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> res
 &#125;</code></pre>
 
 
