@@ -17,10 +17,20 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>归档 - QX97</title>
+  <title>位运算 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +53,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 40vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -151,9 +161,40 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                归档
+                位运算
               
             </span>
+
+            
+              
+
+<div class="mt-1">
+  
+
+             <div class="post-meta mr-2">
+                
+                  <div>
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+                    
+                  </div>
+                
+              </div>
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -166,91 +207,125 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 17 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/09/20/vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">双向绑定</span>
-      <time style="float: right;">09-20</time>
-    </a>
-  
-    
-    <a href="/2020/09/15/%E5%89%91%E6%8C%87offer%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">剑指offer刷题记录</span>
-      <time style="float: right;">09-15</time>
-    </a>
-  
-    
-    <a href="/2020/09/14/react%E9%A1%B9%E7%9B%AE/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">React项目初学</span>
-      <time style="float: right;">09-14</time>
-    </a>
-  
-    
-    <a href="/2020/09/13/web/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">页面渲染构建</span>
-      <time style="float: right;">09-13</time>
-    </a>
-  
-    
-    <a href="/2020/09/08/vue/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vue杂叙</span>
-      <time style="float: right;">09-08</time>
-    </a>
-  
-    
-    <a href="/2020/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">CSS选择器</span>
-      <time style="float: right;">09-07</time>
-    </a>
-  
-    
-    <a href="/2020/09/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">作用域/执行上下文</span>
-      <time style="float: right;">09-06</time>
-    </a>
-  
-    
-    <a href="/2020/09/05/ES5VSES6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">ES5 VS ES6</span>
-      <time style="float: right;">09-05</time>
-    </a>
-  
-    
-    <a href="/2020/09/02/%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">事件机制</span>
-      <time style="float: right;">09-02</time>
-    </a>
-  
-    
-    <a href="/2020/09/01/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">深浅拷贝</span>
-      <time style="float: right;">09-01</time>
-    </a>
-  
-</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="font-size: 2rem;">位运算</h1>
+            
+              <p class="new-note">
+                
+                  本文最后更新于：2020-11-01 22:13:17
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h3 id="判断奇偶"><a href="#判断奇偶" class="headerlink" title="判断奇偶"></a>判断奇偶</h3><p>根据最末位是<code>0</code>还是<code>1</code>来决定，<code>0</code>则为偶数，<code>1</code>则为奇数。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">if</span> (a &amp; <span class="hljs-number">1</span>) &#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;a 为奇数&#x27;</span>)
+&#125; <span class="hljs-keyword">else</span> &#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;a 为偶数&#x27;</span>)
+&#125;</code></pre>
+
+<h3 id="交换数值"><a href="#交换数值" class="headerlink" title="交换数值"></a>交换数值</h3><p>实现不借助第三方变量的方式交换两个数</p>
+<pre><code class="hljs js">a ^= b
+b ^= a
+a ^= b</code></pre>
+
+<h3 id="变换正负"><a href="#变换正负" class="headerlink" title="变换正负"></a>变换正负</h3><p>正数的二进制表示为原码，负数的二进制表示为补码。对二进制数取反<code>+ 1</code>即可变换符号</p>
+<pre><code class="hljs js">b = ~a + <span class="hljs-number">1</span></code></pre>
+
+<h3 id="获取绝对值"><a href="#获取绝对值" class="headerlink" title="获取绝对值"></a>获取绝对值</h3><p>任何数和<code>0</code>异或不变，和<code>-1</code>异或相当于取反。若<code>sign</code>为<code>-1</code>则<code>- sign</code>即为<code>+ 1</code></p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> sign = a &gt;&gt; <span class="hljs-number">31</span> <span class="hljs-comment">//正数步0，sign=0；负数补1，sign=-1</span>
+<span class="hljs-keyword">return</span> sign &gt;= <span class="hljs-number">0</span> ? a : ~a + <span class="hljs-number">1</span> <span class="hljs-comment">// 第一种</span>
+<span class="hljs-keyword">return</span> (a ^ sign) - sign <span class="hljs-comment">// 第二种</span></code></pre>
 
 
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/20/vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/">
+                        <span class="hidden-mobile">双向绑定</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'lvqingxiang/lvqingxiang.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><image src="/img/list.jpg" style="width: 1.5em; height: 1.5em;">
+&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -443,10 +518,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2020/09/index.html');
+          var target = decodeURI('/2020/11/01/%E4%BD%8D%E8%BF%90%E7%AE%97/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -508,13 +583,67 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
 
 
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
