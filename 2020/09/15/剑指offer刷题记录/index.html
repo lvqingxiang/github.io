@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-11-01 22:12:46
+                  本文最后更新于：2020-11-06 20:57:08
                 
               </p>
             
@@ -1328,11 +1328,171 @@
   <span class="hljs-keyword">return</span> res * mul
 &#125;</code></pre>
 
+<h3 id="构建乘积数组"><a href="#构建乘积数组" class="headerlink" title="构建乘积数组"></a>构建乘积数组</h3><blockquote>
+<p>给定一个数组A[0,1,…,n-1],请构建一个数组B[0,1,…,n-1],其中B中的元素B[i]=A[0]<em>A[1]</em>…*A[i-1]<em>A[i+1]</em>…*A[n-1]。不能使用除法。（注意：规定B[0] = A[1] * A[2] * … * A[n-1]，B[n-1] = A[0] * A[1] * … * A[n-2];）</p>
+<p>对于A长度为1的情况，B无意义，故而无法构建，因此该情况不会存在。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiply</span>(<span class="hljs-params">array</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> res = []
+  <span class="hljs-keyword">const</span> len = array.length
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;
+    res[i] = getResult(<span class="hljs-number">0</span>, i) * getResult(i + <span class="hljs-number">1</span>, len)
+  &#125;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getResult</span>(<span class="hljs-params">start, end</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> result = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = start; i &lt; end; i++) &#123;
+      result *= array[i]
+    &#125;
+    <span class="hljs-keyword">return</span> result
+  &#125;
+  <span class="hljs-keyword">return</span> res
+&#125;</code></pre>
+
 <h3 id="表示数值的字符串"><a href="#表示数值的字符串" class="headerlink" title="表示数值的字符串"></a>表示数值的字符串</h3><blockquote>
 <p>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串”+100”,”5e2”,”-123”,”3.1416”和”-1E-16”都表示数值。 但是”12e”,”1a3.14”,”1.2.3”,”+-5”和”12e+4.3”都不是。</p>
 </blockquote>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumeric</span>(<span class="hljs-params">s</span>) </span>&#123;
   <span class="hljs-keyword">return</span> <span class="hljs-regexp">/^[+-]?(([0-9]+|[0-9]*\.[0-9]+)?((e|E)[1-9]*[+-]?[0-9]+)*)$/</span>.test(s)
+&#125;</code></pre>
+
+<h3 id="正则表达式匹配"><a href="#正则表达式匹配" class="headerlink" title="正则表达式匹配"></a>正则表达式匹配</h3><blockquote>
+<p>请实现一个函数用来匹配包括’.’和’<em>‘的正则表达式。模式中的字符’.’表示任意一个字符，而’</em>‘表示它前面的字符可以出现任意次（包含0次）。 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”ab<em>ac</em>a”匹配，但是与”aa.a”和”ab*a”均不匹配</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">match</span>(<span class="hljs-params">s, pattern</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>,
+    j = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">for</span> (; i &lt; s.length || j &lt; pattern.length; ) &#123;
+    <span class="hljs-keyword">if</span> (!s[i]) &#123;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> m = j; m &lt; pattern.length; m++) &#123;
+        <span class="hljs-keyword">if</span> (pattern[m] !== <span class="hljs-string">&#x27;*&#x27;</span> &amp;&amp; pattern[m + <span class="hljs-number">1</span>] !== <span class="hljs-string">&#x27;*&#x27;</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+      &#125;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (
+      (pattern[j] === <span class="hljs-string">&#x27;.&#x27;</span> || s[i] === pattern[j]) &amp;&amp;
+      pattern[j + <span class="hljs-number">1</span>] !== <span class="hljs-string">&#x27;*&#x27;</span>
+    ) &#123;
+      i++
+      j++
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (
+      s[i] !== pattern[j] &amp;&amp;
+      pattern[j] !== <span class="hljs-string">&#x27;.&#x27;</span> &amp;&amp;
+      pattern[j + <span class="hljs-number">1</span>] !== <span class="hljs-string">&#x27;*&#x27;</span>
+    ) &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (
+      s[i] !== pattern[j] &amp;&amp;
+      pattern[j] !== <span class="hljs-string">&#x27;.&#x27;</span> &amp;&amp;
+      pattern[j + <span class="hljs-number">1</span>] === <span class="hljs-string">&#x27;*&#x27;</span>
+    ) &#123;
+      j += <span class="hljs-number">2</span>
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (
+      (s[i] === pattern[j] || pattern[j] === <span class="hljs-string">&#x27;.&#x27;</span>) &amp;&amp;
+      pattern[j + <span class="hljs-number">1</span>] === <span class="hljs-string">&#x27;*&#x27;</span>
+    ) &#123;
+      <span class="hljs-keyword">if</span> (pattern[j] !== <span class="hljs-string">&#x27;.&#x27;</span>) &#123;
+        <span class="hljs-keyword">const</span> len = pattern.length - j - <span class="hljs-number">2</span>
+        <span class="hljs-keyword">let</span> lastLen = s.length - i - <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> (lastLen &lt;= len &amp;&amp; lastLen &gt; <span class="hljs-number">0</span>) &#123;
+          i++
+        &#125; <span class="hljs-keyword">else</span> &#123;
+          <span class="hljs-keyword">let</span> last = s.length - len
+          <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k = i; k &lt; last; k++, i++) &#123;
+            <span class="hljs-keyword">if</span> (s[i] !== pattern[j] &amp;&amp; pattern[j] !== <span class="hljs-string">&#x27;.&#x27;</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+          &#125;
+        &#125;
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-keyword">let</span> temp = pattern[j + <span class="hljs-number">2</span>]
+        <span class="hljs-keyword">if</span> (!temp) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> r = i; r &lt; s.length; r++) &#123;
+          <span class="hljs-keyword">if</span> (s[r] === temp) &#123;
+            i = r
+            <span class="hljs-keyword">break</span>
+          &#125;
+        &#125;
+      &#125;
+      j += <span class="hljs-number">2</span>
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> i === s.length &amp;&amp; j === pattern.length
+&#125;</code></pre>
+
+<h3 id="字符流中第一个不重复的字符"><a href="#字符流中第一个不重复的字符" class="headerlink" title="字符流中第一个不重复的字符"></a>字符流中第一个不重复的字符</h3><blockquote>
+<p>函数用来找出字符流中第一个只出现一次的字符。例如，当从字符流中只读出前两个字符”go”时，第一个只出现一次的字符是”g”。当从该字符流中读出前六个字符“google”时，第一个只出现一次的字符是”l”。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">//Init module if you need</span>
+<span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;&#x27;</span>
+<span class="hljs-keyword">let</span> obj = &#123;&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Init</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-comment">// write code here</span>
+  str = <span class="hljs-string">&#x27;&#x27;</span>
+  obj = &#123;&#125;
+&#125;
+<span class="hljs-comment">//Insert one char from stringstream</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Insert</span>(<span class="hljs-params">ch</span>) </span>&#123;
+  obj[ch] = obj[ch] + <span class="hljs-number">1</span> || <span class="hljs-number">1</span>
+&#125;
+<span class="hljs-comment">//return the first appearence once char in current stringstream</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FirstAppearingOnce</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> obj) &#123;
+    <span class="hljs-keyword">if</span> (obj[i] === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> i
+  &#125;
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;#&#x27;</span>
+&#125;</code></pre>
+
+<h3 id="删除链表中重复的结点"><a href="#删除链表中重复的结点" class="headerlink" title="删除链表中重复的结点"></a>删除链表中重复的结点</h3><blockquote>
+<p>在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为 1-&gt;2-&gt;5</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ListNode</span>(<span class="hljs-params">x</span>) </span>&#123;
+  <span class="hljs-built_in">this</span>.val = x
+  <span class="hljs-built_in">this</span>.next = <span class="hljs-literal">null</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deleteDuplication</span>(<span class="hljs-params">pHead</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> head = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-literal">null</span>)
+  head.next = pHead
+  <span class="hljs-keyword">let</span> cur = pHead,
+    pre = head
+  <span class="hljs-keyword">while</span> (cur) &#123;
+    <span class="hljs-keyword">if</span> (cur.next &amp;&amp; cur.val === cur.next.val) &#123;
+      cur = cur.next
+      <span class="hljs-keyword">while</span> (cur.next &amp;&amp; cur.val === cur.next.val) &#123;
+        cur = cur.next
+      &#125;
+      cur = cur.next
+      pre.next = cur
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      pre = cur
+      cur = cur.next
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> head.next
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ListNode</span>(<span class="hljs-params">x</span>) </span>&#123;
+  <span class="hljs-built_in">this</span>.val = x
+  <span class="hljs-built_in">this</span>.next = <span class="hljs-literal">null</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deleteDuplication</span>(<span class="hljs-params">pHead</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> sameArr = []
+  <span class="hljs-keyword">let</span> totalArr = []
+  <span class="hljs-keyword">let</span> tempHead = pHead
+  <span class="hljs-keyword">let</span> newHead = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-literal">null</span>),
+    newHead2 = newHead
+  <span class="hljs-keyword">while</span> (pHead) &#123;
+    <span class="hljs-keyword">if</span> (totalArr.includes(pHead.val)) &#123;
+      sameArr.push(pHead.val)
+    &#125;
+    totalArr.push(pHead.val)
+    pHead = pHead.next
+  &#125;
+  <span class="hljs-keyword">while</span> (tempHead) &#123;
+    <span class="hljs-keyword">if</span> (!sameArr.includes(tempHead.val)) &#123;
+      newHead.next = tempHead
+      newHead = newHead.next
+    &#125;
+    tempHead = tempHead.next
+  &#125;
+  newHead.next = <span class="hljs-literal">null</span>
+  <span class="hljs-keyword">return</span> newHead2.next
 &#125;</code></pre>
 
 
