@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-11-06 22:35:00
+                  本文最后更新于：2020-11-08 17:30:06
                 
               </p>
             
@@ -274,7 +274,7 @@ a ^= b</code></pre>
 <pre><code class="hljs js">b = ~a + <span class="hljs-number">1</span></code></pre>
 
 <h3 id="获取绝对值"><a href="#获取绝对值" class="headerlink" title="获取绝对值"></a>获取绝对值</h3><p>任何数和<code>0</code>异或不变，和<code>-1</code>异或相当于取反。若<code>sign</code>为<code>-1</code>则<code>- sign</code>即为<code>+ 1</code></p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> sign = a &gt;&gt; <span class="hljs-number">31</span> <span class="hljs-comment">//正数步0，sign=0；负数补1，sign=-1</span>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> sign = a &gt;&gt; <span class="hljs-number">31</span> <span class="hljs-comment">//正数补0，sign=0；负数补1，sign=-1</span>
 <span class="hljs-keyword">return</span> sign &gt;= <span class="hljs-number">0</span> ? a : ~a + <span class="hljs-number">1</span> <span class="hljs-comment">// 第一种</span>
 <span class="hljs-keyword">return</span> (a ^ sign) - sign <span class="hljs-comment">// 第二种</span></code></pre>
 
@@ -310,6 +310,12 @@ a ^= b</code></pre>
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2020/11/08/webpack/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">webpack</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

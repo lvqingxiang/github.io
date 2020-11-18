@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-11-06 20:57:08
+                  本文最后更新于：2020-11-18 21:00:26
                 
               </p>
             
@@ -263,6 +263,22 @@
     i++
   &#125;
   <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+&#125;
+
+<span class="hljs-comment">//20201115 &lt;查找&gt;&lt;数组&gt;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Find</span>(<span class="hljs-params">target, array</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> rows = array.length
+  <span class="hljs-keyword">if</span> (rows === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">const</span> cols = array[<span class="hljs-number">0</span>].length
+  <span class="hljs-keyword">if</span> (cols === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">let</span> r = <span class="hljs-number">0</span>,
+    c = cols - <span class="hljs-number">1</span>
+  <span class="hljs-keyword">while</span> (r &lt; rows &amp;&amp; c &gt;= <span class="hljs-number">0</span>) &#123;
+    <span class="hljs-keyword">if</span> (target === array[r][c]) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (target &gt; array[r][c]) r++
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (target &lt; array[r][c]) c--
+  &#125;
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
 &#125;</code></pre>
 
 <h3 id="替换空格"><a href="#替换空格" class="headerlink" title="替换空格"></a>替换空格</h3><blockquote>
@@ -271,6 +287,29 @@
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replaceSpace</span>(<span class="hljs-params">str</span>)</span>
 <span class="hljs-function"></span>&#123;
     <span class="hljs-keyword">return</span> str.replace(<span class="hljs-regexp">/\s/g</span>, <span class="hljs-string">&#x27;%20&#x27;</span>)
+&#125;
+
+<span class="hljs-comment">// 20201115 &lt;字符串&gt;&lt;逆向遍历&gt;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replaceSpace</span>(<span class="hljs-params">str</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (!str) <span class="hljs-keyword">return</span> str
+  <span class="hljs-keyword">const</span> strLen = str.length
+  <span class="hljs-keyword">let</span> cnt = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; strLen; i++) &#123;
+    <span class="hljs-keyword">if</span> (str[i] === <span class="hljs-string">&#x27; &#x27;</span>) cnt++
+  &#125;
+  <span class="hljs-keyword">if</span> (cnt === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> str
+  <span class="hljs-keyword">let</span> newStrLen = strLen + cnt * <span class="hljs-number">2</span>
+  <span class="hljs-keyword">let</span> strArr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(newStrLen).fill(<span class="hljs-literal">null</span>)
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = newStrLen - <span class="hljs-number">1</span>, j = strLen - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span> &amp;&amp; i &gt;= <span class="hljs-number">0</span>; j--) &#123;
+    <span class="hljs-keyword">if</span> (str[j] === <span class="hljs-string">&#x27; &#x27;</span>) &#123;
+      strArr[i--] = <span class="hljs-string">&#x27;0&#x27;</span>
+      strArr[i--] = <span class="hljs-string">&#x27;2&#x27;</span>
+      strArr[i--] = <span class="hljs-string">&#x27;%&#x27;</span>
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      strArr[i--] = str[j]
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> strArr.join(<span class="hljs-string">&#x27;&#x27;</span>)
 &#125;</code></pre>
 
 <h3 id="从尾到头打印链表"><a href="#从尾到头打印链表" class="headerlink" title="从尾到头打印链表"></a>从尾到头打印链表</h3><blockquote>
@@ -296,7 +335,33 @@
         head = head.next
     &#125;
     <span class="hljs-keyword">return</span> result.reverse()
-&#125;</code></pre>
+&#125;
+
+<span class="hljs-comment">// 20201117 &lt;单链表&gt;&lt;递归&gt;&lt;反转链表&gt;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printListFromTailToHead</span>(<span class="hljs-params">head</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> res = []
+  <span class="hljs-keyword">if</span> (!head) <span class="hljs-keyword">return</span> res
+  res = printListFromTailToHead(head.next)
+  res.push(head.val)
+  <span class="hljs-keyword">return</span> res
+&#125; <span class="hljs-comment">// -- 递归方式</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printListFromTailToHead</span>(<span class="hljs-params">head</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> pre = <span class="hljs-literal">null</span>,
+    cur = head,
+    res = []
+  <span class="hljs-keyword">while</span> (head) &#123;
+    cur = head.next
+    head.next = pre
+    pre = head
+    head = cur
+  &#125;
+  <span class="hljs-keyword">while</span> (pre) &#123;
+    res.push(pre.val)
+    pre = pre.next
+  &#125;
+  <span class="hljs-keyword">return</span> res
+&#125; <span class="hljs-comment">// -- 反转链表方式</span></code></pre>
 
 <h3 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a>重建二叉树</h3><blockquote>
 <p>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
@@ -327,6 +392,20 @@
     <span class="hljs-keyword">let</span> newVin = vin.slice(left.length + <span class="hljs-number">1</span>)
     build(newPre, newVin, root.right)
   &#125;
+  <span class="hljs-keyword">return</span> root
+&#125;
+
+<span class="hljs-comment">// 20201117 &lt;树&gt;&lt;递归&gt;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reConstructBinaryTree</span>(<span class="hljs-params">pre, vin</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (pre.length === <span class="hljs-number">0</span> || vin.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+  <span class="hljs-keyword">let</span> rootVal = pre[<span class="hljs-number">0</span>]
+  <span class="hljs-keyword">let</span> index = vin.indexOf(rootVal)
+  <span class="hljs-keyword">let</span> root = <span class="hljs-keyword">new</span> TreeNode(rootVal)
+  root.left = reConstructBinaryTree(
+    pre.slice(<span class="hljs-number">1</span>, index + <span class="hljs-number">1</span>),
+    vin.slice(<span class="hljs-number">0</span>, index)
+  )
+  root.right = reConstructBinaryTree(pre.slice(index + <span class="hljs-number">1</span>), vin.slice(index + <span class="hljs-number">1</span>))
   <span class="hljs-keyword">return</span> root
 &#125;</code></pre>
 
@@ -382,6 +461,25 @@
     minNumberInRotateArray(leftRotateArray),
     minNumberInRotateArray(rightRotateArray)
   )
+&#125;
+
+<span class="hljs-comment">// 20201118 </span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">minNumberInRotateArray</span>(<span class="hljs-params">rotateArray</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (rotateArray.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+  <span class="hljs-keyword">let</span> first = <span class="hljs-number">0</span>,
+    last = rotateArray.length - <span class="hljs-number">1</span>
+  <span class="hljs-keyword">while</span> (first &lt; last) &#123;
+    <span class="hljs-keyword">if</span> (rotateArray[first] &lt; rotateArray[last]) <span class="hljs-keyword">return</span> rotateArray[first]
+    <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor((first + last) / <span class="hljs-number">2</span>)
+    <span class="hljs-keyword">if</span> (rotateArray[mid] &gt; rotateArray[last]) &#123;
+      first = mid + <span class="hljs-number">1</span>
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rotateArray[mid] &lt; rotateArray[last]) &#123;
+      last = mid
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      last--
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> rotateArray[first]
 &#125;</code></pre>
 
 <h3 id="二进制中1的个数"><a href="#二进制中1的个数" class="headerlink" title="二进制中1的个数"></a>二进制中1的个数</h3><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">NumberOf1</span>(<span class="hljs-params">n</span>) </span>&#123;
@@ -613,7 +711,10 @@
   <span class="hljs-keyword">return</span> stack.length === <span class="hljs-number">0</span>
 &#125;</code></pre>
 
-<h3 id="从上往下打印二叉树"><a href="#从上往下打印二叉树" class="headerlink" title="从上往下打印二叉树"></a>从上往下打印二叉树</h3><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PrintFromTopToBottom</span>(<span class="hljs-params">root</span>) </span>&#123;
+<h3 id="从上往下打印二叉树"><a href="#从上往下打印二叉树" class="headerlink" title="从上往下打印二叉树"></a>从上往下打印二叉树</h3><blockquote>
+<p>从上往下打印出二叉树的每个节点，同层节点从左至右打印。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PrintFromTopToBottom</span>(<span class="hljs-params">root</span>) </span>&#123;
   <span class="hljs-keyword">let</span> res = []
   <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> res
   res.push(root.val)
@@ -643,7 +744,7 @@
     <span class="hljs-keyword">let</span> t = queue[<span class="hljs-number">0</span>]
     <span class="hljs-keyword">if</span> (t.left) queue.push(t.left)
     <span class="hljs-keyword">if</span> (t.right) queue.push(t.right)
-    res.push(queue.shift())
+    res.push(queue.shift().val)
   &#125;
   <span class="hljs-keyword">return</span> res
 &#125;</code></pre>
@@ -1493,6 +1594,146 @@
   &#125;
   newHead.next = <span class="hljs-literal">null</span>
   <span class="hljs-keyword">return</span> newHead2.next
+&#125;</code></pre>
+
+<h3 id="二叉树的下一个结点"><a href="#二叉树的下一个结点" class="headerlink" title="二叉树的下一个结点"></a>二叉树的下一个结点</h3><blockquote>
+<p>给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">GetNext</span>(<span class="hljs-params">pNode</span>) </span>&#123;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">findLeft</span>(<span class="hljs-params">root</span>) </span>&#123;
+    <span class="hljs-keyword">while</span> (root) &#123;
+      <span class="hljs-keyword">if</span> (!root.left) <span class="hljs-keyword">return</span> root
+      root = root.left
+    &#125;
+  &#125;
+  <span class="hljs-keyword">if</span> (!pNode.next) &#123;
+    <span class="hljs-keyword">return</span> findLeft(pNode.right)
+  &#125;
+  <span class="hljs-keyword">if</span> (pNode.next &amp;&amp; (pNode.left || pNode.right)) &#123;
+    <span class="hljs-keyword">if</span> (pNode.right) &#123;
+      <span class="hljs-keyword">return</span> pNode.right
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-keyword">return</span> pNode.next
+    &#125;
+  &#125;
+  <span class="hljs-keyword">if</span> (!pNode.left &amp;&amp; !pNode.right) &#123;
+    <span class="hljs-keyword">if</span> (pNode.next.left === pNode) &#123;
+      <span class="hljs-keyword">return</span> pNode.next
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-keyword">if</span> (pNode.next.next.left === pNode.next) <span class="hljs-keyword">return</span> pNode.next.next
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+    &#125;
+  &#125;
+&#125;</code></pre>
+
+<h3 id="对称的二叉树"><a href="#对称的二叉树" class="headerlink" title="对称的二叉树"></a>对称的二叉树</h3><blockquote>
+<p>请实现一个函数，用来判断一棵二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isSymmetrical</span>(<span class="hljs-params">pRoot</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (!pRoot) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">leftAndRight</span>(<span class="hljs-params">leftNode, rightNode</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (!leftNode &amp;&amp; !rightNode) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">if</span> (!leftNode || !rightNode) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    <span class="hljs-keyword">if</span> (leftNode.val !== rightNode.val) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    <span class="hljs-keyword">return</span> (
+      leftAndRight(leftNode.left, rightNode.right) &amp;&amp;
+      leftAndRight(leftNode.right, rightNode.left)
+    )
+  &#125;
+  <span class="hljs-keyword">return</span> leftAndRight(pRoot.left, pRoot.right)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isSymmetrical</span>(<span class="hljs-params">pRoot</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (!pRoot || (!pRoot.left &amp;&amp; !pRoot.right)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">if</span> (!pRoot.left || !pRoot.right || pRoot.left.val !== pRoot.right.val) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  &#125;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">leftAndRight</span>(<span class="hljs-params">leftNode, rightNode</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (leftNode.val !== rightNode.val) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    <span class="hljs-keyword">if</span> (
+      !leftNode.left &amp;&amp;
+      !leftNode.right &amp;&amp;
+      !rightNode.left &amp;&amp;
+      !rightNode.right
+    ) &#123;
+      <span class="hljs-keyword">return</span> leftNode.val === rightNode.val
+    &#125;
+    <span class="hljs-keyword">if</span> (
+      (leftNode.left &amp;&amp; !rightNode.right) ||
+      (!leftNode.right &amp;&amp; rightNode.left) ||
+      (leftNode.right &amp;&amp; !rightNode.left) ||
+      (!leftNode.left &amp;&amp; rightNode.right)
+    ) &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    &#125;
+    <span class="hljs-keyword">let</span> left = <span class="hljs-literal">true</span>,
+      right = <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">if</span> (leftNode.left &amp;&amp; rightNode.right) &#123;
+      left = leftAndRight(leftNode.left, rightNode.right)
+    &#125;
+    <span class="hljs-keyword">if</span> (leftNode.right &amp;&amp; rightNode.left) &#123;
+      right = leftAndRight(leftNode.right, rightNode.left)
+    &#125;
+    <span class="hljs-keyword">return</span> left &amp;&amp; right
+  &#125;
+  <span class="hljs-keyword">return</span> leftAndRight(pRoot.left, pRoot.right)
+&#125;</code></pre>
+
+<h3 id="按之字形顺序打印二叉树"><a href="#按之字形顺序打印二叉树" class="headerlink" title="按之字形顺序打印二叉树"></a>按之字形顺序打印二叉树</h3><blockquote>
+<p>请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Print</span>(<span class="hljs-params">pRoot</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> res = []
+  <span class="hljs-keyword">if</span> (!pRoot) <span class="hljs-keyword">return</span> res
+  <span class="hljs-keyword">let</span> queue = [pRoot]
+  <span class="hljs-keyword">let</span> index = <span class="hljs-number">1</span>
+  <span class="hljs-keyword">while</span> (queue.length &gt; <span class="hljs-number">0</span>) &#123;
+    <span class="hljs-keyword">let</span> len = queue.length
+    <span class="hljs-keyword">let</span> arr = [],
+      tempArr = []
+    <span class="hljs-keyword">while</span> (len--) &#123;
+      <span class="hljs-keyword">let</span> t = queue[<span class="hljs-number">0</span>]
+      <span class="hljs-keyword">if</span> (t.left) queue.push(t.left)
+      <span class="hljs-keyword">if</span> (t.right) queue.push(t.right)
+      tempArr.push(queue.shift().val)
+    &#125;
+    arr = index &amp; <span class="hljs-number">1</span> ? arr.concat(tempArr) : arr.concat(tempArr.reverse())
+    res.push(arr)
+    index++
+  &#125;
+  <span class="hljs-keyword">return</span> res
+&#125;</code></pre>
+
+<h3 id="二叉搜索树的第K个结点"><a href="#二叉搜索树的第K个结点" class="headerlink" title="二叉搜索树的第K个结点"></a>二叉搜索树的第K个结点</h3><blockquote>
+<p>给定一棵二叉搜索树，请找出其中的第k小的结点。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">KthNode</span>(<span class="hljs-params">pRoot, k</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> index = <span class="hljs-number">1</span>
+  <span class="hljs-keyword">let</span> res = <span class="hljs-literal">null</span>
+  <span class="hljs-keyword">if</span> (!pRoot || k === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> res
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LDR</span>(<span class="hljs-params">root</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (root.left) LDR(root.left)
+    <span class="hljs-keyword">if</span> (index === k) res = root
+    index++
+    <span class="hljs-keyword">if</span> (root.right) LDR(root.right)
+  &#125;
+  LDR(pRoot)
+  <span class="hljs-keyword">return</span> res
+&#125;</code></pre>
+
+<h3 id="滑动窗口的最大值"><a href="#滑动窗口的最大值" class="headerlink" title="滑动窗口的最大值"></a>滑动窗口的最大值</h3><blockquote>
+<p>给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及滑动窗口的大小3，那么一共存在6个滑动窗口，他们的最大值分别为{4,4,6,6,6,5}； 针对数组{2,3,4,2,6,2,5,1}的滑动窗口有以下6个： {[2,3,4],2,6,2,5,1}， {2,[3,4,2],6,2,5,1}， {2,3,[4,2,6],2,5,1}， {2,3,4,[2,6,2],5,1}， {2,3,4,2,[6,2,5],1}， {2,3,4,2,6,[2,5,1]}。</p>
+<p>窗口大于数组长度的时候，返回空</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxInWindows</span>(<span class="hljs-params">num, size</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> res = []
+  <span class="hljs-keyword">if</span> (num.length &lt; size || size === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> res
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = size - <span class="hljs-number">1</span>; j &lt; num.length; i++, j++) &#123;
+    <span class="hljs-keyword">let</span> arr = num.slice(i, j + <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">let</span> max = <span class="hljs-built_in">Math</span>.max(...arr)
+    res.push(max)
+  &#125;
+  <span class="hljs-keyword">return</span> res
 &#125;</code></pre>
 
 
