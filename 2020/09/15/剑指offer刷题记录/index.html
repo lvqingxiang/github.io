@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-11-18 21:00:26
+                  本文最后更新于：2020-11-18 21:32:26
                 
               </p>
             
@@ -480,6 +480,69 @@
     &#125;
   &#125;
   <span class="hljs-keyword">return</span> rotateArray[first]
+&#125;</code></pre>
+
+<h3 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h3><blockquote>
+<p>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。</p>
+<p>n&lt;=39</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// 20201118</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Fibonacci</span>(<span class="hljs-params">n</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> dp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(n + <span class="hljs-number">1</span>).fill(<span class="hljs-number">-1</span>)
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fib</span>(<span class="hljs-params">n</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (n === <span class="hljs-number">0</span> || n === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> n
+    <span class="hljs-keyword">if</span> (dp[n] !== <span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> dp[n]
+    dp[n] = fib(n - <span class="hljs-number">1</span>) + fib(n - <span class="hljs-number">2</span>)
+    <span class="hljs-keyword">return</span> dp[n]
+  &#125;
+  <span class="hljs-keyword">return</span> fib(n)
+&#125; <span class="hljs-comment">// -- 递归栈</span>
+
+<span class="hljs-comment">// 20201118</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Fibonacci</span>(<span class="hljs-params">n</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> dp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(n + <span class="hljs-number">1</span>).fill(<span class="hljs-number">0</span>)
+  dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;
+    dp[i] = dp[i - <span class="hljs-number">1</span>] + dp[i - <span class="hljs-number">2</span>]
+  &#125;
+  <span class="hljs-keyword">return</span> dp[n]
+&#125; <span class="hljs-comment">// -- 动态规划</span></code></pre>
+
+<h3 id="跳台阶"><a href="#跳台阶" class="headerlink" title="跳台阶"></a>跳台阶</h3><blockquote>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jumpFloor</span>(<span class="hljs-params">number</span>)</span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span>(number === <span class="hljs-number">1</span>) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(number === <span class="hljs-number">2</span>) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>
+    &#125;<span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-keyword">return</span> jumpFloor(number - <span class="hljs-number">1</span>) + jumpFloor(number - <span class="hljs-number">2</span>)
+    &#125;
+&#125;</code></pre>
+
+<h3 id="变态跳台阶"><a href="#变态跳台阶" class="headerlink" title="变态跳台阶"></a>变态跳台阶</h3><blockquote>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jumpFloorII</span>(<span class="hljs-params">number</span>)</span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span>(number === <span class="hljs-number">1</span>) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+    &#125;<span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * jumpFloorII(number - <span class="hljs-number">1</span>)
+    &#125;
+&#125;</code></pre>
+
+<h3 id="矩形覆盖"><a href="#矩形覆盖" class="headerlink" title="矩形覆盖"></a>矩形覆盖</h3><blockquote>
+<p>我们可以用2<em>1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2</em>1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rectCover</span>(<span class="hljs-params">number</span>)</span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span>(number === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+    <span class="hljs-keyword">if</span>(number === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+    <span class="hljs-keyword">if</span>(number === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>
+    <span class="hljs-keyword">return</span> rectCover(number - <span class="hljs-number">1</span>) + rectCover(number - <span class="hljs-number">2</span>)
 &#125;</code></pre>
 
 <h3 id="二进制中1的个数"><a href="#二进制中1的个数" class="headerlink" title="二进制中1的个数"></a>二进制中1的个数</h3><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">NumberOf1</span>(<span class="hljs-params">n</span>) </span>&#123;
