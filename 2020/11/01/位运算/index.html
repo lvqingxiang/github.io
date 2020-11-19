@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-11-08 17:30:06
+                  本文最后更新于：2020-11-19 21:26:57
                 
               </p>
             
@@ -286,10 +286,11 @@ a ^= b</code></pre>
 
 <h3 id="高低位交换"><a href="#高低位交换" class="headerlink" title="高低位交换"></a>高低位交换</h3><pre><code class="hljs js">b = (a &lt;&lt; <span class="hljs-number">8</span>) | (a &gt;&gt; <span class="hljs-number">8</span>)</code></pre>
 
-<h3 id="概念速记"><a href="#概念速记" class="headerlink" title="概念速记"></a>概念速记</h3><p>使用<code>x &amp; 1 == 1</code> 判断奇偶数</p>
-<p>两个相同的数异或是0，一个数和0异或的结果是它本身</p>
-<p>使用<code>x ^ y &gt;= 0</code>判断符号是否相同。两个正数或两个负数异或结果为0，一正一负结果为1</p>
-<p><code>n &amp; (n - 1)</code>作用为将<code>n</code>的最右侧的1置为0，因此循环操作，即可获取<code>n</code>的1的个数。<code>n &amp; (n - 1) = 0</code>,则N为2的幂值</p>
+<h3 id="概念速记"><a href="#概念速记" class="headerlink" title="概念速记"></a>概念速记</h3><p>使用<code>x &amp; 1 == 1</code> 判断奇偶数。</p>
+<p>两个相同的数异或是0，一个数和0异或的结果是它本身。</p>
+<p>使用<code>x ^ y &gt;= 0</code>判断符号是否相同。两个正数或两个负数异或结果为0，一正一负结果为1。</p>
+<p><code>n &amp; (n - 1)</code>作用为将<code>n</code>的最右侧的1置为0，因此循环操作，即可获取<code>n</code>的1的个数。</p>
+<p><code>n &amp; (n - 1) = 0</code>,则N为2的幂值。</p>
 
             </div>
             <hr>
