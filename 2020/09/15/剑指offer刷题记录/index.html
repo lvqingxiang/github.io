@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-11-19 21:31:57
+                  本文最后更新于：2020-11-19 21:42:21
                 
               </p>
             
@@ -568,6 +568,24 @@
     n &amp;= n - <span class="hljs-number">1</span>
   &#125;
   <span class="hljs-keyword">return</span> cnt
+&#125;</code></pre>
+
+<h3 id="数值的整数次方"><a href="#数值的整数次方" class="headerlink" title="数值的整数次方"></a>数值的整数次方</h3><blockquote>
+<p>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。</p>
+<p>保证base和exponent不同时为0</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Power</span>(<span class="hljs-params">base, exponent</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> ex = <span class="hljs-built_in">Math</span>.abs(exponent),
+    ret = <span class="hljs-number">1</span>,
+    b = base
+  <span class="hljs-keyword">while</span> (ex) &#123;
+    <span class="hljs-keyword">if</span> (ex &amp; <span class="hljs-number">1</span>) &#123;
+      ret *= b
+    &#125;
+    b *= b
+    ex &gt;&gt;= <span class="hljs-number">1</span>
+  &#125;
+  <span class="hljs-keyword">return</span> exponent &lt; <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> / ret : ret
 &#125;</code></pre>
 
 <h3 id="调整数组顺序使奇数位于偶数前面"><a href="#调整数组顺序使奇数位于偶数前面" class="headerlink" title="调整数组顺序使奇数位于偶数前面"></a>调整数组顺序使奇数位于偶数前面</h3><blockquote>
