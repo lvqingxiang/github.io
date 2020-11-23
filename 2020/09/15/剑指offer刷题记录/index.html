@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-11-19 21:42:21
+                  本文最后更新于：2020-11-23 21:13:58
                 
               </p>
             
@@ -603,6 +603,7 @@
   &#125;
   <span class="hljs-keyword">return</span> [...front, ...back]
 &#125;
+
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reOrderArray</span>(<span class="hljs-params">array</span>) </span>&#123;
   <span class="hljs-keyword">let</span> start = <span class="hljs-number">0</span>
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; array.length; i++) &#123;
@@ -693,7 +694,41 @@
     &#125;
   &#125;
   <span class="hljs-keyword">return</span> newHead
-&#125;</code></pre>
+&#125;
+
+<span class="hljs-comment">// 20201121</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ListNode</span>(<span class="hljs-params">x</span>) </span>&#123;
+  <span class="hljs-built_in">this</span>.val = x
+  <span class="hljs-built_in">this</span>.next = <span class="hljs-literal">null</span>
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Merge</span>(<span class="hljs-params">pHead1, pHead2</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> cur = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">-1</span>),
+    head = cur
+  <span class="hljs-keyword">while</span> (pHead1 &amp;&amp; pHead2) &#123;
+    <span class="hljs-keyword">if</span> (pHead1.val &lt;= pHead2.val) &#123;
+      cur.next = pHead1
+      pHead1 = pHead1.next
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      cur.next = pHead2
+      pHead2 = pHead2.next
+    &#125;
+    cur = cur.next
+  &#125;
+  cur.next = pHead1 ? pHead1 : pHead2
+  <span class="hljs-keyword">return</span> head.next
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Merge</span>(<span class="hljs-params">pHead1, pHead2</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (!pHead1) <span class="hljs-keyword">return</span> pHead2
+  <span class="hljs-keyword">if</span> (!pHead2) <span class="hljs-keyword">return</span> pHead1
+  <span class="hljs-keyword">if</span> (pHead1.val &lt;= pHead2.val) &#123;
+    pHead1.next = Merge(pHead1.next, pHead2)
+    <span class="hljs-keyword">return</span> pHead1
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    pHead2.next = Merge(pHead1, pHead2.next)
+    <span class="hljs-keyword">return</span> pHead2
+  &#125;
+&#125; <span class="hljs-comment">// -- 递归</span></code></pre>
 
 <h3 id="树的子结构"><a href="#树的子结构" class="headerlink" title="树的子结构"></a>树的子结构</h3><blockquote>
 <p>输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）</p>
@@ -714,6 +749,25 @@
       check(pRoot1.right, pRoot2)
     )
   &#125;
+&#125;
+
+<span class="hljs-comment">// 20201121</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">HasSubtree</span>(<span class="hljs-params">pRoot1, pRoot2</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (!pRoot1 || !pRoot2) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">return</span> (
+    dfs(pRoot1, pRoot2) ||
+    HasSubtree(pRoot1.left, pRoot2) ||
+    HasSubtree(pRoot1.right, pRoot2)
+  )
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">pRoot1, pRoot2</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (!pRoot2) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">if</span> (!pRoot1) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">return</span> (
+    pRoot1.val === pRoot2.val &amp;&amp;
+    dfs(pRoot1.left, pRoot2.left) &amp;&amp;
+    dfs(pRoot1.right, pRoot2.right)
+  )
 &#125;</code></pre>
 
 <h3 id="二叉树的镜像"><a href="#二叉树的镜像" class="headerlink" title="二叉树的镜像"></a>二叉树的镜像</h3><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Mirror</span>(<span class="hljs-params">root</span>) </span>&#123;
@@ -722,7 +776,24 @@
   root.left = Mirror(root.right)
   root.right = Mirror(temp)
   <span class="hljs-keyword">return</span> root
-&#125;</code></pre>
+&#125;
+
+<span class="hljs-comment">// 20201121</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Mirror</span>(<span class="hljs-params">root</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+  <span class="hljs-keyword">let</span> stack = [root],
+    head = root
+  <span class="hljs-keyword">while</span> (stack.length &gt; <span class="hljs-number">0</span>) &#123;
+    <span class="hljs-keyword">let</span> t = stack[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">if</span> (t.left) stack.push(t.left)
+    <span class="hljs-keyword">if</span> (t.right) stack.push(t.right)
+    <span class="hljs-keyword">let</span> temp = t.left
+    t.left = t.right
+    t.right = temp
+    stack.shift()
+  &#125;
+  <span class="hljs-keyword">return</span> head
+&#125; <span class="hljs-comment">// --	非递归</span></code></pre>
 
 <h3 id="顺时针打印矩阵"><a href="#顺时针打印矩阵" class="headerlink" title="顺时针打印矩阵"></a>顺时针打印矩阵</h3><blockquote>
 <p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.</p>
@@ -1058,6 +1129,34 @@
   &#125;
   subGetStrArr(arr)
   <span class="hljs-keyword">return</span> res
+&#125;
+
+<span class="hljs-comment">// 20201122</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Permutation</span>(<span class="hljs-params">str</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> arr = <span class="hljs-built_in">Array</span>.from(str)
+  <span class="hljs-keyword">return</span> getStrArr(arr)
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getStrArr</span>(<span class="hljs-params">arr</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;&#x27;</span>
+  <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>()
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subGetStrArr</span>(<span class="hljs-params">arr</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (arr.length === <span class="hljs-number">1</span>) &#123;
+      str += arr[<span class="hljs-number">0</span>]
+      res.add(str)
+      <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;
+      <span class="hljs-keyword">let</span> tempArr = arr.concat()
+      <span class="hljs-keyword">let</span> curStr = arr[i],
+        temp = str
+      str += curStr
+      tempArr.splice(i, <span class="hljs-number">1</span>)
+      subGetStrArr(tempArr)
+      str = temp
+    &#125;
+  &#125;
+  subGetStrArr(arr)
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(res)
 &#125;</code></pre>
 
 <h3 id="数组中出现次数超过一半的数字"><a href="#数组中出现次数超过一半的数字" class="headerlink" title="数组中出现次数超过一半的数字"></a>数组中出现次数超过一半的数字</h3><blockquote>
@@ -1114,6 +1213,20 @@
     res = <span class="hljs-built_in">Math</span>.max(res, opt(array.slice(i)))
   &#125;
   <span class="hljs-keyword">return</span> res
+&#125;
+
+<span class="hljs-comment">// 20201122</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FindGreatestSumOfSubArray</span>(<span class="hljs-params">array</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (array.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+  <span class="hljs-keyword">if</span> (array.length === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> array[<span class="hljs-number">0</span>]
+  <span class="hljs-keyword">let</span> max = array[<span class="hljs-number">0</span>],
+    dp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(array.length).fill(<span class="hljs-number">0</span>)
+  dp[<span class="hljs-number">0</span>] = array[<span class="hljs-number">0</span>]
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; array.length; i++) &#123;
+    dp[i] = <span class="hljs-built_in">Math</span>.max(array[i], dp[i - <span class="hljs-number">1</span>] + array[i])
+    max = <span class="hljs-built_in">Math</span>.max(dp[i], max)
+  &#125;
+  <span class="hljs-keyword">return</span> max
 &#125;</code></pre>
 
 <h3 id="整数中1出现的次数"><a href="#整数中1出现的次数" class="headerlink" title="整数中1出现的次数"></a>整数中1出现的次数</h3><blockquote>
@@ -1172,6 +1285,16 @@
     numbers.splice(index, <span class="hljs-number">1</span>)
   &#125;
   <span class="hljs-keyword">return</span> res
+&#125;
+
+<span class="hljs-comment">// 20201122</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PrintMinNumber</span>(<span class="hljs-params">numbers</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> res = <span class="hljs-string">&#x27;&#x27;</span>
+  <span class="hljs-keyword">if</span> (numbers.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> res
+  numbers = numbers.map(<span class="hljs-function">(<span class="hljs-params">i</span>) =&gt;</span> <span class="hljs-built_in">String</span>(i))
+  numbers.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b - (b + a))
+  res = numbers.reduce(<span class="hljs-function">(<span class="hljs-params">pre, cur</span>) =&gt;</span> pre + cur)
+  <span class="hljs-keyword">return</span> res
 &#125;</code></pre>
 
 <h3 id="字符串的排列-1"><a href="#字符串的排列-1" class="headerlink" title="字符串的排列"></a>字符串的排列</h3><blockquote>
@@ -1228,6 +1351,31 @@
   &#125;
   subGetStrArr(arr)
   <span class="hljs-keyword">return</span> res
+&#125;
+
+<span class="hljs-comment">// 20201123</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Permutation</span>(<span class="hljs-params">str</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> arr = <span class="hljs-built_in">Array</span>.from(str)
+  <span class="hljs-keyword">let</span> nstr = <span class="hljs-string">&#x27;&#x27;</span>
+  <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>()
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getStrArr</span>(<span class="hljs-params">arr</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (arr.length === <span class="hljs-number">1</span>) &#123;
+      nstr += arr[<span class="hljs-number">0</span>]
+      res.add(nstr)
+      <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;
+      <span class="hljs-keyword">let</span> tempArr = arr.concat()
+      <span class="hljs-keyword">let</span> curStr = arr[i],
+        temp = nstr
+      nstr += curStr
+      tempArr.splice(i, <span class="hljs-number">1</span>)
+      getStrArr(tempArr)
+      nstr = temp
+    &#125;
+  &#125;
+  getStrArr(arr)
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(res)
 &#125;</code></pre>
 
 <h3 id="丑数"><a href="#丑数" class="headerlink" title="丑数"></a>丑数</h3><blockquote>
@@ -1291,6 +1439,14 @@
     &#125;
   &#125;
   <span class="hljs-keyword">return</span> str.indexOf(arr[<span class="hljs-number">0</span>])
+&#125;
+
+<span class="hljs-comment">// 20201123</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FirstNotRepeatingChar</span>(<span class="hljs-params">str</span>) </span>&#123;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; str.length; i++) &#123;
+    <span class="hljs-keyword">if</span> (str.indexOf(str[i]) === str.lastIndexOf(str[i])) <span class="hljs-keyword">return</span> i
+  &#125;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
 &#125;</code></pre>
 
 <h3 id="两个链表的第一个公共结点"><a href="#两个链表的第一个公共结点" class="headerlink" title="两个链表的第一个公共结点"></a>两个链表的第一个公共结点</h3><blockquote>
@@ -1308,6 +1464,17 @@
     &#125;
     pHead1 = pHead1.next
   &#125;
+&#125;
+
+<span class="hljs-comment">// 20201123 &lt;两个链表长度不同，但 a+b== b+a，拼接过后长度相等&gt;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FindFirstCommonNode</span>(<span class="hljs-params">pHead1, pHead2</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> p1 = pHead1,
+    p2 = pHead2
+  <span class="hljs-keyword">while</span> (p1 !== p2) &#123;
+    p1 = p1 ? p1.next : pHead2
+    p2 = p2 ? p2.next : pHead1
+  &#125;
+  <span class="hljs-keyword">return</span> p1
 &#125;</code></pre>
 
 <h3 id="数字在升序数组中出现的次数"><a href="#数字在升序数组中出现的次数" class="headerlink" title="数字在升序数组中出现的次数"></a>数字在升序数组中出现的次数</h3><blockquote>
