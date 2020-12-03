@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>双向绑定 - QX97</title>
+  <title>前端面试题 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -161,7 +161,7 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                双向绑定
+                前端面试题
               
             </span>
 
@@ -176,7 +176,13 @@
                   <div>
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                      <a class="hover-with-bg" href="/tags/web/">web</a>
+                    
+                      <a class="hover-with-bg" href="/tags/react/">react</a>
                     
                   </div>
                 
@@ -217,195 +223,152 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="font-size: 2rem;">双向绑定</h1>
+            <h1 style="font-size: 2rem;">前端面试题</h1>
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-10-24 21:23:26
+                  本文最后更新于：2020-12-03 22:52:53
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="观察者模式-amp-发布订阅模式"><a href="#观察者模式-amp-发布订阅模式" class="headerlink" title="观察者模式&amp;发布订阅模式"></a>观察者模式&amp;发布订阅模式</h3><center> 
-    <img src="/img/模式对比.png" srcset="/img/loading.gif" /> 
+              <h3 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h3><blockquote>
+<p>写一个mySetInterVal(fn, a, b)，每次间隔a, a+b, a+2b的时间，然后写一个myClear，停止上面的mySetInterval</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> timer = <span class="hljs-literal">null</span>
+<span class="hljs-keyword">var</span> count = <span class="hljs-number">0</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mySetInterval</span>(<span class="hljs-params">fn, a, b</span>) </span>&#123;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subSetInterval</span>(<span class="hljs-params"></span>) </span>&#123;
+    timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+      fn()
+      count++
+      subSetInterval()
+    &#125;, a + count * b)
+  &#125;
+  subSetInterval()
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myClear</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-built_in">clearTimeout</span>(timer)
+&#125;</code></pre>
+
+<h3 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h3><blockquote>
+<p>合并二维有序数组组成一维有序数组，归并排序的思路</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">merge</span>(<span class="hljs-params">arr1, arr2</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>,
+    j = <span class="hljs-number">0</span>,
+    len1 = arr1.length,
+    len2 = arr2.length,
+    res = []
+  <span class="hljs-keyword">while</span> (i &lt; len1 &amp;&amp; j &lt; len2) &#123;
+    <span class="hljs-keyword">if</span> (arr1[i] &lt; arr2[j]) &#123;
+      res.push(arr1[i++])
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      res.push(arr2[j++])
+    &#125;
+  &#125;
+  <span class="hljs-keyword">if</span> (i &lt; len1) res = res.concat(arr1.slice(i))
+  <span class="hljs-keyword">if</span> (j &lt; len2) res = res.concat(arr2.slice(j))
+  <span class="hljs-keyword">return</span> res
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mergeSort</span>(<span class="hljs-params">arr</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> len = arr.length
+  <span class="hljs-keyword">if</span> (len === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> arr
+  <span class="hljs-keyword">let</span> mid = <span class="hljs-built_in">Math</span>.floor(len / <span class="hljs-number">2</span>)
+  <span class="hljs-keyword">return</span> merge(mergeSort(arr.slice(<span class="hljs-number">0</span>, mid)), mergeSort(arr.slice(mid)))
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myMergeSort</span>(<span class="hljs-params">arr</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> narr = arr.flat(<span class="hljs-number">1</span>)
+  <span class="hljs-keyword">return</span> mergeSort(narr)
+&#125;</code></pre>
+
+<h3 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h3><blockquote>
+<p>多种方式实现斐波那契数列</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fib</span>(<span class="hljs-params">n</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (n === <span class="hljs-number">1</span> || n === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> n
+  <span class="hljs-keyword">return</span> fib(n - <span class="hljs-number">1</span>) + fib(n - <span class="hljs-number">2</span>)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fib</span>(<span class="hljs-params">n</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> pre = <span class="hljs-number">1</span>,
+    cur = <span class="hljs-number">1</span>,
+    result = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">3</span>; i &lt; n; i++) &#123;
+    result = pre + cur
+    pre = cur
+    cur = result
+  &#125;
+  <span class="hljs-keyword">return</span> result
+&#125;</code></pre>
+
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><blockquote>
+<p>字符串出现的不重复的最长长度</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lengthOfLongestString</span>(<span class="hljs-params">str</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> temp = <span class="hljs-string">&#x27;&#x27;</span>
+  <span class="hljs-keyword">let</span> res = []
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; i &lt; str.length; i++, j++) &#123;
+    <span class="hljs-keyword">if</span> (!temp) temp += str[i]
+    <span class="hljs-keyword">let</span> index = temp.indexOf(str[i])
+    <span class="hljs-keyword">if</span> (index &gt; <span class="hljs-number">-1</span>) &#123;
+      res.push(temp)
+      temp = temp.slice(index + <span class="hljs-number">1</span>) + str[i]
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      temp += str[i]
+    &#125;
+  &#125;
+  <span class="hljs-built_in">console</span>.log(res)
+  <span class="hljs-keyword">if</span> (!res) &#123;
+    <span class="hljs-keyword">return</span> str.length
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    res = res.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b.length - a.length)
+    <span class="hljs-keyword">return</span> res[<span class="hljs-number">0</span>].length
+  &#125;
+&#125;</code></pre>
+
+<h3 id="Chrome"><a href="#Chrome" class="headerlink" title="Chrome"></a>Chrome</h3><blockquote>
+<p>介绍Chrome的几个版本</p>
+</blockquote>
+<p><code>Chrome</code>浏览器提供4种发布版本，稳定版<code>stable</code>,测试版<code>Beta</code>,开发者版<code>Dev</code>,金丝雀版<code>Canary</code>。</p>
+<p>金丝雀版只限用于测试。是功能代码最先进的版本，适合进阶用户安装备用，尝鲜最新功能，并不适合日常使用。</p>
+<p>开发版每周更新一次，勉强满足日常使用，适合Web开发者用来测试新功能和网页，提前测试应用兼容性。</p>
+<p>测试版每月更新一次，是正式发布前的最后测试版本，普通用户日常可使用。测试版用户提前4-6周体验新功能，可以发现特定版本可能存在的问题。</p>
+<p>稳定版以测试版为基础，是稳定性最高的<code>Chrome</code>版本。</p>
+<h3 id="HTTP缓存"><a href="#HTTP缓存" class="headerlink" title="HTTP缓存"></a>HTTP缓存</h3><p>浏览器每次发起请求，先在本地缓存中查找结果以及缓存标识，根据缓存标识判断是否使用本地缓存。如果缓存有效，则使用本地缓存；否则向服务器发起请求并携带缓存标识。</p>
+<p>根据是否需要向服务器发起<code>http</code>请求，将缓存过程划分为2个部分：</p>
+<p>强制缓存和协商缓存。强制缓存优先于协商缓存。</p>
+<p>强缓存：服务器通知浏览器一个缓存时间，在缓存时间内，下次请求则直接使用缓存，不在时间内，则实行协商缓存策略。</p>
+<p>协商缓存：让客户端和服务器之间能实现缓存文件是否更新的验证，提升缓存复用率，将缓存响应信息中的<code>ETag</code>和<code>Last-Modified</code>。</p>
+<p><code>HTTP</code>缓存从第二次请求开始。</p>
+<p>对于强制缓存来说，<code>response header</code>中会有2个字段标明失效规则（<code>Expires(http1.0)/Cache-Control(http1.1)</code>。<code>Expires</code>的值为服务端返回的到期时间，由于服务端和客户端可能存在的时间偏差，导致缓存命中误差，在<code>HTTP1.1</code>版本中使用<code>Cache-Control</code>替代。<code>Cache-Control</code>常见取值有：</p>
+<p><code>private</code>：客户端可以缓存。</p>
+<p><code>public</code>：客户端和代理服务器均可缓存。</p>
+<p><code>max-age=xxx</code>：缓存的内容将在xxx秒后失效</p>
+<p><code>no-cache</code>：需要使用协商缓存验证缓存数据</p>
+<p><code>no-store</code>：所有内容都不会被缓存，强缓存和协商缓存都不会被触发</p>
+<p>强制缓存的弊端很明显。每次根据过期时间判断缓存是否过期。但是在到达过期时间后，文件有可能并未改变，但依然需要重新请求资源。协商缓存则可以作为补充方案。</p>
+<p>当服务器返回资源文件时，在<code>response header</code>中返回文件在服务器上的最近修改时间<code>Last-Modified</code>，当缓存文件过期，浏览器在<code>request header</code>中带上参数<code>If-Last-Modified=(上一次返回的Last-Modified)</code>，服务器比较<code>If-Last-Modified</code>与文件上次修改时间，一致则返回304，浏览器仍然使用缓存，否则重新返回文件资源，同时更新<code>Last-Modified</code>。</p>
+<p>但由于<code>Last-Modified</code>修改时间只能精确到秒，如果文件在一秒内多次修改，服务器并不能捕捉到该改动，浏览器将无法获取最新文件资源。同时如果服务器上文件被多次修改但文件内容不变，服务器也需要多次重新返回文件资源。</p>
+<p>为了解决文件修改时间不精确带来的问题，引入<code>ETag</code>。<code>ETag</code>基于资源的内容编码生成一串标识字符串，内容不同<code>ETag</code>不同。当服务器返回资源文件时，在<code>response header</code>中返回文件唯一标识<code>ETag</code>，当缓存文件过期，浏览器在<code>request header</code>中带上参数<code>If-None-Match=(上一次返回的ETag)</code>，服务器比较<code>If-None-Match</code>与文件的<code>ETag</code>，一致则返回304，浏览器仍然使用缓存，否则重新返回文件资源，同时更新<code>ETag</code>。</p>
+<center> 
+  <img src="/img/http缓存机制.jpg" srcset="/img/loading.gif"> 
   <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
-    观察者模式&发布订阅模式.jpg
+    http缓存机制.jpg
   </div> 
 </center>
 
-<p>观察者模式中，观察者<code>Observer</code>能够感知<code>Subject</code>，发布订阅模式，发布者<code>Publisher</code>和订阅者<code>Subscriber</code>不知道对方的存在，通过中间商<code>Event Channel</code>进行通信。</p>
-<p>观察者模式大多数是同步的，发布订阅模式大多数是异步的。</p>
-<p>观察者模式<code>Observer</code>直接订阅主体<code>Subject</code>，当主体激活，所有<code>Observer</code>都将收到通知。</p>
-<p>发布订阅模式将订阅者<code>Subscriber</code>希望订阅的事件(分类别)注册到调度中心，当发布者<code>Publisher</code>发布事件，由调度中心统一调度，区分类别，通知订阅者。</p>
-<p>两者都实现了对象间一对多的依赖关系，当一个对象发生改变，所有依赖它的对象都将收到通知。</p>
-<pre><code class="hljs js"><span class="hljs-comment">// 观察者模式</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Observer</span> </span>&#123;
-  <span class="hljs-keyword">constructor</span>() &#123;&#125;
-  update() &#123;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;当Subject发生改变，触发Observer更新&#x27;</span>)
-  &#125;
-&#125;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Subject</span> </span>&#123;
-  <span class="hljs-keyword">constructor</span>() &#123;
-    <span class="hljs-built_in">this</span>.Observers = []
-  &#125;
-  attach(observer) &#123;
-    <span class="hljs-built_in">this</span>.Observers.push(observer)
-  &#125;
-  notify() &#123;
-    <span class="hljs-built_in">this</span>.Observers.forEach(<span class="hljs-function">(<span class="hljs-params">observer</span>) =&gt;</span> observer.update())
-  &#125;
-&#125;
-<span class="hljs-keyword">let</span> ob = <span class="hljs-keyword">new</span> Observer()
-<span class="hljs-keyword">let</span> sub = <span class="hljs-keyword">new</span> Subject()
-sub.attach(ob)
-sub.notify()
-
-<span class="hljs-comment">// 发布订阅模式</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventChannel</span> </span>&#123;
-  <span class="hljs-keyword">constructor</span>() &#123;
-    <span class="hljs-built_in">this</span>.subscribers = &#123;&#125;
-  &#125;
-  subscribe(event, callback) &#123;
-    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.subscribers[event]) &#123;
-      <span class="hljs-built_in">this</span>.subscribers[event] = [callback]
-    &#125; <span class="hljs-keyword">else</span> &#123;
-      <span class="hljs-built_in">this</span>.subscribers[event].push(callback)
-    &#125;
-  &#125;
-  publish(event, ...arg) &#123;
-    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.subscribers[event]) &#123;
-      <span class="hljs-built_in">this</span>.subscribers[event].forEach(<span class="hljs-function">(<span class="hljs-params">callback</span>) =&gt;</span> callback(...arg))
-    &#125;
-  &#125;
-&#125;</code></pre>
-
-<h3 id="Vue2"><a href="#Vue2" class="headerlink" title="Vue2"></a>Vue2</h3><p>当<code>JavaScript</code>对象传入<code>vue</code>实例作为<code>data</code>选项，<code>vue</code>将遍历该对象的所有属性，并使用<code>Object.defineProperty</code>将属性转为<code>getter/setter</code>。</p>
-<p>这些<code>getter/setter</code>对用户不可见，但在内部能够让<code>vue</code>追踪依赖，在属性被访问和修改时通知变更。</p>
-<p>每个组件实例都对应一个<code>watcher</code>实例，它会在组件渲染的过程中将接触过的数据的属性记录为依赖。当依赖项的<code>setter</code>触发时，会通知<code>watcher</code>，从而使它关联的组件重新渲染。</p>
-<p>采用数据劫持和发布订阅模式实现数据双向绑定。</p>
-<p><strong>实现Observer监听器</strong></p>
-<p><code>Observer</code>主要作用是使用<code>Object.defineProperty</code>实现对属性的劫持和监听。给对象的每个属性添加<code>getter</code>和<code>setter</code>，在属性触发<code>getter</code>时，添加<code>watcher</code>，在触发<code>setter</code>时，通知<code>watcher</code>。</p>
-<p><strong>实现Dep消息订阅器</strong></p>
-<p><code>Dep</code>消息订阅器存储所有<code>watcher</code>，并且可以添加<code>watcher</code>或通知<code>watcher</code>。</p>
-<p><strong>实现watcher订阅者</strong></p>
-<p><code>watcher</code>的<code>update</code>方法能够触发<code>compile</code>中绑定的回调，进行视图更新。</p>
-<p><strong>compiler解析器</strong></p>
-<p>解析模版指令，初始化渲染页面视图，对每个指令对应的节点绑定更新函数，添加监听数据的<code>watcher</code>。</p>
-<pre><code class="hljs js"><span class="hljs-comment">// 监听器observe</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">observe</span>(<span class="hljs-params">obj</span>) </span>&#123;
-  <span class="hljs-keyword">if</span> (!obj || <span class="hljs-keyword">typeof</span> obj != <span class="hljs-string">&#x27;Object&#x27;</span>) <span class="hljs-keyword">return</span>
-  <span class="hljs-built_in">Object</span>.keys(obj).forEach(<span class="hljs-function">(<span class="hljs-params">key</span>) =&gt;</span> &#123;
-    defineReactive(obj, key, obj[key])
-  &#125;)
-&#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">defineReactive</span>(<span class="hljs-params">obj, key, val</span>) </span>&#123;
-  observe(val) <span class="hljs-comment">// 递归遍历</span>
-  <span class="hljs-keyword">let</span> dep = <span class="hljs-keyword">new</span> Dep()
-  <span class="hljs-built_in">Object</span>.defineProperty(obj, key, &#123;
-    get() &#123;
-      dep.depend()
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;key&#125;</span>属性被获取，新值为：<span class="hljs-subst">$&#123;newVal&#125;</span>`</span>)
-      <span class="hljs-keyword">return</span> val
-    &#125;,
-    set(newVal) &#123;
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;key&#125;</span>属性被修改，新值为：<span class="hljs-subst">$&#123;newVal&#125;</span>`</span>)
-      val = newVal
-      dep.notify()
-    &#125;,
-  &#125;)
-&#125;
-
-<span class="hljs-comment">// 消息订阅器Dep</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dep</span> </span>&#123;
-  <span class="hljs-keyword">constructor</span>() &#123;
-    <span class="hljs-built_in">this</span>.watchers = []
-  &#125;
-  <span class="hljs-comment">// 增加订阅者</span>
-  addSub(watcher) &#123;
-    <span class="hljs-built_in">this</span>.subscribers.push(watcher)
-  &#125;
-  <span class="hljs-comment">// 判断是否增加订阅者</span>
-  depend() &#123;
-    <span class="hljs-keyword">if</span> (Dep.target) &#123;
-      <span class="hljs-built_in">this</span>.addSub(Dep.target)
-    &#125;
-  &#125;
-  notify() &#123;
-    <span class="hljs-built_in">this</span>.subscribers.forEach(<span class="hljs-function">(<span class="hljs-params">watcher</span>) =&gt;</span> &#123;
-      watcher.update()
-    &#125;)
-  &#125;
-&#125;
-<span class="hljs-comment">// 订阅者watcher</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Watcher</span> </span>&#123;
-  <span class="hljs-keyword">constructor</span>(vm, exp, callback) &#123;
-    <span class="hljs-built_in">this</span>.vm = vm <span class="hljs-comment">// vue实例对象</span>
-    <span class="hljs-built_in">this</span>.exp = exp
-    <span class="hljs-built_in">this</span>.callback = callback <span class="hljs-comment">// 更新函数</span>
-    <span class="hljs-built_in">this</span>.value = <span class="hljs-built_in">this</span>.get()
-  &#125;
-  update() &#123;
-    <span class="hljs-keyword">let</span> value = <span class="hljs-built_in">this</span>.vm.data[<span class="hljs-built_in">this</span>.exp] <span class="hljs-comment">// 获取最新数据</span>
-    <span class="hljs-keyword">let</span> oldVal = <span class="hljs-built_in">this</span>.value <span class="hljs-comment">// 之前this.get()获取的旧数据</span>
-    <span class="hljs-keyword">if</span> (value !== oldVal) &#123;
-      <span class="hljs-built_in">this</span>.value = value
-      <span class="hljs-built_in">this</span>.callback(<span class="hljs-built_in">this</span>.vm, value, oldValue) <span class="hljs-comment">// 调用更新函数进行更新</span>
-    &#125;
-  &#125;
-  get() &#123;
-    Dep.target = <span class="hljs-built_in">this</span> <span class="hljs-comment">// 将Dep.target赋值为当前的实例化对象watcher</span>
-    <span class="hljs-keyword">let</span> value = <span class="hljs-built_in">this</span>.vm.data[<span class="hljs-built_in">this</span>.exp] <span class="hljs-comment">// 强制执行observe监听器的get函数</span>
-    Dep.target = <span class="hljs-literal">null</span> <span class="hljs-comment">// 释放</span>
-    <span class="hljs-keyword">return</span> value
-  &#125;
-&#125;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Compile</span>(<span class="hljs-params">el, vm</span>) </span>&#123;
-  <span class="hljs-built_in">this</span>.vm = vm
-  <span class="hljs-built_in">this</span>.el = el
-  <span class="hljs-keyword">if</span> (el) &#123;
-    <span class="hljs-built_in">this</span>.$frag = <span class="hljs-built_in">this</span>.noteToFragment(el) <span class="hljs-comment">// 将dom节点转化为fragment虚拟节点</span>
-    <span class="hljs-built_in">this</span>.compileElement(<span class="hljs-built_in">this</span>.$frag) <span class="hljs-comment">// 编译解析模版</span>
-  &#125;
-  el.appendChild(<span class="hljs-built_in">this</span>.$frag) <span class="hljs-comment">// 将编译后的虚拟DOM添加到根节点</span>
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.$frag
-&#125;
-Compile.prototype = &#123;
-  nodeToFragment(node) &#123;
-    <span class="hljs-keyword">let</span> fragment = <span class="hljs-built_in">document</span>.createDocumentFragment()
-    <span class="hljs-keyword">let</span> child = node.firstChild
-    <span class="hljs-keyword">while</span> (child) &#123;
-      <span class="hljs-comment">// 循环将dom节点添加到fragment虚拟节点中</span>
-      fragment.appendChild(child)
-      child = child.firstChild
-    &#125;
-    <span class="hljs-keyword">return</span> fragment
-  &#125;,
-  compileElement(elFlag) &#123;
-    <span class="hljs-comment">// 解析模版</span>
-  &#125;,
-  compileText(node, exp) &#123;
-    <span class="hljs-built_in">this</span>.updateView(node, <span class="hljs-built_in">this</span>.vm[exp])
-    <span class="hljs-keyword">new</span> Watcher(<span class="hljs-built_in">this</span>.vm, exp, <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> &#123;
-      <span class="hljs-comment">// 数据变化时执行回调函数，并更新视图</span>
-      <span class="hljs-built_in">this</span>.updateView(node, value)
-    &#125;)
-  &#125;,
-  updateView(node, value) &#123;
-    node.textContent = <span class="hljs-keyword">typeof</span> value !== <span class="hljs-string">&#x27;undefined&#x27;</span> ? value : <span class="hljs-string">&#x27;&#x27;</span>
-  &#125;,
-&#125;</code></pre>
-
-<h3 id="Vue3"><a href="#Vue3" class="headerlink" title="Vue3"></a>Vue3</h3><p><code>defineProperty</code>挟持的是对象的属性，当对象属性新增时，需要重新遍历对象，对新增属性再使用<code>defineProperty</code>进行劫持。<code>defineProperty</code>无法监控到数组下标的变化，导致通过数组下标添加元素，不能实时响应，但<code>push/pop/shift/unshift/splice/sort/reverse</code>可以监听。</p>
-<p><code>Proxy</code>直接监听对象，而不是对象属性，不需要遍历操作，并返回一个新对象。<code>Proxy</code>还可以代理数组，还可以代理动态增加的属性。</p>
-<p><code>Proxy</code>返回新对象，可以直接操作新对象达到目的，<code>defineProperty</code>只能遍历对象属性直接修改。</p>
-<p><code>Proxy</code>多达13种拦截操作，例如<code>get/set/has...</code></p>
-<style>
+<h3 id="防抖节流"><a href="#防抖节流" class="headerlink" title="防抖节流"></a>防抖节流</h3><style>
   img:hover {
     border-radius: 0.3125em; 
     box-shadow: 0 0px 15px #2f4154;
   }
 </style>
+
+<blockquote>
+<p>参考地址：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6847902225423925255">https://juejin.cn/post/6847902225423925255</a></p>
+</blockquote>
+
             </div>
             <hr>
             <div>
@@ -415,7 +378,13 @@ Compile.prototype = &#123;
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                      <a class="hover-with-bg" href="/tags/web/">web</a>
+                    
+                      <a class="hover-with-bg" href="/tags/react/">react</a>
                     
                   </div>
                 
@@ -426,18 +395,12 @@ Compile.prototype = &#123;
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/11/01/%E4%BD%8D%E8%BF%90%E7%AE%97/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">位运算</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/09/15/%E5%89%91%E6%8C%87offer%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2020/11/20/vue/">
+                        <span class="hidden-mobile">vue</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -686,7 +649,7 @@ Compile.prototype = &#123;
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/09/20/vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/');
+          var target = decodeURI('/2020/12/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
