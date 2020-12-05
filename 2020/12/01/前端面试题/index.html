@@ -227,7 +227,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-03 22:52:53
+                  本文最后更新于：2020-12-05 13:42:31
                 
               </p>
             
@@ -358,7 +358,51 @@
   </div> 
 </center>
 
-<h3 id="防抖节流"><a href="#防抖节流" class="headerlink" title="防抖节流"></a>防抖节流</h3><style>
+<h3 id="防抖节流"><a href="#防抖节流" class="headerlink" title="防抖节流"></a>防抖节流</h3><p>函数防抖和函数节流是优化高频率执行JS代码的一种手段。</p>
+<p>防抖：在事件被触发N秒后再执行回调，如果在N秒被事件又被触发，则重新计时。使用场景：按钮提交，多次点击按钮只执行最后一次提交；搜索框输入，多次输入只执行最后一次输入。</p>
+<p>节流：在规定时间内，只会触发一次函数。如果在单位时间内多次触发，只有一次生效。使用场景：拖拽场景，缩放场景，规定时间内拖拽和缩放只会执行一次，防止高频刷新。</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 防抖</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">debounce</span>(<span class="hljs-params">fn, delay = <span class="hljs-number">1000</span>, immediate = false</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer)
+    <span class="hljs-keyword">if</span> (immediate &amp;&amp; !timer) &#123;
+      fn.call(<span class="hljs-built_in">this</span>, ...args)
+    &#125;
+    timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+      fn.call(<span class="hljs-built_in">this</span>, ...args)
+      timer = <span class="hljs-literal">null</span>
+    &#125;, delay)
+  &#125;
+&#125;
+
+<span class="hljs-comment">// 节流--定时器</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">throttle</span>(<span class="hljs-params">fn, delay</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (!timer) &#123;
+      timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+        fn.call(<span class="hljs-built_in">this</span>, ...args)
+      &#125;, delay)
+    &#125;
+  &#125;
+&#125;
+
+<span class="hljs-comment">// 节流--时间戳</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">throttle</span>(<span class="hljs-params">fn, delay</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> previous = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> now = <span class="hljs-built_in">Date</span>.now()
+    <span class="hljs-keyword">if</span> (now - previous &gt; wait) &#123;
+      fn.call(<span class="hljs-built_in">this</span>, ...args)
+      previous = now
+    &#125;
+  &#125;
+&#125;</code></pre>
+
+
+
+<style>
   img:hover {
     border-radius: 0.3125em; 
     box-shadow: 0 0px 15px #2f4154;
