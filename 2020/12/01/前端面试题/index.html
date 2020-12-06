@@ -227,7 +227,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-05 13:42:31
+                  本文最后更新于：2020-12-06 21:58:46
                 
               </p>
             
@@ -400,14 +400,88 @@
   &#125;
 &#125;</code></pre>
 
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><blockquote>
+<p>对闭包的看法，为什么要用闭包？闭包原理及应用场景？</p>
+</blockquote>
+<p>闭包可以从内部函数访问外部函数的作用域中的变量，且访问到的变量长期驻扎在内存中，可供之后使用。</p>
+<p>对内存消耗有负面影响。对处理速度有负面影响。</p>
+<pre><code class="hljs js"><span class="hljs-comment">// 防止变量污染</span>
+<span class="hljs-keyword">var</span> myFun = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">var</span> foo = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">return</span> foo
+&#125;)()
 
+<span class="hljs-comment">// 防止取到意外值</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) &#123;
+  ;(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(i)
+  &#125;)(i)
+&#125;</code></pre>
 
+<h3 id="伪类伪元素"><a href="#伪类伪元素" class="headerlink" title="伪类伪元素"></a>伪类伪元素</h3><blockquote>
+<p>css伪类和魏元素的区别</p>
+</blockquote>
+<p>伪类：基于文档之外的抽象。<code>:hover/:active/:visited</code></p>
+<p>伪元素：基于元素的抽象，不存在于文档中。<code>::before/::after</code></p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><blockquote>
+<p>有一堆整数，将其分为三份，确保每一份之和尽量相等</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">arr, count</span>) </span>&#123;
+  arr.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b - a)
+  <span class="hljs-keyword">const</span> total = arr.reduce(<span class="hljs-function">(<span class="hljs-params">pre, cur</span>) =&gt;</span> pre + cur)
+  <span class="hljs-keyword">const</span> average = total / <span class="hljs-number">3</span>
+  <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(count).fill([])
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; count - <span class="hljs-number">1</span>; i++) &#123;
+    <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>,
+      tempRes = []
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; arr.length; ) &#123;
+      <span class="hljs-keyword">if</span> (sum + arr[j] &lt;= average) &#123;
+        sum += arr[j]
+        tempRes.push(arr[j])
+        arr.splice(j, <span class="hljs-number">1</span>)
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        j++
+      &#125;
+    &#125;
+    res[i] = tempRes
+  &#125;
+  res[count - <span class="hljs-number">1</span>] = arr
+  <span class="hljs-keyword">return</span> res
+&#125;</code></pre>
+
+<h3 id="函数柯里化"><a href="#函数柯里化" class="headerlink" title="函数柯里化"></a>函数柯里化</h3><blockquote>
+<p>实现add(1)(2)(3)</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curry</span>(<span class="hljs-params">fn</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> totalArgs = []
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">...args</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (args.length &gt; <span class="hljs-number">0</span>) &#123;
+      totalArgs = totalArgs.concat(args)
+      <span class="hljs-keyword">return</span> foo
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-keyword">let</span> val = fn.call(<span class="hljs-built_in">this</span>, ...totalArgs)
+      totalArgs = []
+      <span class="hljs-keyword">return</span> val
+    &#125;
+  &#125;
+&#125;
+<span class="hljs-keyword">let</span> add = curry(<span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">return</span> args.reduce(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b)
+&#125;)</code></pre>
+
+<h3 id="事件循环机制"><a href="#事件循环机制" class="headerlink" title="事件循环机制"></a>事件循环机制</h3><blockquote>
+<p>Node/浏览器的事件循环机制</p>
+</blockquote>
+<p>宏任务队列/微任务队列。</p>
+<p>Node端，微任务在事件循环的各个阶段之间执行。</p>
+<p>浏览器端，微任务在事件循环的宏任务执行完之后执行。</p>
 <style>
   img:hover {
     border-radius: 0.3125em; 
     box-shadow: 0 0px 15px #2f4154;
   }
 </style>
+
 
 <blockquote>
 <p>参考地址：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6847902225423925255">https://juejin.cn/post/6847902225423925255</a></p>
