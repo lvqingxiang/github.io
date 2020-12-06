@@ -227,7 +227,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-06 21:58:46
+                  本文最后更新于：2020-12-06 22:17:01
                 
               </p>
             
@@ -473,6 +473,13 @@
 <p>Node/浏览器的事件循环机制</p>
 </blockquote>
 <p>宏任务队列/微任务队列。</p>
+<p>Node事件循环有6个阶段。6个阶段按照顺序反复执行。</p>
+<p><code>timers</code>阶段执行<code>timer(setTimeout/setInterval)</code>回调。</p>
+<p><code>I/O callbacks</code>阶段处理上一轮循环中少数未执行的<code>I/O</code>回调。</p>
+<p><code>idle,prepare</code>阶段仅<code>node</code>内部使用。</p>
+<p><code>poll</code>阶段获取新的<code>I/O</code>事件，适当的条件下<code>node</code>将阻塞。</p>
+<p><code>check</code>阶段执行<code>setImmediate()</code>的回调。</p>
+<p><code>close callbacks</code>阶段执行<code>socket</code>的<code>close</code>事件回调。</p>
 <p>Node端，微任务在事件循环的各个阶段之间执行。</p>
 <p>浏览器端，微任务在事件循环的宏任务执行完之后执行。</p>
 <style>
