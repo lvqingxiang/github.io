@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>QX97</title>
+  <title>前端面试题 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -161,7 +161,7 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                
+                前端面试题
               
             </span>
 
@@ -172,6 +172,19 @@
   
 
              <div class="post-meta mr-2">
+                
+                  <div>
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                      <a class="hover-with-bg" href="/tags/web/">web</a>
+                    
+                      <a class="hover-with-bg" href="/tags/react/">react</a>
+                    
+                  </div>
                 
               </div>
 
@@ -210,17 +223,16 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="font-size: 2rem;"></h1>
+            <h1 style="font-size: 2rem;">前端面试题</h1>
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-08 21:47:49
+                  本文最后更新于：2020-12-09 21:08:15
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <p>title: 前端面试题<br>date: 2020-12-01 20:14:54<br>tags: [vue, js, web, react]</p>
-<h3 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h3><blockquote>
+              <h3 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h3><blockquote>
 <p>写一个mySetInterVal(fn, a, b)，每次间隔a, a+b, a+2b的时间，然后写一个myClear，停止上面的mySetInterval</p>
 </blockquote>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> timer = <span class="hljs-literal">null</span>
@@ -524,6 +536,50 @@ p.then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<
   <span class="hljs-built_in">console</span>.log(x)
 &#125;)</code></pre>
 
+<pre><code class="hljs js"><span class="hljs-comment">// Promise.all()</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">promiseAll</span>(<span class="hljs-params">promises</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Array</span>.isArray(promises)) &#123;
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;arguments must be array&#x27;</span>)
+    &#125;
+    <span class="hljs-keyword">let</span> resolvedCnt = <span class="hljs-number">0</span>,
+      resolvedRes = []
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> [index, item] <span class="hljs-keyword">of</span> promises.entries()) &#123;
+      <span class="hljs-built_in">Promise</span>.resolve(item).then(
+        (value) =&gt; &#123;
+          resolvedCnt++
+          resolvedRes[index] = value
+          <span class="hljs-keyword">if</span> (resolvedCnt === promises.length) &#123;
+            <span class="hljs-keyword">return</span> resolve(resolvedRes)
+          &#125;
+        &#125;,
+        (error) =&gt; &#123;
+          <span class="hljs-keyword">return</span> reject(error)
+        &#125;
+      )
+    &#125;
+  &#125;)
+&#125;
+
+<span class="hljs-keyword">let</span> p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    resolve(<span class="hljs-number">1</span>)
+  &#125;, <span class="hljs-number">1000</span>)
+&#125;)
+<span class="hljs-keyword">let</span> p2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    resolve(<span class="hljs-number">2</span>)
+  &#125;, <span class="hljs-number">2000</span>)
+&#125;)
+<span class="hljs-keyword">let</span> p3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve, reject</span>) </span>&#123;
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+    resolve(<span class="hljs-number">3</span>)
+  &#125;, <span class="hljs-number">3000</span>)
+&#125;)
+promiseAll([p3, p1, p2]).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(res) <span class="hljs-comment">// [3, 1, 2]</span>
+&#125;)</code></pre>
+
 <h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><blockquote>
 <p>既然Vue通过数据劫持可以精准探测数据在DOM上的变化，为什么还需要虚拟DOM呢？</p>
 </blockquote>
@@ -626,7 +682,48 @@ foo()
 <span class="hljs-keyword">delete</span> bj.address
 <span class="hljs-built_in">console</span>.log(bj, bj.address) <span class="hljs-comment">// &#123;&#125;, beijing</span>
 <span class="hljs-comment">// delete可以删除：可配置对象的属性/隐式声明的全局变量/用户定义的属性</span>
-<span class="hljs-comment">// delete不能删除的：显式声明的全局变量/内置对象的内置属性/继承属性</span></code></pre>
+<span class="hljs-comment">// delete不能删除的：显式声明的全局变量/内置对象的内置属性/继承属性</span>
+
+<span class="hljs-comment">// 8⃣️</span>
+<span class="hljs-keyword">var</span> fullName = <span class="hljs-string">&#x27;a&#x27;</span>
+<span class="hljs-keyword">var</span> obj = &#123;
+  fullName: <span class="hljs-string">&#x27;b&#x27;</span>,
+  prop: &#123;
+    fullName: <span class="hljs-string">&#x27;c&#x27;</span>,
+    getFullName() &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.fullName
+    &#125;,
+  &#125;,
+&#125;
+<span class="hljs-built_in">console</span>.log(obj.prop.getFullName()) <span class="hljs-comment">// c</span>
+<span class="hljs-keyword">var</span> test = obj.prop.getFullName
+<span class="hljs-built_in">console</span>.log(test()) <span class="hljs-comment">// undefined</span>
+
+<span class="hljs-comment">// 9⃣️</span>
+;(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">var</span> a = (b = <span class="hljs-number">5</span>)
+&#125;)()
+<span class="hljs-built_in">console</span>.log(b) <span class="hljs-comment">// 5</span>
+<span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">// a is not defined</span>
+
+<span class="hljs-comment">// 🔟</span>
+<span class="hljs-keyword">var</span> a = [<span class="hljs-number">0</span>]
+<span class="hljs-keyword">if</span> (a) &#123;
+  <span class="hljs-built_in">console</span>.log(a == <span class="hljs-literal">true</span>)
+&#125; <span class="hljs-keyword">else</span> &#123;
+  <span class="hljs-built_in">console</span>.log(a)
+&#125;
+<span class="hljs-comment">// false</span>
+
+<span class="hljs-comment">// 1⃣️1⃣️</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">side</span>(<span class="hljs-params">arr</span>) </span>&#123;
+  arr[<span class="hljs-number">0</span>] = arr[<span class="hljs-number">2</span>]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params">a, b, c = <span class="hljs-number">3</span></span>) </span>&#123;
+  c = <span class="hljs-number">10</span>
+  <span class="hljs-built_in">console</span>.log(a + b + c)
+&#125;
+a(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>) <span class="hljs-comment">// 12</span></code></pre>
 
 
 
@@ -651,6 +748,19 @@ foo()
             <div>
               <div class="post-metas mb-3">
                 
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                      <a class="hover-with-bg" href="/tags/web/">web</a>
+                    
+                      <a class="hover-with-bg" href="/tags/react/">react</a>
+                    
+                  </div>
                 
               </div>
               
