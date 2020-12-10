@@ -221,7 +221,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-06 22:00:53
+                  本文最后更新于：2020-12-10 19:52:09
                 
               </p>
             
@@ -231,7 +231,8 @@
 <p>任务分为同步任务和异步任务。遵循事件循环<code>Event Loop</code>机制。同步任务都在主线程上执行，形成执行栈，异步任务进入任务(消息)队列。一个事件循环中可以有多个任务队列。一个任务队列是一系列有序任务的集合。每个任务都有任务源<code>task sourece</code>，相同任务源的任务在同一任务队列，不同任务源的任务在不同任务队列。</p>
 <p>任务队列分为宏任务(<code>macrotask</code>)和微任务(<code>microtask</code>)。</p>
 <p>宏任务具体分为：<code>setTimeout</code>/ <code>setInterval</code>/<code>setImmediate</code>/ <code>ajax</code> /<code>dom</code>操作/<code>IO</code>/<code>&lt;script&gt;脚本&lt;/script&gt;</code>/<code>postMessage</code>/<code>MessageChannel</code>/<code>UI-render</code>。</p>
-<p>微任务具体分为：<code>process.nextTick</code>/<code>Promise.then/Promise.catch/MutationObserver</code>。</p>
+<p>微任务具体分为：<code>process.nextTick(Node.js)</code>/<code>Promise.then</code>/<code>Promise.catch</code>/<code>MutationObserver</code>。</p>
+<p><code>promise.nextTick &gt; Promise.then &gt; setImmediate &gt; setTimeout</code></p>
 <p>宏任务队列为<code>Set</code>集合，即存在多个宏任务队列，微任务队列只有一个。</p>
 <p><code>Promise</code>构造函数参数(<code>new Promise</code>)将会在执行栈中立即执行。</p>
 <center> 

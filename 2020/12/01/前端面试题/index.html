@@ -227,7 +227,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-09 21:08:15
+                  本文最后更新于：2020-12-10 21:41:12
                 
               </p>
             
@@ -623,6 +623,14 @@ Vue.set(vm.items, indexOfItem, newValue)</code></pre>
 <p><code>keep-alive</code>是<code>Vue</code>内置的一个组件，可以使被包含的组件保留状态，避免重新渲染。</p>
 <p>提供<code>include</code>和<code>exclude</code>属性，支持正则表达式或字符串。<code>include</code>表示只有名称匹配的组件会被缓存，<code>exclude</code>表示名称匹配的组件不会被缓存。</p>
 <p>页面第一次进入，钩子的触发顺序<code>created-&gt;mounted-&gt;activated</code>，退出时触发<code>deactivated</code>，当再次进入时，只触发<code>activated</code>。事件挂载的方法等只执行一次的放在<code>mounted</code>中，组件每次进去执行的方法放在<code>activated</code>中。</p>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><blockquote>
+<p>1-100递归求和</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">num</span>) </span>&#123;
+  <span class="hljs-keyword">if</span>(num === <span class="hljs-number">1</span> || num === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> num
+  <span class="hljs-keyword">return</span> sum(num - <span class="hljs-number">1</span>) + num
+&#125;</code></pre>
+
 <h3 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h3><pre><code class="hljs js"><span class="hljs-comment">// 1⃣️</span>
 <span class="hljs-keyword">var</span> min = <span class="hljs-built_in">Math</span>.min()
 <span class="hljs-keyword">var</span> max = <span class="hljs-built_in">Math</span>.max()
@@ -725,7 +733,77 @@ foo()
 &#125;
 a(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>) <span class="hljs-comment">// 12</span></code></pre>
 
+<h3 id="css"><a href="#css" class="headerlink" title="css"></a>css</h3><blockquote>
+<p>calc, support, media含义及用法</p>
+</blockquote>
+<p><code>@support</code>主要检测浏览器是否支持css的某个属性。</p>
+<p><code>calc</code>函数用于动态计算长度值。</p>
+<p><code>@media</code>查询，可以针对不同的媒体类型定义不同的样式。</p>
+<blockquote>
+<p>水平居中/垂直居中的4种写法</p>
+</blockquote>
+<pre><code class="hljs scss">&#123;
+  <span class="hljs-comment">// 1⃣️</span>
+  <span class="hljs-attribute">display</span>: flex;
+  jusfify-<span class="hljs-attribute">content</span>: center;
+  <span class="hljs-comment">// 2⃣️</span>
+  <span class="hljs-attribute">text-align</span>: center;
+  <span class="hljs-comment">// 3⃣️</span>
+  <span class="hljs-attribute">position</span>: absolute; 
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">transform</span>: translateX(-<span class="hljs-number">50%</span>)
+  // <span class="hljs-number">4</span>⃣️
+  margin: <span class="hljs-number">0</span> auto;
+&#125;
 
+&#123;
+  <span class="hljs-comment">// 1⃣️</span>
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-comment">// 2⃣️</span>
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;
+  transiform: translateY(-<span class="hljs-number">50%</span>);
+  <span class="hljs-comment">// 3⃣️</span>
+  <span class="hljs-attribute">vertical-align</span>: middle;
+  <span class="hljs-comment">// 4⃣️</span>
+  <span class="hljs-attribute">line-height</span>: [height];
+&#125;</code></pre>
+
+<blockquote>
+<p>1rem/1em/1vh/1px的含义</p>
+</blockquote>
+<p><code>rem</code>相对根元素。</p>
+<p><code>em</code>相对自身或父元素<code>font-size</code>，<code>width/height/padding/margin</code>相对自身<code>font-size</code>。</p>
+<p><code>vw/vh</code>视口宽度/视口高度。</p>
+<blockquote>
+<p>画一条0.5px的直线</p>
+</blockquote>
+<pre><code class="hljs css">&#123;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">1px</span>;
+  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scareY</span>(<span class="hljs-number">0.5</span>);
+&#125;</code></pre>
+
+<blockquote>
+<p>盒模型</p>
+</blockquote>
+<p><code>W3C</code>标准盒模型<code>width = content</code></p>
+<p><code>IE</code>怪异盒模型<code>width = content + padding + border</code></p>
+<blockquote>
+<p>画一个三角形</p>
+</blockquote>
+<pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">border-width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">border-style</span>: solid;
+  <span class="hljs-attribute">border-color</span>: transparent transparent red transparent;
+&#125;</code></pre>
+
+<blockquote>
+<p>遍历a节点的父节点的所有子节点</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> c = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;.a&#x27;</span>).parentNode.children</code></pre>
 
 
 
@@ -740,7 +818,9 @@ a(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span 
 
 
 <blockquote>
-<p>参考地址：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6847902225423925255">https://juejin.cn/post/6847902225423925255</a></p>
+<p>参考地址：</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6847902225423925255">https://juejin.cn/post/6847902225423925255</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/84212558">https://zhuanlan.zhihu.com/p/84212558</a></p>
 </blockquote>
 
             </div>
