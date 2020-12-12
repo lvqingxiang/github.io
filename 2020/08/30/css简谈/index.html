@@ -223,7 +223,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-10 20:45:59
+                  本文最后更新于：2020-12-12 20:59:15
                 
               </p>
             
@@ -774,7 +774,17 @@ right = <span class="hljs-number">200</span> + <span class="hljs-number">100</sp
   transform: scaleY(<span class="hljs-number">0.5</span>);
 &#125;</code></pre>
 
-<h3 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h3>
+<h3 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h3><p>文档中层叠上下文由满足以下任意一个条件的元素形成：</p>
+<p>文档根元素<code>&lt;html&gt;</code></p>
+<p><code>position</code>值为<code>absolute</code>或<code>relative</code>且<code>z-index</code>值不为<code>auto</code>的元素</p>
+<p><code>flex</code>容器的子元素，且<code>z-index</code>值不为<code>auto</code></p>
+<p><code>opacity</code>属性值小于<code>1</code>的元素</p>
+<p><code>transform/filter</code>属性值不为<code>none</code></p>
+<p>层叠上下文可以包含在其他层叠上下文中，并且一起创建一个层叠上下文的层级</p>
+<p>每个层叠上下文都可以完全独立于它的兄弟元素，当处理层叠时只考虑子元素</p>
+<p>每个层叠上下文都是自包含的，当一个元素的内容发生层叠后，该元素将被作为整体在父级层叠上下文中按顺序进行层叠</p>
+<h3 id="层叠顺序"><a href="#层叠顺序" class="headerlink" title="层叠顺序"></a>层叠顺序</h3><p><code>background/border</code> &lt; <code>negative-z-index</code> &lt; <code>block box</code> &lt; <code>float box</code>  &lt; <code>inline box</code> &lt;  <code>z-index=0</code> &lt; <code>z-index &gt; 0</code></p>
+
             </div>
             <hr>
             <div>

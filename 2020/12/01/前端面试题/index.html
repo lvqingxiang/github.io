@@ -227,7 +227,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-10 21:41:12
+                  本文最后更新于：2020-12-12 15:03:33
                 
               </p>
             
@@ -805,10 +805,10 @@ a(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span 
 </blockquote>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> c = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;.a&#x27;</span>).parentNode.children</code></pre>
 
-
-
-
-
+<h3 id="组件data"><a href="#组件data" class="headerlink" title="组件data"></a>组件data</h3><blockquote>
+<p>为什么vue组件data必须是函数？</p>
+</blockquote>
+<p><code>Object</code>是引用数据类型，如果不是<code>function</code>返回，每个数组的<code>data</code>都是内存的同一地址，一个组件中的数据改变，其他组件中的数据也会改变。</p>
 <style>
   img:hover {
     border-radius: 0.3125em; 
