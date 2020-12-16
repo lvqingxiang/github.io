@@ -227,7 +227,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-12 15:03:33
+                  本文最后更新于：2020-12-16 22:32:18
                 
               </p>
             
@@ -809,6 +809,84 @@ a(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span 
 <p>为什么vue组件data必须是函数？</p>
 </blockquote>
 <p><code>Object</code>是引用数据类型，如果不是<code>function</code>返回，每个数组的<code>data</code>都是内存的同一地址，一个组件中的数据改变，其他组件中的数据也会改变。</p>
+<h3 id="HTTP和HTTPS"><a href="#HTTP和HTTPS" class="headerlink" title="HTTP和HTTPS"></a>HTTP和HTTPS</h3><p>因为<code>http</code>的内容是明文传输的，信息在传输过程中存在劫持、篡改的风险，所以需要对数据进行加密。</p>
+<p>如果采用对称加密，通信双方各自持有同一个密钥，但是问题是如何让密钥只有传输双方知晓。如果由服务端传输给客户端，在传输过程中可能泄漏密钥，因此需要非对称加密。</p>
+<p>客户端拥有公钥私钥，服务端拥有公钥私钥。客户端和服务器分别将各自的公钥传输给对方。之后的数据传输均用对方的公钥进行加密，用自己的私钥进行解密，这样可以保证双向传输安全。但是非对称算法非常耗时，因此非对称加密+对称加密结合，而且尽量减少非对称加密的次数。</p>
+<p>服务端拥有公钥私钥，服务端将公钥传输给客户端，客户端用以生成用于对称加密的密钥，并使用公钥加密后传输给服务端，服务端私钥解密后获得密钥，由此双方均获得密钥，且数据安全。之后数据传输均使用密钥加解密。</p>
+<p><code>https</code>即采用这种方式，然后这种方式存在中间人攻击。</p>
+<p>如果中间人在客户端和服务端之间，形成客户端-中间人-服务端形式。就能获取服务端的公钥并替换成自己的公钥，从而骗取客户端的假公钥加密的密钥，利用自己的私钥解密后获取密钥，再使用真公钥加密后传输给服务端，这样在双方都无异常的情况下获得密钥。</p>
+<p>根本原因在于客户端无法识别公钥真假。因此需要一份由CA机构颁发的数字证书，服务器直接返回数字证书，客户端直接从数字证书中获取公钥。</p>
+<p>同时将数字证书内容生成签名，通过对比证书内容和签名，就能确保证书没有被篡改。明文和数字签名共同组成数字证书。</p>
+<p>通过对明文进行<code>hash</code>，并使用私钥生成数字签名。使用公钥进行解密，并对明文进行<code>hash</code>，比较签名和哈希结果是否相同，确认证书是否被篡改。</p>
+<h3 id="三次握手四次挥手"><a href="#三次握手四次挥手" class="headerlink" title="三次握手四次挥手"></a>三次握手四次挥手</h3><p>TCP是面向连接的、可靠的、基于字节流的传输层通信协议。</p>
+<p>一对一连接，保证一个报文一定能够到达接收端，消息无边界、有序，无论消息多大都可以进行传输，对重复报文自动丢弃。</p>
+<center> 
+  <img src="/img/TCP+UDP.jpg" srcset="/img/loading.gif"> 
+  <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
+    TCP VS UDP.jpg
+  </div> 
+</center>
+
+<p>TCP VS UDP</p>
+<p><code>TCP</code>是面向连接的传输层协议，传输数据前先要建立连接。<code>UDP</code>不需要连接，即刻传输数据。</p>
+<p><code>TCP</code>是一对一的两点服务，一条连接连接两个端点。<code>UDP</code>支持一对一、一对多、多对多的交互通信。</p>
+<p><code>TCP</code>是可靠交付数据的，数据可以无差错、不丢失、不重复、按需到达。<code>UDP</code>尽最大努力交付，不保证交付数据。</p>
+<p><code>TCP</code>有拥塞控制和流量控制机制，保证数据传输安全性。<code>UDP</code>即使网络拥堵不会影响<code>UDP</code>发送速率。</p>
+<p><code>TCP</code>是流式传输，没有边界但保证顺序和可靠。<code>UDP</code>按包发送，有边界可能丢包和乱序。</p>
+<p><code>TCP</code>常用于FTP文件传输、<code>HTTPS</code>。<code>UDP</code>常用于<code>DNS</code>、视频音频等多媒体通信、广播通信。</p>
+<p><code>TCP</code>第三次握手可以携带数据，前两次握手不能携带数据。</p>
+<p>三次握手可以阻止重复历史连接（序列号过期或超时）的初始化，同步双方的初始序列号，避免资源浪费。</p>
+<h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><center> 
+  <img src="/img/三次握手.jpg" srcset="/img/loading.gif"> 
+  <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
+    三次握手.jpg
+  </div> 
+</center>
+
+<p>一开始，双方都处于<code>CLOSED</code>状态。首先服务端主动监听某个端口，处于<code>LISTEN</code>状态。</p>
+<p>客户端随机初始化<code>client_isn</code>，同时将<code>SYN</code>标志为<code>1</code>，并且发送给服务端，表示向服务端发起连接，该报文不包含应用层数据，之后客户端处于<code>SYN-SENT</code>状态。</p>
+<p>服务端收到客户端SYN报文后，初始化序号<code>server_isn</code>，填入序号<code>Seq</code>，同时确认应答号<code>Ack</code>填入<code>client_isn + 1</code>，接着<code>SYN</code>和<code>ACK</code>标识为<code>1</code>，随后发给客户端，该报文也不包含应用层数据，之后服务端处于<code>SYN_RCVD</code>状态。</p>
+<p>客户端收到服务端报文后，还要回应最后一个应答报文，<code>ACK</code>标识为<code>1</code>，确认应答号<code>Ack</code>填入<code>server_isn + 1</code>，最后报文发送给服务端，报文可以携带客户到服务端的数据，之后客户端处于<code>ESTABLISHED</code>状态。<br>服务端收到客户端应答报文后，进入<code>ESTABLISHED</code>状态。</p>
+<p>三次握手避免历史连接。在客户端多次发送SYN建立连接且网络拥堵时，可能会出现旧的SYN比新的SYN先到达服务端，此时服务端回以<code>SYN + ACK</code>报文给客户端，客户端根据自身上下文，判断该连接过期或超时，发送<code>RST</code>中止连接。</p>
+<p>两次握手无法判断当前连接是否是历史连接，三次握手则有足够的上下文判断当前连接是否是历史连接。</p>
+<p>同时两次握手由于服务端无法确认客户端是否收到自己发送的建立连接的<code>ACK</code>确认信号，因此每次收到<code>SYN</code>时只能主动先建立一个连接，这会造成建立多个冗余的无效连接，造成不必要的资源浪费。</p>
+<h4 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4><center> 
+  <img src="/img/四次挥手.jpg" srcset="/img/loading.gif"> 
+  <div style="display: inline-block; color: #afb2b5; padding: 15px; font-size: 0.9rem;">
+    四次挥手.jpg
+  </div> 
+</center>
+
+<p>客户端打算关闭连接，发送标识为<code>1</code>的<code>FIN</code>报文，之后客户端进入<code>FIN_WAIT_1</code>状态。</p>
+<p>服务端收到报文后，发送<code>ACK</code>应答报文，接着服务端进入<code>CLOSED_WAIT</code>状态。</p>
+<p>客户端收到<code>ACK</code>应答报文后，进入<code>FIN_WAIT_2</code>状态。</p>
+<p>服务端处理完数据后，发送<code>FIN</code>报文，之后服务端进入<code>LAST_ACK</code>状态。</p>
+<p>客户端收到服务端的<code>FIN</code>报文，回<code>ACK</code>应答报文，之后进入<code>TIME_WAIT</code>状态。</p>
+<p>服务端收到<code>ACK</code>应答报文后，进入<code>CLOSED</code>状态，至此服务端完成连接的关闭。</p>
+<p>客户端经过<code>2MSL</code>时间后，自动进入<code>CLOSED</code>状态，客户端完成连接的关闭。</p>
+<p>主动关闭连接的，才有<code>TIME_WAIT</code>状态。</p>
+<blockquote>
+<p>为什么挥手需要四次？</p>
+</blockquote>
+<p>关闭连接时，客户端向服务端发送<code>FIN</code>时，仅仅代表客户端不再发送数据了但还能接收数据。服务端接收<code>FIN</code>报文后，先回<code>ACK</code>应答报文，而服务端可能还有数据需要处理发送，当服务端不再需要发送数据时，发送<code>FIN</code>报文同意关闭连接。</p>
+<p><code>MSL</code>报文最大生存时间，是任何报文在网络上存在的最长时间，超过这个时间报文将被丢弃。</p>
+<p><code>TIME_WAIT = 2MSL</code>。网络中可能存在来自发送方的数据包，当发送方的数据包被接收方处理后又会向发送方发送响应，一来一回需要<code>2</code>倍时间。</p>
+<p>比如被动关闭方没有收到断开连接的最后的<code>ACK</code>报文，触发超时重发<code>FIN</code>报文，另一方接收到<code>FIN</code>后，重发<code>ACK</code>给被动关闭方，一来一去正好<code>2</code>个<code>MSL</code>。</p>
+<p><code>2MSL</code>从客户端接收到<code>FIN</code>后发送<code>ACK</code>开始计时的。如果在<code>TIME_WAIT</code>时间内，因为客户端<code>ACK</code>没有传输到服务端，客户端接收到重发<code>FIN</code>，那么<code>2MSL</code>将会重新计时。</p>
+<blockquote>
+<p>为什么需要<code>TIME_WAIT</code>？</p>
+</blockquote>
+<p>防止旧连接的数据包。经过<code>2MSL</code>时间，足以让两个方向上的数据包都被丢弃，使得原来连接的数据包在网络中都自然消失，再出现的数据包一定是新建立连接所产生的。保证连接正确关闭。<code>TIME_WAIT</code>作用是等待足够的时间以确保最后的<code>ACK</code>能让关闭方接收，从而帮助其正常关闭。</p>
+<blockquote>
+<p>三次握手第三次失败怎么办？</p>
+</blockquote>
+<p>如果第三次握手失败，即客户端给服务器返回了<code>ACK</code>，但服务器并不能收到这个报文。服务器将启动超时重传机制，超过规定时间后重新发起第二次握手，向客户端发起<code>SYN + ACK</code>，重传次数默认为<code>5</code>次。如果重传次数到了后仍然没有收到<code>ACK</code>应答，那么一段时间后，服务端自动关闭连接。当客户端向服务端写数据时，服务端将回应<code>RST</code>，强制关闭<code>TCP</code>连接，防止<code>SYN</code>攻击。</p>
+<h4 id="SYN攻击"><a href="#SYN攻击" class="headerlink" title="SYN攻击"></a>SYN攻击</h4><p>攻击者短时间内伪造不同<code>IP</code>地址的<code>SYN</code>报文，服务端每接收到一个<code>SYN</code>报文，进入<code>SYN_RCVD</code>状态，但服务器发出的<code>SYN + ACK</code>报文，无法得到未知<code>IP</code>主机的<code>ACK</code>应答，久而久之就会占满服务端的<code>SYN</code>接收队列（未连接队列），使得服务器无法为用户正常服务。</p>
+<p>正常流程时服务端接收客户端<code>SYN</code>报文，加入<code>SYN</code>队列，返回<code>SYN + ACK</code>，等待客户端回应<code>ACK</code>报文，服务端接收<code>ACK</code>报文后，从<code>SYN</code>队列移除放入<code>Accept</code>队列，应用通过调用<code>accept()</code> <code>socket</code>接口，取出连接。</p>
+<p>应用程序过慢，将导致<code>Accept</code>队列被占满。</p>
+<p>收到<code>SYN</code>攻击，将导致<code>SYN</code>队列被占满。</p>
+<p>其中一种解决方法是，修改<code>LINUX</code>内核参数，控制队列大小和队列满时处理。</p>
+<p>其二解决方法，当<code>SYN</code>队列满后，后序<code>SYN</code>包不进入<code>SYN</code>队列，计算出<code>cookie</code>值，以<code>Seq = SYN + ACK</code>返回客户端，在接收到<code>ACK</code>应答报文时，检查<code>ACK</code>合理性，合法<code>ACK</code>放入<code>Accept</code>队列，最后应用调用<code>accept()</code>  <code>socket</code>接口，从<code>Accept</code>队列取出连接。</p>
 <style>
   img:hover {
     border-radius: 0.3125em; 
@@ -821,6 +899,8 @@ a(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span 
 <p>参考地址：</p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6847902225423925255">https://juejin.cn/post/6847902225423925255</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/84212558">https://zhuanlan.zhihu.com/p/84212558</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/tutorial/96/4700c6f1f3334c9191a38406002efa65">https://www.nowcoder.com/tutorial/96/4700c6f1f3334c9191a38406002efa65</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaolincoding/p/12638546.html">https://www.cnblogs.com/xiaolincoding/p/12638546.html</a></p>
 </blockquote>
 
             </div>
