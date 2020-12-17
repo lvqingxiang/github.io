@@ -17,10 +17,20 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>标签 - web - QX97</title>
+  <title>前端面试题2 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +53,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 40vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -151,9 +161,46 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                标签 - web
+                前端面试题2
               
             </span>
+
+            
+              
+
+<div class="mt-1">
+  
+
+             <div class="post-meta mr-2">
+                
+                  <div>
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                      <a class="hover-with-bg" href="/tags/web/">web</a>
+                    
+                      <a class="hover-with-bg" href="/tags/react/">react</a>
+                    
+                  </div>
+                
+              </div>
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -166,43 +213,127 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 2 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/12/17/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%982/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">前端面试题2</span>
-      <time style="float: right;">12-17</time>
-    </a>
-  
-    
-    <a href="/2020/12/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">前端面试题1</span>
-      <time style="float: right;">12-01</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="font-size: 2rem;">前端面试题2</h1>
+            
+              <p class="new-note">
+                
+                  本文最后更新于：2020-12-17 21:36:26
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h3 id="Cookie-sessionStorage-localStorage"><a href="#Cookie-sessionStorage-localStorage" class="headerlink" title="Cookie/sessionStorage/localStorage"></a>Cookie/sessionStorage/localStorage</h3><blockquote>
+<p>Cookie/sessionStorage/localStorage的异同点</p>
+</blockquote>
+<p>共同点：都是保存在浏览器端，并且是同源的</p>
+<p><code>Cookie</code>可以在浏览器和服务器之间来回传递，而<code>SessionStorage</code>/<code>localStorage</code>不会自动把数据发给服务器，仅在本地保存。</p>
+<p><code>SessionStorage</code>仅在当前浏览器窗口关闭前有效，不能持久保存。<code>localStorage</code>始终有效，窗口或浏览器关闭也一直保存，用作持久数据。<code>Cookie</code>只在设置的<code>cookie</code>过期时间之前一直有效，即使浏览器或窗口关闭。</p>
+<h3 id="Doctype"><a href="#Doctype" class="headerlink" title="Doctype"></a>Doctype</h3><blockquote>
+<p>Doctype作用？</p>
+</blockquote>
+<p><code>Doctype</code>声明于文档最前面，告诉浏览器以何种方式来渲染页面。共两种模式，严格模式和混杂模式。</p>
+<p>严格模式的排版和<code>JS</code>运作模式是以该浏览器支持的最高标准运行。</p>
+<p>混杂模式，向后兼容，模拟老式浏览器，防止浏览器无法兼容页面。</p>
+<h3 id="URL渲染"><a href="#URL渲染" class="headerlink" title="URL渲染"></a>URL渲染</h3><blockquote>
+<p>在地址栏里输入一个URL，到这个页面呈现出来，中间会发生什么？</p>
+</blockquote>
+<p>输入<code>URL</code>后，首先需要找到这个<code>URL</code>域名的服务器<code>IP</code>，为了寻找这个<code>IP</code>，浏览器首先会寻找缓存，查看缓存中是否有记录，缓存的查找记录为：浏览器缓存-》系统缓存-〉路由器缓存，缓存中没有则查找系统的<code>hosts</code>文件中是否有记录，如果没有则查找<code>DNS</code>服务器，得到服务器的<code>IP</code>地址后，浏览器根据这个<code>IP</code>以及相应的端口号，构造一个<code>http</code>请求，请求报文包括本次请求信息，主要包括请求方法、请求说明、请求附带的数据，该<code>http</code>请求封装在一个<code>tcp</code>包中，<code>tcp</code>包会依次经过传输层、网络层、数据链路层、物理层到达服务器。服务器解析请求并作出响应，返回相应的资源给浏览器，浏览器根据文件资源构建<code>DOM</code>树、<code>CSSOM</code>树，合并为渲染树。之后进行布局，并渲染页面。在所有请求中需要关注缓存，缓存一般通过<code>Cache-Control</code>、<code>Last-Modify</code>、<code>ETag</code>等首部字段进行控制。在请求设置了缓存的数据时，会先查看是否过期，没有过期直接使用本地缓存，过期则请求服务器，通过If-<code>Last_modified</code>或<code>If-None-Match</code>进行校验，决定返回<code>200</code>或<code>304</code>。</p>
 
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                      <a class="hover-with-bg" href="/tags/web/">web</a>
+                    
+                      <a class="hover-with-bg" href="/tags/react/">react</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                        <span class="hidden-mobile">前端面试题1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'lvqingxiang/lvqingxiang.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><image src="/img/list.jpg" style="width: 1.5em; height: 1.5em;">
+&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -395,10 +526,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/tags/web/index.html');
+          var target = decodeURI('/2020/12/17/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%982/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -460,13 +591,67 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
 
 
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
