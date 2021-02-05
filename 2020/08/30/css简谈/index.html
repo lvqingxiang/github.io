@@ -223,7 +223,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-13 09:19:18
+                  本文最后更新于：2020-12-24 20:50:08
                 
               </p>
             
@@ -242,10 +242,11 @@
       <font size="2px">宽高设置<strong>无效</strong></font><br />
       <font size="2px">宽度默认为自身内容的宽度</font><br />
       <font size="2px">高度可借助</font><code>line-height</code><font size="2px">进行设置</font><br />
+      <code>margin/padding</code><font size="2px">仅左右方向有效</font><br />
     </td>
     <td><font size="2px">行级元素一般不能包含块级元素</font></td>
     <td>
-      <code>display: inline-block;</code><br />
+      <code>display: inline;</code><br />
       ⬇️<br />
       <code>display: block;</code>
     </td>
@@ -261,12 +262,13 @@
       <font size="2px">宽高设置<strong>有效</strong></font><br />
       <font size="2px">宽度默认为父容器的100%</font><br />
       <font size="2px">高度可设置</font><br />
+      <code>margin/padding</code><font size="2px">上下左右方向均有效</font><br />
     </td>
     <td><font size="2px">块级元素通常可以包含行级元素</font></td>
     <td>
       <code>display: block;</code><br />
       ⬇️<br />
-      <code>display: inline-block;</code>
+      <code>display: inline;</code>
     </td>
     <td>
       <code>div</code><br />
@@ -275,6 +277,7 @@
     </td>
   </tr>
 </table>
+
 
 
 <h3 id="长度单位"><a href="#长度单位" class="headerlink" title="长度单位"></a>长度单位</h3><table>

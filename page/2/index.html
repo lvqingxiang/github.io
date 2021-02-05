@@ -181,6 +181,68 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        <a href="/2020/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8/">CSS选择器</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/07/css%E9%80%89%E6%8B%A9%E5%99%A8/">
+          
+          
+            
+          
+          CSS选择器通配选择器*，匹配所有html元素，性能差，不建议使用。
+标签选择器匹配html元素标签。
+类选择器匹配html元素class属性。
+ID选择器匹配html元素id属性。
+* &#123;
+  margin: 0;
+  padding: 0;
+&#125; 
+div &#123;
+  width: 100px;
+  height: 100px;
+&#125;
+.container &#
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-07 21:02" pubdate>
+              2020-09-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CSS/">CSS</a>
+            
+          </div>
+        
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         <a href="/2020/09/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/">作用域/执行上下文</a>
       </h1>
 
@@ -483,10 +545,11 @@ Promise包含三个状态，pending/fulfilled/rejected。pending表示异步操�
       宽高设置无效
       宽度默认为自身内容的宽度
       高度可借助line-height进行设置
+      margin/padding仅左右方向有效
     
     行级元素一般不能包含块级元素
     
-      display: inline-block;
+
         </a>
       </p>
 
@@ -704,63 +767,11 @@ call()方法
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/26/%E5%8E%9F%E5%9E%8B%E9%93%BE/">原型链</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/08/26/%E5%8E%9F%E5%9E%8B%E9%93%BE/">
-          
-          
-            
-          
-          原型链涉及两类对象，(构造)函数对象及(实例)普通对象，构造函数一般以首字母大写区分于普通函数。
-所有对象都有_proto_属性，只有函数对象有prototype属性。因此，普通对象只有_proto_属性，函数对象既有_proto_属性又有prototype属性。
-(实例)普通对象的_proto_属性指向(构造)函数对象的prototype属性，即foo._proto_ = Foo.prptoty
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-26 21:11" pubdate>
-              2020-08-26
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
-      </span>
-    
-  
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

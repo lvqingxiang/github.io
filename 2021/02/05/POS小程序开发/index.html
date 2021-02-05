@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>前端面试题2 - QX97</title>
+  <title>POS小程序开发 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -161,7 +161,7 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                前端面试题2
+                POS小程序开发
               
             </span>
 
@@ -176,13 +176,7 @@
                   <div>
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                    
-                      <a class="hover-with-bg" href="/tags/js/">js</a>
-                    
-                      <a class="hover-with-bg" href="/tags/web/">web</a>
-                    
-                      <a class="hover-with-bg" href="/tags/react/">react</a>
+                      <a class="hover-with-bg" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a>
                     
                   </div>
                 
@@ -223,50 +217,124 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="font-size: 2rem;">前端面试题2</h1>
+            <h1 style="font-size: 2rem;">POS小程序开发</h1>
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-24 21:18:55
+                  本文最后更新于：2021-02-05 20:49:49
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="Cookie-sessionStorage-localStorage"><a href="#Cookie-sessionStorage-localStorage" class="headerlink" title="Cookie/sessionStorage/localStorage"></a>Cookie/sessionStorage/localStorage</h3><blockquote>
-<p>Cookie/sessionStorage/localStorage的异同点</p>
-</blockquote>
-<p>共同点：都是保存在浏览器端，并且是同源的</p>
-<p><code>Cookie</code>可以在浏览器和服务器之间来回传递，而<code>SessionStorage</code>/<code>localStorage</code>不会自动把数据发给服务器，仅在本地保存。</p>
-<p><code>SessionStorage</code>仅在当前浏览器窗口关闭前有效，不能持久保存。<code>localStorage</code>始终有效，窗口或浏览器关闭也一直保存，用作持久数据。<code>Cookie</code>只在设置的<code>cookie</code>过期时间之前一直有效，即使浏览器或窗口关闭。</p>
-<h3 id="Doctype"><a href="#Doctype" class="headerlink" title="Doctype"></a>Doctype</h3><blockquote>
-<p>Doctype作用？</p>
-</blockquote>
-<p><code>Doctype</code>声明于文档最前面，告诉浏览器以何种方式来渲染页面。共两种模式，严格模式和混杂模式。</p>
-<p>严格模式的排版和<code>JS</code>运作模式是以该浏览器支持的最高标准运行。</p>
-<p>混杂模式，向后兼容，模拟老式浏览器，防止浏览器无法兼容页面。</p>
-<h3 id="URL渲染"><a href="#URL渲染" class="headerlink" title="URL渲染"></a>URL渲染</h3><blockquote>
-<p>在地址栏里输入一个URL，到这个页面呈现出来，中间会发生什么？</p>
-</blockquote>
-<p>输入<code>URL</code>后，首先需要找到这个<code>URL</code>域名的服务器<code>IP</code>，为了寻找这个<code>IP</code>，浏览器首先会寻找缓存，查看缓存中是否有记录，缓存的查找记录为：浏览器缓存-》系统缓存-〉路由器缓存，缓存中没有则查找系统的<code>hosts</code>文件中是否有记录，如果没有则查找<code>DNS</code>服务器，得到服务器的<code>IP</code>地址后，浏览器根据这个<code>IP</code>以及相应的端口号，构造一个<code>http</code>请求，请求报文包括本次请求信息，主要包括请求方法、请求说明、请求附带的数据，该<code>http</code>请求封装在一个<code>tcp</code>包中，<code>tcp</code>包会依次经过传输层、网络层、数据链路层、物理层到达服务器。服务器解析请求并作出响应，返回相应的资源给浏览器，浏览器根据文件资源构建<code>DOM</code>树、<code>CSSOM</code>树，合并为渲染树。之后进行布局，并渲染页面。在所有请求中需要关注缓存，缓存一般通过<code>Cache-Control</code>、<code>Last-Modify</code>、<code>ETag</code>等首部字段进行控制。在请求设置了缓存的数据时，会先查看是否过期，没有过期直接使用本地缓存，过期则请求服务器，通过If-<code>Last_modified</code>或<code>If-None-Match</code>进行校验，决定返回<code>200</code>或<code>304</code>。</p>
-<h3 id="背景颜色"><a href="#背景颜色" class="headerlink" title="背景颜色"></a>背景颜色</h3><blockquote>
-<p>设置一个元素的背景颜色，背景颜色会填充哪些区域？</p>
-</blockquote>
-<p><code>background-color</code>设置的颜色会填充<code>content</code>，<code>padding</code>，<code>border</code>。</p>
-<h3 id="元素消失"><a href="#元素消失" class="headerlink" title="元素消失"></a>元素消失</h3><blockquote>
-<p>使元素消失的方法有哪些？</p>
-</blockquote>
-<p><code>opacity: 0</code>。元素隐藏，但不会改变页面布局，并且如果该元素绑定了click事件，点击该区域，仍然触发点击事件。</p>
-<p><code>visibility: hidden</code>。元素隐藏，但不会改变页面布局，且不会触发点击事件。</p>
-<p><code>display: none</code>。元素隐藏，会改变页面布局。</p>
-<h3 id="get传参"><a href="#get传参" class="headerlink" title="get传参"></a>get传参</h3><blockquote>
-<p>get请求传参长度的误区</p>
-</blockquote>
-<p><code>HTTP</code>协议并未规定<code>GET/POST</code>的请求长度限制，对<code>get</code>请求参数的限制来源于浏览器或<code>web</code>服务器，浏览器或<code>web</code>服务器限制了<code>URL</code>的长度。不同的浏览器和<code>web</code>服务器，限制的最大长度不一样。</p>
-<h3 id="mouseover-mouseenter"><a href="#mouseover-mouseenter" class="headerlink" title="mouseover/mouseenter"></a>mouseover/mouseenter</h3><blockquote>
-<p>mouseover和mouseenter的区别</p>
-</blockquote>
-<p><code>mouseover</code>：当鼠标移入元素或其子元素都会触发事件，所以有一个重复触发，冒泡的过程。对应的移除事件是<code>mouseout</code>。</p>
-<p><code>mouseenter</code>：当鼠标移除元素本身（不包含元素的子元素）会触发事件，不会冒泡，对应的移除事件是<code>mouseleave</code>。</p>
+              <p>1.在<code>POS</code>机上点击应用市场，安装<code>POS</code>小程序/支付程序等应用。</p>
+<p>2.寻找相对应老师评估申请<code>POS</code>小程序，并提供<code>POS</code>小程序首地址和<code>POS</code>支付回调通知地址。</p>
+<p>3.验签流程</p>
+<p>点击小程序图标进入小程序时，会携带一串拼接内容<code>data</code>，经过<code>Base64.decode</code>解码后数据格式为：<code>&#123;&quot;merchNo&quot;:&quot;&quot;,&quot;terminalNo&quot;:&quot;&quot;,&quot;dateTime&quot;:&quot;&quot;,&quot;bankNo&quot;:&quot;&quot;,&quot;sensitiveData&quot;:&quot;&quot;,&quot;mac&quot;:&quot;&quot;&#125;</code>。调用后台<code>validateMsg</code>接口对解码数据进行信息验证，返回<code>JSON</code>数据，保存<code>decodeData</code>，调用<code>appAPI.login</code>进行<code>POS</code>小程序验签操作。验签成功则跳转业务界面。</p>
+<pre><code class="hljs js">@PostMapping(value = <span class="hljs-string">&quot;/validateMsg&quot;</span>)
+public JSONObject validateMsg(@RequestBody JSONObject request) &#123;
+<span class="hljs-keyword">return</span> miniServiceClient.validateMsg(request);
+&#125;
+
+@FeignClient(value = <span class="hljs-string">&quot;mini-service-client&quot;</span>, url = <span class="hljs-string">&quot;$&#123;mini.server.url&#125;&quot;</span>)
+public interface MiniServiceClient &#123;
+@PostMapping(path = <span class="hljs-string">&quot;/api/miniprogram/validateMsg&quot;</span>)
+  JSONObject validateMsg(RequestBody JSONObject request);
+&#125;
+mini.server.url = http:<span class="hljs-comment">//posminimanage.paas.cmbchina.cn</span></code></pre>
+
+<pre><code class="hljs js">appAPI.login = <span class="hljs-string">&#x27;payApi.requestPwdEncryption&#x27;</span>
+<span class="hljs-keyword">import</span> dsbridge <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;dsbridge&#x27;</span>
+Vue.prototype.$dsBridge = dsbridge
+Vue.prototype.$gval = &#123;&#125;
+validateMsg(<span class="hljs-built_in">this</span>.$gval).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
+  <span class="hljs-built_in">this</span>.$gval.encryptionData = res.decodeData
+  <span class="hljs-built_in">this</span>.getValidate()
+&#125;)
+getValidate() &#123;
+  <span class="hljs-keyword">let</span> req = &#123;
+    type: <span class="hljs-string">&#x27;encryptionRequest&#x27;</span>,
+    program_id: xxx, <span class="hljs-comment">// 小程序ID</span>
+    name: xxx, <span class="hljs-comment">// 小程序名称</span>
+    pwd: Base64.encode(xxx), <span class="hljs-comment">//无登录操作则参数可随意</span>
+    encryption_data: <span class="hljs-built_in">this</span>.$gVal.encryptionData 
+&#125;
+  <span class="hljs-keyword">let</span> res = <span class="hljs-built_in">this</span>.$dsBridge.call(appAPI.login, <span class="hljs-built_in">JSON</span>.stringify(req))
+  <span class="hljs-keyword">let</span> result = <span class="hljs-built_in">JSON</span>.parse(res)
+  <span class="hljs-keyword">if</span> (result.resp_code === <span class="hljs-string">&#x27;S02&#x27;</span>) <span class="hljs-keyword">return</span> <span class="hljs-comment">// 授权未通过</span>
+  <span class="hljs-keyword">if</span> (result.resp_code === <span class="hljs-string">&#x27;00&#x27;</span>) &#123;
+    <span class="hljs-built_in">this</span>.$router.push(xxx) 
+  &#125;
+&#125;
+</code></pre>
+
+<p>4.支付流程</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> req = &#123;
+  type: <span class="hljs-string">&#x27;paymentRequest&#x27;</span>,
+  trans_code: xxx, <span class="hljs-comment">// 刷卡T00010，扫码CC001</span>
+  encryption_data: <span class="hljs-built_in">this</span>.$gVal.encryptionData,
+  amount: xxx, <span class="hljs-comment">// 总金额</span>
+  program_id: xxx, <span class="hljs-comment">// 小程序ID</span>
+  name: xxx, <span class="hljs-comment">// 小程序名称</span>
+  order_no: xxx, <span class="hljs-comment">// 第三方订单号</span>
+  time: xxx, <span class="hljs-comment">// 请求时间</span>
+  qr_print: &#123;
+    description: xxx,
+    content: xxx
+  &#125;, <span class="hljs-comment">// 小票二维码打印域，不传则不打印二维码</span>
+  extra_print: &#123;
+    font_size: <span class="hljs-string">&#x27;1&#x27;</span>,
+    content: xxx
+  &#125;, <span class="hljs-comment">// 小票扩展打印域</span>
+  callback: xxx <span class="hljs-comment">// 异步回调函数名</span>
+&#125;
+<span class="hljs-keyword">let</span> _this = <span class="hljs-built_in">this</span>
+<span class="hljs-keyword">let</span> callback = <span class="hljs-built_in">this</span>.xxx <span class="hljs-comment">// 回调函数名</span>
+<span class="hljs-built_in">this</span>.$dsBridge.registAsyn(req.callback, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">r</span>) </span>&#123;
+  callback(r, _this, req)
+&#125;)
+<span class="hljs-keyword">let</span> res = <span class="hljs-built_in">this</span>.$dsBridge.call(appAPI.pay, <span class="hljs-built_in">JSON</span>.stringify(req))
+appAPI.pay = <span class="hljs-string">&#x27;payApi.requestAndroid&#x27;</span></code></pre>
+
+<p>5.自定义打印流程</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> requestJSON = &#123;
+  type: <span class="hljs-string">&#x27;printRequest&#x27;</span>,
+  program_id: xxx, <span class="hljs-comment">// 小程序ID</span>
+  name: xxx, <span class="hljs-comment">// 小程序名称</span>
+  encryption_data: <span class="hljs-built_in">this</span>.$gVal.encryptionData,
+  time: xxx, <span class="hljs-comment">// 请求时间</span>
+  print_pages: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">// 打印联数</span>
+  title_print: &#123;
+    font_size: xxx,
+    content: xxx
+  &#125;, <span class="hljs-comment">// 标题打印域</span>
+  text_print: &#123;
+    font_size: xxx,
+    content: xxx
+  &#125;, <span class="hljs-comment">// 内容打印域</span>
+  qr_print: &#123;
+    description: xxx,
+    content: xxx
+  &#125;, <span class="hljs-comment">// 小票二维码打印域</span>
+  callback: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">// 回调函数名</span>
+&#125; <span class="hljs-comment">// 请求数据格式</span>
+appAPI.print = <span class="hljs-string">&#x27;payApi.requestPrint&#x27;</span></code></pre>
+
+<p>6.支付回调通知流程</p>
+<p>支付成功<code>resultCode</code>返回<code>SUCCESS</code>，支付失败<code>resultCode</code>返回<code>FAIL</code>。</p>
+<p>支付成功构造<code>responseJSON</code>返回网关，否则返回空对象。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> responseJSON = &#123;
+  returnCode: <span class="hljs-string">&#x27;&#x27;</span>,
+  returnMsg: <span class="hljs-string">&#x27;&#x27;</span>,
+  bankNo: <span class="hljs-string">&#x27;&#x27;</span>,
+  merchNo: <span class="hljs-string">&#x27;&#x27;</span>,
+  terminalNo: <span class="hljs-string">&#x27;&#x27;</span>,
+  businessType: <span class="hljs-string">&#x27;&#x27;</span>,
+  posTrace: <span class="hljs-string">&#x27;&#x27;</span>,
+  transDate: <span class="hljs-string">&#x27;&#x27;</span>,
+  transTime: <span class="hljs-string">&#x27;&#x27;</span>,
+  businessData: <span class="hljs-string">&#x27;&#x27;</span>
+&#125; <span class="hljs-comment">// 返回数据格式</span></code></pre>
+
 
             </div>
             <hr>
@@ -277,13 +345,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
-                    
-                      <a class="hover-with-bg" href="/tags/js/">js</a>
-                    
-                      <a class="hover-with-bg" href="/tags/web/">web</a>
-                    
-                      <a class="hover-with-bg" href="/tags/react/">react</a>
+                      <a class="hover-with-bg" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a>
                     
                   </div>
                 
@@ -294,18 +356,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/02/05/POS%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">POS小程序开发</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/12/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/">
-                        <span class="hidden-mobile">前端面试题1</span>
+                      <a href="/2020/12/17/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%982/">
+                        <span class="hidden-mobile">前端面试题2</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -554,7 +610,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/12/17/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%982/');
+          var target = decodeURI('/2021/02/05/POS%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
