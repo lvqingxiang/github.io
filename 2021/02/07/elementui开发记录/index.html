@@ -17,10 +17,20 @@
   <meta name="description" content="">
   <meta name="author" content="LQX">
   <meta name="keywords" content="">
-  <title>归档 - QX97</title>
+  <title>elementui开发记录 - QX97</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +53,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 40vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -151,9 +161,40 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-                归档
+                elementui开发记录
               
             </span>
+
+            
+              
+
+<div class="mt-1">
+  
+
+             <div class="post-meta mr-2">
+                
+                  <div>
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a>
+                    
+                  </div>
+                
+              </div>
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -166,67 +207,141 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 22 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/08/31/Promise/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Promise</span>
-      <time style="float: right;">08-31</time>
-    </a>
-  
-    
-    <a href="/2020/08/30/css%E7%AE%80%E8%B0%88/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">CSS简谈</span>
-      <time style="float: right;">08-30</time>
-    </a>
-  
-    
-    <a href="/2020/08/29/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">组件通信</span>
-      <time style="float: right;">08-29</time>
-    </a>
-  
-    
-    <a href="/2020/08/28/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">商城项目</span>
-      <time style="float: right;">08-28</time>
-    </a>
-  
-    
-    <a href="/2020/08/27/this%E6%8C%87%E5%90%91/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">this指向</span>
-      <time style="float: right;">08-27</time>
-    </a>
-  
-    
-    <a href="/2020/08/26/%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">原型链</span>
-      <time style="float: right;">08-26</time>
-    </a>
-  
-</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="font-size: 2rem;">elementui开发记录</h1>
+            
+              <p class="new-note">
+                
+                  本文最后更新于：2021-02-07 20:18:16
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h3 id="el-table多选变单选"><a href="#el-table多选变单选" class="headerlink" title="el-table多选变单选"></a>el-table多选变单选</h3><pre><code class="hljs js">&lt;el-table @select=<span class="hljs-string">&quot;handleSelectionChange&quot;</span> :data=<span class="hljs-string">&quot;staffList&quot;</span> ref=<span class="hljs-string">&quot;table&quot;</span>&gt;
+  &lt;el-table-column type=<span class="hljs-string">&quot;selection&quot;</span> width=<span class="hljs-string">&quot;80&quot;</span> align=<span class="hljs-string">&quot;center&quot;</span> /&gt;   
+&lt;/el-table&gt;
+handleSelectionChange(selection, row) &#123;
+  <span class="hljs-built_in">this</span>.multiSelection = [row]
+  <span class="hljs-keyword">if</span> (selection.length &gt; <span class="hljs-number">1</span>) &#123;
+    <span class="hljs-keyword">let</span> delRow = selection.shift()
+    <span class="hljs-built_in">this</span>.$refs.table.toggleRowSelection(delRow, <span class="hljs-literal">false</span>)
+  &#125;
+&#125;</code></pre>
+
+<h3 id="upload上传文件"><a href="#upload上传文件" class="headerlink" title="upload上传文件"></a>upload上传文件</h3><pre><code class="hljs js">&lt;el-upload
+  drag
+  :multiple=<span class="hljs-string">&quot;false&quot;</span>
+  :limit=<span class="hljs-string">&quot;1&quot;</span>
+  action=<span class="hljs-string">&quot;&quot;</span>
+  :before-upload=<span class="hljs-string">&quot;beforeUpload&quot;</span>
+  :http-request=<span class="hljs-string">&quot;onUpload&quot;</span>
+  ref=<span class="hljs-string">&quot;upload&quot;</span>
+&gt;
+&lt;/el-upload&gt;
+beforeUpload(file) &#123;
+  <span class="hljs-keyword">const</span> fileType = <span class="hljs-string">&#x27;.csv&#x27;</span>
+  <span class="hljs-keyword">const</span> fileExtend = file.name.substring(file.name.lastIndexOf(<span class="hljs-string">&#x27;.&#x27;</span>)).toLowerCase()
+  <span class="hljs-keyword">if</span> (fileType.indexOf(fileExtend) &lt;= <span class="hljs-number">-1</span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+  &#125;
+&#125;,
+onUpload(file) &#123;
+  <span class="hljs-keyword">const</span> fd = <span class="hljs-keyword">new</span> FormData()
+  fd.append(<span class="hljs-string">&#x27;file&#x27;</span>, file.file)
+  uploadCsv(fd).then(<span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-comment">//成功之后处理逻辑</span>
+  &#125;)
+&#125;,</code></pre>
 
 
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">开发记录</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/05/POS%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">
+                        <span class="hidden-mobile">POS小程序开发</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'lvqingxiang/lvqingxiang.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><image src="/img/list.jpg" style="width: 1.5em; height: 1.5em;">
+&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -419,10 +534,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2020/08/index.html');
+          var target = decodeURI('/2021/02/07/elementui%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -484,13 +599,67 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
 
 
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
