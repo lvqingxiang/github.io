@@ -221,15 +221,12 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2021-02-05 20:49:49
+                  本文最后更新于：2021-02-07 20:01:06
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <p>1.在<code>POS</code>机上点击应用市场，安装<code>POS</code>小程序/支付程序等应用。</p>
-<p>2.寻找相对应老师评估申请<code>POS</code>小程序，并提供<code>POS</code>小程序首地址和<code>POS</code>支付回调通知地址。</p>
-<p>3.验签流程</p>
-<p>点击小程序图标进入小程序时，会携带一串拼接内容<code>data</code>，经过<code>Base64.decode</code>解码后数据格式为：<code>&#123;&quot;merchNo&quot;:&quot;&quot;,&quot;terminalNo&quot;:&quot;&quot;,&quot;dateTime&quot;:&quot;&quot;,&quot;bankNo&quot;:&quot;&quot;,&quot;sensitiveData&quot;:&quot;&quot;,&quot;mac&quot;:&quot;&quot;&#125;</code>。调用后台<code>validateMsg</code>接口对解码数据进行信息验证，返回<code>JSON</code>数据，保存<code>decodeData</code>，调用<code>appAPI.login</code>进行<code>POS</code>小程序验签操作。验签成功则跳转业务界面。</p>
+              <h3 id="验签流程"><a href="#验签流程" class="headerlink" title="验签流程"></a>验签流程</h3><p>点击小程序图标进入小程序时，会携带一串拼接内容<code>data</code>，经过<code>Base64.decode</code>解码后数据格式为：<code>&#123;&quot;merchNo&quot;:&quot;&quot;,&quot;terminalNo&quot;:&quot;&quot;,&quot;dateTime&quot;:&quot;&quot;,&quot;bankNo&quot;:&quot;&quot;,&quot;sensitiveData&quot;:&quot;&quot;,&quot;mac&quot;:&quot;&quot;&#125;</code>。调用后台<code>validateMsg</code>接口对解码数据进行信息验证，返回<code>JSON</code>数据，保存<code>decodeData</code>，调用<code>appAPI.login</code>进行<code>POS</code>小程序验签操作。验签成功则跳转业务界面。</p>
 <pre><code class="hljs js">@PostMapping(value = <span class="hljs-string">&quot;/validateMsg&quot;</span>)
 public JSONObject validateMsg(@RequestBody JSONObject request) &#123;
 <span class="hljs-keyword">return</span> miniServiceClient.validateMsg(request);
@@ -239,11 +236,9 @@ public JSONObject validateMsg(@RequestBody JSONObject request) &#123;
 public interface MiniServiceClient &#123;
 @PostMapping(path = <span class="hljs-string">&quot;/api/miniprogram/validateMsg&quot;</span>)
   JSONObject validateMsg(RequestBody JSONObject request);
-&#125;
-mini.server.url = http:<span class="hljs-comment">//posminimanage.paas.cmbchina.cn</span></code></pre>
+&#125;</code></pre>
 
-<pre><code class="hljs js">appAPI.login = <span class="hljs-string">&#x27;payApi.requestPwdEncryption&#x27;</span>
-<span class="hljs-keyword">import</span> dsbridge <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;dsbridge&#x27;</span>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> dsbridge <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;dsbridge&#x27;</span>
 Vue.prototype.$dsBridge = dsbridge
 Vue.prototype.$gval = &#123;&#125;
 validateMsg(<span class="hljs-built_in">this</span>.$gval).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
@@ -264,11 +259,9 @@ getValidate() &#123;
   <span class="hljs-keyword">if</span> (result.resp_code === <span class="hljs-string">&#x27;00&#x27;</span>) &#123;
     <span class="hljs-built_in">this</span>.$router.push(xxx) 
   &#125;
-&#125;
-</code></pre>
+&#125;</code></pre>
 
-<p>4.支付流程</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> req = &#123;
+<h3 id="支付流程"><a href="#支付流程" class="headerlink" title="支付流程"></a>支付流程</h3><pre><code class="hljs js"><span class="hljs-keyword">let</span> req = &#123;
   type: <span class="hljs-string">&#x27;paymentRequest&#x27;</span>,
   trans_code: xxx, <span class="hljs-comment">// 刷卡T00010，扫码CC001</span>
   encryption_data: <span class="hljs-built_in">this</span>.$gVal.encryptionData,
@@ -292,11 +285,9 @@ getValidate() &#123;
 <span class="hljs-built_in">this</span>.$dsBridge.registAsyn(req.callback, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">r</span>) </span>&#123;
   callback(r, _this, req)
 &#125;)
-<span class="hljs-keyword">let</span> res = <span class="hljs-built_in">this</span>.$dsBridge.call(appAPI.pay, <span class="hljs-built_in">JSON</span>.stringify(req))
-appAPI.pay = <span class="hljs-string">&#x27;payApi.requestAndroid&#x27;</span></code></pre>
+<span class="hljs-keyword">let</span> res = <span class="hljs-built_in">this</span>.$dsBridge.call(appAPI.pay, <span class="hljs-built_in">JSON</span>.stringify(req))</code></pre>
 
-<p>5.自定义打印流程</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> requestJSON = &#123;
+<h3 id="自定义打印流程"><a href="#自定义打印流程" class="headerlink" title="自定义打印流程"></a>自定义打印流程</h3><pre><code class="hljs js"><span class="hljs-keyword">let</span> requestJSON = &#123;
   type: <span class="hljs-string">&#x27;printRequest&#x27;</span>,
   program_id: xxx, <span class="hljs-comment">// 小程序ID</span>
   name: xxx, <span class="hljs-comment">// 小程序名称</span>
@@ -316,11 +307,9 @@ appAPI.pay = <span class="hljs-string">&#x27;payApi.requestAndroid&#x27;</span><
     content: xxx
   &#125;, <span class="hljs-comment">// 小票二维码打印域</span>
   callback: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">// 回调函数名</span>
-&#125; <span class="hljs-comment">// 请求数据格式</span>
-appAPI.print = <span class="hljs-string">&#x27;payApi.requestPrint&#x27;</span></code></pre>
+&#125; <span class="hljs-comment">// 请求数据格式</span></code></pre>
 
-<p>6.支付回调通知流程</p>
-<p>支付成功<code>resultCode</code>返回<code>SUCCESS</code>，支付失败<code>resultCode</code>返回<code>FAIL</code>。</p>
+<h3 id="支付回调通知流程"><a href="#支付回调通知流程" class="headerlink" title="支付回调通知流程"></a>支付回调通知流程</h3><p>支付成功<code>resultCode</code>返回<code>SUCCESS</code>，支付失败<code>resultCode</code>返回<code>FAIL</code>。</p>
 <p>支付成功构造<code>responseJSON</code>返回网关，否则返回空对象。</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> responseJSON = &#123;
   returnCode: <span class="hljs-string">&#x27;&#x27;</span>,
