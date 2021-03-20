@@ -223,7 +223,7 @@
             
               <p class="new-note">
                 
-                  本文最后更新于：2020-12-24 20:50:08
+                  本文最后更新于：2021-03-20 19:50:01
                 
               </p>
             
@@ -789,6 +789,376 @@ right = <span class="hljs-number">200</span> + <span class="hljs-number">100</sp
 <h3 id="层叠顺序"><a href="#层叠顺序" class="headerlink" title="层叠顺序"></a>层叠顺序</h3><p><code>background/border</code> &lt; <code>z-index &lt; 0</code> &lt; <code>block box</code> &lt; <code>float box</code>  &lt; <code>inline box</code> &lt;  <code>z-index = 0</code> &lt; <code>z-index &gt; 0</code></p>
 <p>在同一个层叠上下文中，如果元素具有明显的层叠水平标识（如<code>z-index</code>），层叠水平高的元素在上面，距离用户最近</p>
 <p>当两个元素的层叠水平一致，层叠顺序相同时，<code>DOM</code>流后面的元素会覆盖前面的元素</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><table>
+  <tr>
+    <th>css</th>
+    <th>参数</th>
+    <th>可选值</th>
+    <th colspan="2">描述</th>
+  </tr>
+  <tr>
+    <td rowspan="36"><code>background</code></td>
+    <td rowspan="4"><code>&lt;attachment&gt;</code></td>
+    <td><code>background-attachment: scroll;</code></td>
+    <td colspan="2"><font size="2px">相对元素本身定位，不随元素滚动而滚动</font></td>
+  </tr>
+  <tr>
+    <td><code>background-attachment: local;</code></td>
+    <td colspan="2"><font size="2px">相对元素内容定位，随着元素内容滚动而滚动，且相对可滚动区域定位与绘制</font></td>
+  </tr>
+  <tr>
+    <td><code>background-attachment: fixed;</code></td>
+    <td colspan="2"><font size="2px">相对视口固定，不随元素滚动而滚动</font></td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <font size="2px">支持多张图片，通过逗号分隔每张图片指定的</font>
+      <code>&lt;attachment&gt;</code>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="10"><code>&lt;bg-image&gt;</code></td>
+    <td><code>background-image: url([imageUrl]);</code></td>
+    <td colspan="2"><font size="2px">设置背景图片，支持多个URL图片设置</font></td>
+  </tr>
+  <tr>
+    <td>
+      <code><font size="1px">background-image: <br />linear-gradient(direction, color-stop1, color-stop2, ...);</font></code>
+    </td>
+    <td colspan="2">
+      <font size="2px">通过线性渐变生成图像</font><br />
+      <code>direction</code>
+      <font size="2px">可选值为</font><code>deg || x(left, right, center) y(top, bottom, center)</code><br />
+      <code>0deg</code><font size="2px">从下向上渐变</font><br />
+      <code>90deg</code><font size="2px">从左向右渐变</font><br />
+      <code>color-stop</code><font size="2px">中，</font>
+      <code>stop</code>
+      <font size="2px">可以为百分比或沿渐变轴的</font><code>number</code><font size="2px">值</font><br />
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="5">
+      <code><font size="1px">background-image:<br /> radial-gradient<br />(shape size at position,<br /> start-color, ..., end-color);</font></code>
+    </td>
+    <td colspan="2">
+      <font size="2px">通过径向渐变生成图像</font><br />
+    </td>
+  </tr>
+    <td><code>shape</code></td>
+    <td>
+      <font size="2px">用来设置形状</font><br />
+      <font color="#d8362a"><code>ellipse:</code></font><font size="2px">默认，椭圆形渐变</font><br />
+      <code>circle:</code><font size="2px">圆形渐变</font>
+    </td>
+  <tr>
+    <td><code>size</code></td>
+    <td>
+      <font size="2px">用来设置大小</font>
+      <code>farthest-corner:</code>
+      <font size="2px">默认，径向渐变的半径长度为圆心到离圆心最远的角</font><br />
+      <code>farthest-side:</code>
+      <font size="2px">径向渐变的半径长度为圆心到离圆心最远的边</font>
+      <code>closest-side:</code>
+      <font size="2px">径向渐变的半径长度为圆心到离圆心最近的边</font>
+      <code>closest-corner:</code>
+      <font size="2px">径向渐变的半径长度为圆心到离圆心最近的角</font>
+    </td>
+  </tr>
+  <tr>
+    <td><code>position</code></td>
+    <td>
+      <font size="2px">用来设置圆心的位置</font><br />
+      <code>x:</code> 
+      <code>left || right || center || number</code>
+      <font size="2px">(据渐变框左上角在x轴上的偏移量)</font>|| %
+      <font size="2px">(相对渐变框的宽度)</font></code><br />
+      <code>y:</code>
+      <code>top || bottom || center || number
+      <font size="2px">(据渐变框左上角在y轴上的偏移量) </font>|| %
+        <font size="2px">(相对渐变框的高度)</font></code><br />
+      <font size="2px">只有单个值时，默认第二个值为</font><code>center</code><br />
+    </td>
+  </tr>
+  <tr>
+    <td><code>color</code></td>
+    <td>
+   <code>color[&lt;length&gt;|&lt;percentage&gt;]</code></font>
+      <font size="2px">可以为百分比或沿渐变轴的</font><code>length</code><font size="2px">值</font><br />
+    </td>
+  </tr>
+  <tr>
+    <td><font size="1px">
+      <code>background-image: <br />repeating-linear-gradient<br />(direction, color-stop1, color-stop2, ...);</code></font>
+    </td>
+    <td colspan="2"><font size="2px">重复线性渐变</font></td>
+  </tr>
+  <tr>
+    <td>
+      <code>
+        <font size="1px">
+        background-image: <br />repeating-radial-gradient<br />(shape size at position, start-color, ..., end-color); 
+      </code>
+      </font>
+    </td>
+    <td colspan="2"><font size="2px">重复径向渐变</font></td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <font size="2px">支持多背景堆叠，背景图展示按照定义顺序，越早定义的图片离用户越近，</font>
+      <code>z-index</code><font size="2px">越大</font>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="2"><code>&lt;bg-color&gt;</code></td>
+    <td><code>background-color: [color];</code></td>
+    <td colspan="2"><font size="2px">设置背景颜色</font></td>
+  </tr>
+  <tr>
+    <td colspan="3"><font size="2px">默认渲染范围为</font><code>border-box</code></td>
+  </tr>
+  <tr>
+    <td rowspan="5"><code>&lt;position&gt;</code></td>
+    <td><code><font size="1px">background-position: [left|right|top<br />|bottom|center];</font></code></td>
+    <td colspan="2">
+      <code>center</code><font size="2px">水平垂直居中</font><br />
+      <code>left</code><font size="2px">靠左垂直居中</font><br />
+      <code>right</code><font size="2px">靠右垂直居中</font><br />
+      <code>top</code><font size="2px">顶部水平居中</font><br />
+      <code>bottom</code><font size="2px">底部水平居中</font>
+    </td>
+  </tr>
+  <tr>
+    <td><code>background-position: x y;</code></td>
+    <td colspan="2">
+      <code><font size="2px">关键字</font>x</code>
+      <font size="2px">在</font>
+      <code>[left, right, center]</code>
+      <font size="2px">中取值</font><br />
+      <code><font size="2px">关键字</font>y</code>
+      <font size="2px">在</font>
+      <code>[top, bottom, center]</code>
+      <font size="2px">中取值</font><br />
+      <font size="2px">分别表示水平和垂直方向</font>
+    </td>
+  </tr>
+  <tr>
+    <td><code>background-position: x(%|number) y(%|number);</code></td>
+    <td colspan="2">
+      <code>x(%)<font size="2px">偏移量:</font></code>
+      <font size="2px">(容器宽度 - 图片宽度) * 百分比，超出部分隐藏</font><br />
+      <code>y(%)<font size="2px">偏移量:</font></code>
+      <font size="2px">(容器高度 - 图片高度) * 百分比，超出部分隐藏</font>
+      <code>x(number):<font size="2px">距离左上角x宽度</font></code><br />
+      <code>y(number):<font size="2px">距离左上角x高度</font></code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <font size="1px">
+      <code>background-position: </code><br />
+      <code>x offset_x y offset_y; || </code><br />
+      <code>x y offset_y; || </code><br />
+      <code>x offset_x y;</code>
+      </font>
+    </td>
+    <td colspan="2">
+      <code><font size="2px">关键字</font>x</code>
+      <font size="2px">在</font>
+      <code>[left, right, center]</code>
+      <font size="2px">中取值</font><br />
+      <code><font size="2px">关键字</font>y</code>
+      <font size="2px">在</font>
+      <code>[top, bottom, center]</code>
+      <font size="2px">中取值</font><br />
+      <code>offset_x</code>
+      <font size="2px">代表x轴偏移量</font><code>(number)</code><br />
+      <code>offset_y</code>
+      <font size="2px">代表y轴偏移量</font><code>(number)</code><br />
+      <font size="2px" color="#d8362a">偏移量前必须有关键字</font><br />
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <font size="2px">默认定位为</font>
+      <code>padding-box</code>
+      <font size="2px">左上角</font>
+      <code>(left, top)</code>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="2"><code>&lt;repeat-style&gt;</code></td>
+    <td><code>background-repeat: x;</code></td>
+    <td colspan="2">
+      <font size="2px">单值语法</font><br />
+      <code>repeat-x</code>
+      <font size="2px">x轴平铺</font><br />
+      <code>repeat-y</code>
+      <font size="2px">y轴平铺</font><br />
+      <code>space(space, space)</code>
+      <font size="2px">
+        容器空间小于图片，图片将不会产生缩放，会被裁切；容器空间大于图片，将在不缩放图片的前提下尽可能多的重复图片
+      </font><br />
+      <code>round(round, round)</code>
+      <font size="2px">
+        容器空间小于图片，图片将非等比缩放；容器空间大于图片，尽可能多的重复图片，当剩余空间小于图片宽度1/2时，拉伸已经重复的图片 
+      </font><br />
+      <code>no-repeat</code>
+      <font size="2px">图片不会缩放或重复，当容器大小小于图片，图片将会被裁切</font><br />
+    </td>
+  </tr>
+  <tr>
+    <td><code>background-repeat: x y;</code></td>
+    <td colspan="2">
+      <font size="2px">双值语法(水平 + 垂直)</font><br />
+      <code>repeat, space, round, no-repeat</code>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="3"><code>&lt;bg-size&gt;</code></td>
+    <td><code>background-size: x;</code></td>
+    <td colspan="2">
+      <code>cover</code>
+      <font size="2px">缩放图片完全覆盖背景区，保持图片宽高比，当容器小于图片大小时，图片会被裁切</font><br />
+      <code>contain</code>
+      <font size="2px">缩放图片完全装入背景区，保持图片宽高比，当容器大于图片大小时，多出部分由容器背景颜色填充</font><br />
+      <code>auto</code>
+      <font size="2px">以背景图片的比例缩放背景图片</font><br />
+      <code>&lt;number | %&gt;</code>
+      <font size="2px">仅有一个数值被指定，将作为宽度(百分比相对背景区宽度)，高度将设置为</font><code>auto</code><br />
+    </td>
+  </tr>
+  <tr>
+    <td><code>background-size: x y;</code></td>
+    <td colspan="2">
+      <font size="2px">双值语法(宽度 + 高度)</font><br />
+      <font size="2px">可选值为</font><code>&lt;number | % | auto&gt;</code>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <font size="2px">支持按逗号隔开，为多张图片设置大小</font><br />
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="9"><code>&lt;box&gt;</code></td>
+    <td rowspan="5"><code>&lt;background-clip&gt;</code></td>
+    <td colspan="2">
+      <font size="2px">用来设置背景图片或背景颜色是否延伸到边框，内边距盒子，内容盒子</font><br />
+      <font size="2px">如果没有设置背景颜色或背景图片</font><code>(background-image, background-color)</code>
+      <font size="2px">则仅当边框</font><code>border</code><font size="2px">被设置为非</font><code>solid</code>
+      <font size="2px">、透明或半透明才能看到效果，与</font><code>(border-style, border-image)</code>
+      <font size="2px">有关，否则本属性产生的样式变化将会被边框样式覆盖</font>
+    </td>
+  </tr>
+  <tr>
+    <td><code>background-clip: border-box;</code></td>
+    <td><font size="2px">背景延伸至边框</font></td>
+  </tr>
+  <tr>
+    <td><code>background-clip: padding-box;</code></td>
+    <td><font size="2px">背景延伸至内边距盒子</font></td>
+  </tr>
+  <tr>
+    <td><code>background-clip: content-box;</code></td>
+    <td><font size="2px">背景延伸至内容盒子</font></td>
+  </tr>
+  <tr>
+    <td><code>background-clip: text;</code></td>
+    <td><font size="2px">背景被裁切为文字前景色</font></td>
+  </tr>
+  <tr>
+    <td rowspan="4"><code>&lt;background-origin&gt;</code></td>
+    <td colspan="2"><font size="2px">指定背景图片的原点位置的背景相对区域</font></td>
+  </tr>
+  <tr>
+    <td><code>background-origin: border-box;</code></td>
+    <td><font size="2px">背景图片的摆放以边框为参考</font></td>
+  </tr>
+  <tr>
+    <td><code>background-origin: padding-box;</code></td>
+    <td><font size="2px">背景图片的摆放以内边距盒子为参考</font></td>
+  </tr>
+  <tr>
+    <td><code>background-origin: content-box;</code></td>
+    <td><font size="2px">背景图片的摆放以内容盒子为参考</font></td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <code>background</code><font size="2px">属性被指定多个背景层时，使用逗号进行分隔</font><br />
+      <font size="2px">在每一层中：</font><br />
+      <code>&lt;attachment&gt; &lt;bg-image&gt; &lt;position&gt; &lt;bg-size&gt; &lt;repeat-style&gt; </code>
+      <font size="2px">可以出现0次或1次</font><br />
+      <code>&lt;bg-size&gt;</code><font size="2px">只能紧跟</font>
+      <code>&lt;position&gt;</code>
+      <font size="2px">以/分隔，如：</font><code>center/farthest-corner</code><br />
+      <code>&lt;box&gt;</code>
+      <font size="2px">可能出现0次，1次或2次</font><br />
+      <font size="2px">如果出现一次，同时设置</font><code>background-origin + background-clip</code><br />
+      <font size="2px">如果出现两次，第一次设置</font><code>background-origin</code>
+      <font size="2px">，第二次设置</font><code>background-clip</code><br />
+      <code>background-color</code><font size="2px">只能被设置在最后一层</font><br />
+      <code>background</code><font size="2px">未限定参数顺序，建议定义顺序：</font>
+      <code>background: &lt;bg-color&gt; || &lt;bg-image&gt; || &lt;position&gt;/&lt;bg-size&gt; || &lt;repeat-style&gt; || &lt;attachment&gt; || &lt;box&gt;</code>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5"><hr /></td>
+  </tr>
+  <tr>
+    <td><code>translate</code></td>
+    <td><font size="2px">暂无</font></td>
+  </tr>
+  <tr>
+    <td colspan="5"><hr /></td>
+  </tr>
+  <tr>
+    <td rowspan="7"><font color="#d8362a"><code>font</code></font></td>
+    <td><code>&lt;font-size&gt;</code></td>
+    <td colspan="3"><font size="2px">设置字体大小</font></td>
+  </tr> 
+  <tr>
+    <td><code>&lt;font-family&gt;</code></td>
+    <td colspan="3"><font size="2px">设置字体，支持以逗号分隔</font></td>
+  </tr> 
+  <tr>
+    <td><code>&lt;font-style&gt;</code></td>
+    <td colspan="3">
+      <code>normal:</code><font size="2px">默认值</font><br />
+      <code>italic:</code><font size="2px">近似斜体</font><br />
+      <code>oblique:</code><font size="2px">斜体，可附加倾斜角度，如：</font><code>oblique 30deg</code><br />
+    </td>
+  </tr> 
+  <tr>
+    <td><code>&lt;font-variant&gt;</code></td>
+    <td colspan="3">
+      <code>normal:</code><font size="2px">默认值</font><br />
+      <code>small-caps:</code><font size="2px">允许小型大写字母【使用大写形式，但尺寸与小写字母相同】的使用</font>
+    </td>
+  </tr> 
+  <tr>
+    <td><code>&lt;font-weight&gt;</code></td>
+    <td colspan="3">
+      <code>&lt;number(1-1000)&gt; || lighter || light(300) || normal(400) || bold(700) || bolder</code>
+    </td>
+  </tr> 
+  <tr>
+    <td><code>&lt;line-height&gt;</code></td>
+    <td colspan="3">
+      <code>normal || &lt;number&gt; || &lt;length&gt; || &lt;percentage&gt;</code>
+    </td>
+  </tr> 
+  <tr>
+    <td colspan="4">
+      <font size="2px">必须包含</font><code>&lt;font-size&gt; + &lt;font-family&gt;</code><br />
+      <code>&lt;font-style&gt;,&lt;font-variant&gt;,&lt;font-weight&gt;</code>
+      <font size="2px">必须在</font><code>&lt;font-size&gt;</code><font size="2px">之前</font><br />
+      <code>&lt;line-height&gt;</code><font size="2px">必须在</font>
+      <code>&lt;font-size&gt;</code><font size="2px">后面，用/分隔，如：</font><code>16px/3</code><br />
+      <code>&lt;font-family&gt;</code><font size="2px">必须在最后指定</font>
+    </td>
+  </tr> 
+</table>
+
 
             </div>
             <hr>
